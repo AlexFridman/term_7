@@ -1,0 +1,1316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE>1</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Администратор">
+	<META NAME="CREATED" CONTENT="20120115;22080000">
+	<META NAME="CHANGEDBY" CONTENT="Andrew Yankovsky">
+	<META NAME="CHANGED" CONTENT="20160614;23052257">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-left: 0.79in; margin-right: 0.79in; margin-top: 0.79in; margin-bottom: 0.67in }
+		@page:first { margin-top: 0.79in; margin-bottom: 1.06in }
+		P { margin-bottom: 0in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ru-RU }
+		P.cjk { font-family: "Calibri", sans-serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		H1 { margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ru-RU }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ar-SA }
+		H2 { margin-top: 0.08in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ru-RU; font-style: italic }
+		H2.cjk { font-family: "Times New Roman", serif; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ar-SA; font-style: italic }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="ru-RU" STYLE="text-indent: 0.39in"><BR>
+	</P>
+</DIV>
+<H1 LANG="ru-RU" CLASS="western">Лекция 9. Использование фрагментов.</H1>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Фрагменты
+(Fragments). Динамическая работа и взаимодействие с Activity.
+Жизненный цикл фрагментов. Менеджер фрагментов.</FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Фрагменты</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Компонент Fragment находится в папке Layouts, что позволяет
+рассматривать его как контейнер. В то же время фрагмент обладает
+функциональностью активности (жизненный цикл, схожие методы и т.д.).</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Сами фрагменты поддерживаются в API 11, но в целях совместимости была
+написана специальная библиотека Android Support library, которая по
+умолчанию готова к использованию в новых проектах. В старых проектах
+библиотеку придётся добавлять вручную.</P>
+<H2 LANG="ru-RU" CLASS="western">Пример статического фрагмента</H2>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>package
+ru.alexanderklimov.fragmentdemo;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.Fragment;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.content.Context;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.graphics.Color;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.os.Bundle;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.LayoutInflater;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.View;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.ViewGroup;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.widget.LinearLayout;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.widget.TextView;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class MyFragment extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		//
+TODO Auto-generated method stub</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		Context
+context = getActivity().getApplicationContext();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		LinearLayout
+layout = new LinearLayout(context);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		layout.setBackgroundColor(Color.BLUE);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		TextView
+text = new TextView(context);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>text.setText(&quot;Это
+область фрагмента&quot;);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>		</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">layout.addView(text);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		return
+layout;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Основное отличие от класса <B>Activity</B> - вместо метода <B>onCreate()</B>
+используется метод <B>onCreateView()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Вернёмся к разметке приложения и слегка модифицируем его:</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;LinearLayout
+xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">xmlns:tools=&quot;http://schemas.android.com/tools&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/LinearLayout1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;horizontal&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">tools:context=&quot;.MainActivity&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;TextView</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/textView1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Я</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>вне</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмента</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&quot;
+/&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">&lt;fragment</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">android:id=&quot;@+id/fragment1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">name=&quot;ru.alexanderklimov.fragmentdemo.MyFragment&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>android:layout_weight=&quot;4&quot;
+/&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;/LinearLayout&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Основные изменения - задаём необходимый вес (weight) и в атрибуте
+<B>name</B> прописываем имя класса фрагмента (в старых примерах я
+использовал атрибут class, это не вызывает ошибки).</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk9_html_65785e77.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=400 HEIGHT=267 BORDER=0></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Существует два основных подхода в использовании фрагментов.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Первый способ основан на замещении родительского контейнера.
+Создаётся стандартная разметка и в том месте, где будут
+использоваться фрагменты, размещается контейнер, например,
+<B>LinearLayout</B>. В коде контейнер замещается фрагментом. При
+использовании подобного сценария в разметке не используется тег
+<B>fragment</B>, так как его нельзя менять динамически. Также вам
+придётся обновлять ActionBar, если он зависит от фрагмента. Здесь
+показан <FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/theory/fragment-add.php">такой
+пример</A></U></FONT>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Второй вариант - используются отдельные разметки для телефонов и
+планшетов, которые можно разместить в разных папках ресурсов.
+Например, если в планшете используется двухпанельная разметка с двумя
+фрагментами на одной активности, мы используем эту же активность для
+телефона, но подключаем другую разметку, которая содержит один
+фрагмент. Когда нам нужно переключиться на второй фрагмент, то
+запускаем вторую активность. 
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Второй подход является наиболее гибким и в целом предпочтительным
+способом использования фрагментов. Активность проверяет в каком
+режиме (свои размеры) он запущен и использует разную разметку из
+ресурсов. Графически это выглядит следующим образом.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk9_html_1ae2ce7e.png" NAME="graphics2" ALIGN=BOTTOM WIDTH=479 HEIGHT=334 BORDER=0></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk9_html_m3e8505bd.png" NAME="graphics3" ALIGN=BOTTOM WIDTH=525 HEIGHT=365 BORDER=0></P>
+<H2 LANG="ru-RU" CLASS="western">Основные классы</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Сами фрагменты наследуются от <B>android.app.Fragment</B>. Существует
+подклассы фрагментов: <B>ListFragment</B>, <B>DialogFragment</B>,
+<B>PreferenceFragment</B>, <B>WebViewFragment</B> и др. Не исключено,
+что число классов будет увеличиваться, например, появился ещё один
+класс <B>MapFragment</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для взаимодействия между фрагментами используется класс
+<B>android.app.FragmentManager</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для транзакций (добавление, удаление, замена) используется класс
+<B>android.app.FragmentTransaction</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для сравнения приведу названия классов из библиотеки совместимости:</P>
+<UL>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-top: 0.19in">
+	<FONT SIZE=4>android.support.v4.app.FragmentActivity</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT><FONT SIZE=4>android.support.v4.app.Fragment</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT><FONT SIZE=4>android.support.v4.app.FragmentManager</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.19in">
+	<FONT SIZE=4>android.support.v4.app.FragmentTransaction</FONT></P>
+</UL>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Как видите, разница в одном классе, который я привёл первым. Он
+используется вместо стандартного <B>Activity</B>, чтобы система
+поняла, что придётся работать с фрагментами.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В одном приложении нельзя использовать новые фрагменты и фрагменты из
+библиотеки совместимости.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Общий алгоритм работы с фрагментами будет следующим:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+У каждого фрагмента должен быть свой класс. Класс наследуется от
+класса <B>Fragment</B> или схожих классов, о которых говорилось выше.
+Это похоже на создание новой активности или нового компонента.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Также, как в активности, вы создаёте различные методы типа <B>onCreate()</B>
+и т.д. Если фрагмент имеет разметку, то используется метод
+<B>onCreateView()</B> - считайте его аналогом метода
+<B>setContentView()</B>, в котором вы подключали разметку активности.
+При этом метод <B>onCreateView()</B> возвращает объект <B>View</B>,
+который является корневым элементом разметки фрагмента.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Разметку для фрагмента можно создать программно или декларативно
+через XML.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Создание разметки для фрагмента ничем не отличается от создания
+разметки для активности. Вот<SPAN LANG="en-US"> </SPAN>отрывок<SPAN LANG="en-US">
+</SPAN>кода<SPAN LANG="en-US"> </SPAN>из<SPAN LANG="en-US"> </SPAN>метода<SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US"><B>onCreateView()</B></SPAN><SPAN LANG="en-US">:</SPAN></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class FirstFragment extends Fragment implements OnClickListener {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">View
+view = inflater.inflate(R.layout.first_fragment,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">container,
+false);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">Button
+nextButton = (Button) view.findViewById(R.id.button_first);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">nextButton.setOnClickListener(this);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+view;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>//
+...</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Глядя на этот код, вы должные понять, что фрагмент использует
+разметку из файла <B>res/layout/first_fragment.xml</B>, которая
+содержит кнопку с идентификатором <B>android:id=&quot;@+id/button_first&quot;</B>.
+Здесь также прослеживается сходство с подключением компонентов в
+активности. Обратите внимание, что перед методом <B>findViewById()</B>
+используется <B>view</B>, так как этот метод относится к компоненту,
+а не к активности, как мы обычно делали в программах, когда просто
+опускали имя активности. Т.е. в нашем случае мы ищем ссылку на кнопку
+не среди разметки активности, а внутри разметки самого фрагмента.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Нужно помнить, что в методе <B>inflate()</B> последний параметр
+должен иметь значение <B>false</B> в большинстве случаев.</P>
+<H2 LANG="ru-RU" CLASS="western">FragmentManager</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Класс <B>FragmentManager</B> имеет два метода, позволяющих найти
+фрагмент, который связан с активностью:</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>findFragmentById(int
+id)</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Находит фрагмент по идентификатору</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>findFragmentByTag(String
+tag)</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Находит фрагмент по заданному тегу</FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Методы транзакции</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Мы уже использовали некоторые методы класса <B>FragmentTransaction</B>.
+Познакомимся с ними поближе</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>add()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Добавляет фрагмент к активности</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>remove()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Удаляет фрагмент из активности</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>replace()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Заменяет один фрагмент на другой</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>hide()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Прячет фрагмент (делает невидимым на экране)</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>show()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Выводит скрытый фрагмент на экран</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>detach()
+(API 13)</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Отсоединяет фрагмент от графического интерфейса, но
+экземпляр класса сохраняется</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>attach()
+(API 13)</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Присоединяет фрагмент, который был отсоединён методом
+<B>detach()</B></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Методы <B>remove()</B>, <B>replace()</B>, <B>detach()</B>, <B>attach()</B>
+не применимы к статичным фрагментам.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Перед началом транзакции нужно получить экземпляр <B>FragmentTransaction</B>
+через метод <B>FragmentManager.beginTransaction()</B>. Далее
+вызываются различные методы для управления фрагментами.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В конце любой транзакции, которая может состоять из цепочки
+вышеперечисленных методов, следует вызвать метод <B>commit()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">FragmentManager
+fragmentManager = getFragmentManager()</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">fragmentManager.beginTransaction()</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">.remove(fragment1)</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">.add(R.id.fragment_container,
+fragment2)</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">.show(fragment3)</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">.hide(fragment4)</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">.commit();</SPAN></FONT></FONT></FONT></FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Управление стеком фрагментов</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Фрагменты, как и активности, могут управляться кнопкой <B>Back</B>.
+Вы можете добавить несколько фрагментов, а потом через кнопку <B>Back</B>
+вернуться к первому фрагменту. Если в стеке не останется ни одного
+фрагмента, то следующее нажатие кнопки закроет активность.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Чтобы добавить транзакцию в стек, вызовите метод
+<B>FragmentTransaction.addToBackStack(String)</B> перед завершением
+транзакции (commit). Строковый аргумент - опциональное имя для
+идентификации стека или <B>null</B>. Класс <B>FragmentManager</B>
+имеет метод <B>popBackStack()</B>, возвращающий предыдущее состояние
+стека по этому имени.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если вы вызовете метод <B>addToBackStack()</B> при удалении или
+замещении фрагмента, то будут вызваны методы фрагмента <B>onPause(),
+onStop(), onDestroyView()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Когда пользователь нажимает на кнопку возврата, то вызываются методы
+фрагмента <B>onCreateView()</B>, <B>onActivityCreated()</B>,
+<B>onStart()</B> и <B>onResume()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Рассмотрим пример реагирования на кнопку <B>Back</B> в фрагменте без
+использования стека. Активность имеет метод <B>onBackPressed()</B>,
+который реагирует на нажатие кнопки. Мы можем в этом методе сослаться
+на нужный фрагмент и вызвать метод фрагмента.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+void onBackPressed() {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">super.onBackPressed();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>//
+где-то ранее мы объявили фрагмент</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>fragment1.backButtonWasPressed();</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь в классе фрагмента прописываем метод с нужным кодом.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+void backButtonWasPressed() {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	//
+TODO Auto-generated method stub</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	Toast.makeText(getActivity(),
+&quot;Back button pressed&quot;, Toast.LENGTH_LONG)</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>.show();</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Более желательным вариантом является использование интерфейсов. В
+некоторых примерах с фрагментами такой приём используется.</P>
+<H2 LANG="ru-RU" CLASS="western">Интеграция Action Bar/Options Menu</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Фрагменты могут добавлять свои элементы в панель действий или меню
+активности. Сначала вы должны вызвать метод
+<B>Fragment.setHasOptionsMenu()</B> в методе фрагмента <B>onCreate()</B>.
+Затем нужно задать настройки для методов фрагмента
+<B>onCreateOptionsMenu()</B> и <B>onOptionsItemSelected()</B>, а
+также при необходимости для методов <B>onPrepareOptionsMenu()</B>,
+<B>onOptionsMenuClosed()</B>, <B>onDestroyOptionsMenu()</B>. Работа
+методов фрагмента ничем не отличается от аналогичных методов для
+активности.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В активности, которая содержит фрагмент, данные методы автоматически
+сработают.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если активность содержит собственные элементы панели действий или
+меню, то следует позаботиться, чтобы они не мешали вызовам методам
+фрагментов.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Код<SPAN LANG="en-US"> </SPAN>для<SPAN LANG="en-US"> </SPAN>активности<SPAN LANG="en-US">:</SPAN></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class MyActivity extends Activity {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+...</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+boolean onCreateOptionsMenu(Menu menu) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">super.onCreateOptionsMenu(menu);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">getMenuInflater().inflate(R.menu.activity_options,
+menu);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+true;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+boolean onOptionsItemSelected(MenuItem item) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">switch
+(item.getItemId()) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">case
+R.id.menu_activity_info:</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+Handle activity menu item</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+true;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">default:</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+Handle fragment menu items</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+super.onOptionsItemSelected(item);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+...</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Код<SPAN LANG="en-US"> </SPAN>для<SPAN LANG="en-US"> </SPAN>фрагмента<SPAN LANG="en-US">:</SPAN></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class MyFragment extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+...</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">super.onCreate(savedInstanceState);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">setHasOptionsMenu(true);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">inflater.inflate(R.menu.myfragment_options,
+menu);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+boolean onOptionsItemSelected(MenuItem item) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">switch
+(item.getItemId()) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">case
+R.id.menu_first_info:</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+Handle fragment menu item</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+true;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">default:</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+Not one of ours. Perform default menu processing</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return
+super.onOptionsItemSelected(item);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>//
+...</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Связь между фрагментом и активностью</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Экземпляр фрагмента связан с активностью. Активность может вызывать
+методы фрагмента через ссылку на объект фрагмента. Доступ к фрагменту
+можно получить через методы <B>findFragmentById()</B> или
+<B>findFragmentByTag()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Фрагмент в свою очередь может получить доступ к своей активности
+через метод <B>Fragment.getActivity()</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">View
+listView = getActivity().findViewById(R.id.list);</SPAN></FONT></FONT></FONT></FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Сохранение фрагментов при поворотах</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+По умолчанию свойство <B>retainInstance</B> фрагмента содержит <I>false</I>.
+Это означает, что при поворотах фрагмент не сохраняется, а
+уничтожается и создается заново вместе с активностью-хостом. Вызов
+<B>setRetainInstance(true)</B> сохраняет фрагмент, который не
+уничтожается вместе с активностью, а передается новой активности в
+неизменном виде.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Представление фрагмента может уничтожаться и создаваться заново без
+необходимости уничтожать сам фрагмент. При изменении конфигурации
+(повороте) <B>FragmentManager</B> сначала уничтожает макет фрагмента
+в своем списке. Макеты фрагментов всегда уничтожаются и создаются
+заново по тем же причинам, по которым уничтожаются и создаются заново
+разметки активности: в новой конфигурации могут потребоваться новые
+ресурсы. Затем <B>FragmentManager</B> проверяет свойство
+<B>retainInstance</B> каждого фрагмента. Если оно равно <I>false</I>
+(по умолчанию), <B>FragmentManager</B> уничтожает экземпляр
+фрагмента. Фрагмент и его макет будут созданы заново новым
+экземпляром <B>FragmentManager</B> новой активности.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если значение <B>retainInstance</B> равно <I>true</I>, макет
+фрагмента уничтожается, но сам фрагмент остаётся. При создании новой
+активности новый экземпляр <B>FragmentManager</B> находит сохранённый
+фрагмент и воссоздаёт его макет.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Сохранённый фрагмент не уничтожается, а отсоединяется (detached) от
+&laquo;умирающей&raquo; активности. В сохранённом состоянии фрагмент
+всё ещё существует, но не имеет активности-хоста.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Переход в сохранённое состояние происходит только при выполнении двух
+условий:</P>
+<UL>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-top: 0.19in">
+	<FONT SIZE=4>&#129;для фрагмента был вызван метод
+	<B>setRetainInstance(true)</B></FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.19in">
+	<FONT SIZE=4>&#129;активность-хост уничтожается для изменения
+	конфигурации (обычно поворот). Фрагмент находится в сохранённом
+	состоянии очень недолго &mdash; от момента отсоединения от старой
+	активности до повторного присоединения к новой, немедленно
+	создаваемой активности.</FONT></P>
+</UL>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Сохранённые фрагменты продолжают существовать только при уничтожении
+активности при изменения конфигурации. Если активность уничтожается
+из-за того, что системе потребовалось освободить память, то все
+сохранённые фрагменты также будут уничтожены.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<H1 LANG="ru-RU" CLASS="western">Жизненный цикл фрагментов</H1>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+У фрагментов есть жизненный цикл, который во многом совпадает с
+жизненным циклом активности, внутри которой они находятся.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk9_html_b18b0d9.png" NAME="graphics4" ALIGN=BOTTOM WIDTH=403 HEIGHT=691 BORDER=0></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Список дополнительных методов жизненного цикла фрагментов, которых
+нет у активности:</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>onAttach(Activity)</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Вызывается, когда фрагмент связывается с активностью</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>onCreateView(LayoutInflater,
+ViewGroup, Bundle)</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Вызывается для создания компонентов внутри фрагмента</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>onActivityCreated(Bundle)</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Вызывается, когда отработает метод активности <B>onCreate()</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>onDestroyView()</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Вызывается, когда набор компонентов удаляется из
+фрагмента</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>onDetach()</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.5in; text-indent: 0.39in">
+<FONT SIZE=4>Вызывается, когда фрагмент отвязывается от активности</FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Одноимённые с методами активности методы фрагментов выполняют
+аналогичные функции. К примеру, метод <B>onResume()</B> вызывается,
+когда фрагмент вновь становится видимым. 
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Метод <B>onStart()</B> вызывается, когда фрагмент становится видимым
+после запуска такого же метода в родительской активности.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Fragment всегда связан с активностью. Отдельно фрагмент от активности
+существовать не может.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если активность останавливается, то её фрагменты также
+останавливаются. Если активность уничтожается, то её фрагменты также
+уничтожаются.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Метод <B>onCreateView()</B> вызывается один раз, когда фрагмент
+должен загрузить на экран свой интерфейс. В этом методе вы можете
+&quot;надуть&quot; (inflate) разметку фрагмента через метод <B>inflate()</B>
+объекта <B>Inflator</B>, который задан в параметре метода. В
+фрагментах без интерфейса вы можете пропустить надувание.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Метод <B>onActivityCreated()</B> вызывается после метода
+<B>onCreateView()</B>, когда создаётся активность-хозяйка для
+фрагмента. Здесь можно объявить объекты, необходимые для <B>Context</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Фрагменты не являются подклассами <B>Context</B>, вам следует
+использовать метод <B>getActivity()</B>, чтобы получить родительскую
+активность.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<H1 LANG="ru-RU" CLASS="western">Программное добавление фрагментов</H1>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Рассмотрим программное добавление фрагмента в активность. Суть
+состоит в следующем. В разметке активности нельзя прописывать тег
+<B>fragment</B>, так как в этом случае Android не сможет менять
+фрагменты динамически. Воспользуемся <B>LinearLayout</B> как
+контейнером и будем его заменять программно на нужный фрагмент.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;?xml
+version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;LinearLayout
+xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;fill_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;fill_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;horizontal&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;TextView</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0px&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:background=&quot;#555555&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;TextView
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>в</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>главной</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+Activity&quot; /&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;LinearLayout</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;vertical&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/container&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0px&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;4&quot;
+/&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;/LinearLayout&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<SPAN LANG="en-US"><B>LinearLayout</B></SPAN><SPAN LANG="en-US"> </SPAN>с<SPAN LANG="en-US">
+</SPAN>идентификатором<SPAN LANG="en-US"> </SPAN><SPAN LANG="en-US"><B>@+id/container</B></SPAN><SPAN LANG="en-US">
+</SPAN>является<SPAN LANG="en-US"> </SPAN>нашим<SPAN LANG="en-US">
+</SPAN>контейнером<SPAN LANG="en-US">. </SPAN>Подготовим класс
+фрагмента. Разметку для фрагмента использовать не будем, всё сделаем
+программно.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">package
+ru.alexanderklimov.test;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.Fragment;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.content.Context;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.graphics.Color;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.os.Bundle;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.LayoutInflater;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.View;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.view.ViewGroup;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.widget.LinearLayout;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.widget.TextView;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class MyFragment extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		//
+TODO Auto-generated method stub</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		Context
+context = getActivity().getApplicationContext();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		LinearLayout
+layout = new LinearLayout(context);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		layout.setBackgroundColor(Color.BLUE);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		TextView
+text = new TextView(context);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>text.setText(&quot;Это
+область фрагмента&quot;);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>		</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">layout.addView(text);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		return
+layout;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Мы закрасили фрагмент синим цветом, добавили текстовую метку и вывели
+текст.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Осталось добавить код в метод <B>onCreate()</B> основной активности.
+Нам нужно получить экземпляр класса <B>FragmentTransaction</B> и
+добавить фрагмент в контейнерный <B>LinearLayout</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">package
+ru.alexanderklimov.fragment;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.Activity;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.Fragment;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.FragmentManager;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.app.FragmentTransaction;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+android.os.Bundle;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class FragmentDemoActivity extends Activity {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	/**
+Called when the activity is first created. */</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	public
+void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		super.onCreate(savedInstanceState);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		setContentView(R.layout.main);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		//
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>получаем</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>экземпляр</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+FragmentTransaction</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		FragmentManager
+fragmentManager = getFragmentManager();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		FragmentTransaction
+fragmentTransaction = fragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				.beginTransaction();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		//
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>добавляем</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		MyFragment
+myFragment = new MyFragment();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		fragmentTransaction.add(R.id.myfragment,
+myFragment);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>fragmentTransaction.commit();</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В примере мы добавляли фрагмент в контейнер. Если у вас фрагментов
+несколько и их нужно выводить в одном месте, то их нужно не добавлять
+в контейнер, а замещать. 
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Мы рассматривали <FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/theory/fragment-add.php">пример
+программного добавления фрагмента</A></U></FONT> при помощи метода
+<B>add()</B>, который является только одним из способом замещения
+контейнера фрагментом.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В более сложных программах, состоящих из нескольких фрагментов,
+используется метод <B>replace()</B>, который замещает фрагмент в
+контейнере другим фрагментом.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Рассмотрим на примере. Создадим активность с тремя кнопками и
+контейнером <B>FrameLayout</B>:</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;LinearLayout
+xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">xmlns:tools=&quot;http://schemas.android.com/tools&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;vertical&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">tools:context=&quot;.TestActivity&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;LinearLayout</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;horizontal&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;Button</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/button1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+1&quot; /&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;Button</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/button2&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+2&quot; /&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;Button</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/button3&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+3&quot; /&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;/LinearLayout&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;FrameLayout</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/container&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;/FrameLayout&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;/LinearLayout&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Создадим<SPAN LANG="en-US"> </SPAN>разметку<SPAN LANG="en-US"> </SPAN>для<SPAN LANG="en-US">
+</SPAN>трёх<SPAN LANG="en-US"> </SPAN>фрагментов<SPAN LANG="en-US">.
+</SPAN>Я приведу код только для первой разметки. В других можете
+использовать тот же код, только заменить текст в TextView, чтобы было
+понятно, о каком фрагменте идёт речь. По желанию можете также
+использовать разные картинки в ImageView:</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;LinearLayout
+xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/fragment1&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:orientation=&quot;vertical&quot;
+&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;TextView</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:id=&quot;@+id/tvMessage&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:text=&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+1&quot; /&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&lt;ImageView</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">android:src=&quot;@drawable/ic_launcher&quot;
+/&gt;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>&lt;/LinearLayout&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь напишем код для замещения фрагментов. Обратите внимание, что
+классы фрагментов мы используем в основном классе активности. Хотя в
+реальных проектах лучше выделить каждому классу фрагмента отдельный
+файл.</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">package
+ru.alexanderklimov.fragments;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">import
+...</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+class TestActivity extends Activity {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	FrameLayout
+container;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	FragmentManager
+myFragmentManager;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	MyFragment1
+myFragment1;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	MyFragment2
+myFragment2;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	MyFragment3
+myFragment3;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String TAG_1 = &quot;FRAGMENT_1&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String TAG_2 = &quot;FRAGMENT_2&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String TAG_3 = &quot;FRAGMENT_3&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String KEY_MSG_1 = &quot;FRAGMENT1_MSG&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String KEY_MSG_2 = &quot;FRAGMENT2_MSG&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	final
+static String KEY_MSG_3 = &quot;FRAGMENT3_MSG&quot;;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	//
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>класс</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>для</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>первого</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмента</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	public
+static class MyFragment1 extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		TextView
+textMsg;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			View
+view = inflater.inflate(R.layout.fragment1, null);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			textMsg
+= (TextView) view.findViewById(R.id.tvMessage);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			Bundle
+bundle = getArguments();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			if
+(bundle != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				String
+msg = bundle.getString(KEY_MSG_1);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				if
+(msg != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					textMsg.setText(msg);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			return
+view;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+void setMsg(String msg) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>textMsg.setText(msg);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>		}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	//
+класс для второго фрагмента</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+static class MyFragment2 extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		TextView
+textMsg;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			View
+view = inflater.inflate(R.layout.fragment2, null);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			textMsg
+= (TextView) view.findViewById(R.id.tvMessage);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			Bundle
+bundle = getArguments();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			if
+(bundle != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				String
+msg = bundle.getString(KEY_MSG_2);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				if
+(msg != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					textMsg.setText(msg);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			return
+view;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+void setMsg(String msg) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>textMsg.setText(msg);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>		}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	//
+класс для третьего фрагмента</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public
+static class MyFragment3 extends Fragment {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		TextView
+textMsg;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+View onCreateView(LayoutInflater inflater, ViewGroup container,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				Bundle
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			View
+view = inflater.inflate(R.layout.fragment3, null);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			textMsg
+= (TextView) view.findViewById(R.id.tvMessage);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			Bundle
+bundle = getArguments();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			if
+(bundle != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				String
+msg = bundle.getString(KEY_MSG_3);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				if
+(msg != null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					textMsg.setText(msg);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			return
+view;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		public
+void setMsg(String msg) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>textMsg.setText(msg);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>		}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	//
+метод основной активности</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">/**
+Called when the activity is first created. */</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">	public
+void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		super.onCreate(savedInstanceState);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		setContentView(R.layout.activity_test);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		container
+= (FrameLayout) findViewById(R.id.container);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		Button
+button1 = (Button) findViewById(R.id.button1);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		Button
+button2 = (Button) findViewById(R.id.button2);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		Button
+button3 = (Button) findViewById(R.id.button3);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		button1.setOnClickListener(new
+OnClickListener() {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			public
+void onClick(View arg0) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">MyFragment1
+fragment = (MyFragment1) myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">						.findFragmentByTag(TAG_1);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">				if
+(fragment == null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					Bundle
+bundle = new Bundle();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					bundle.putString(KEY_MSG_1,
+&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Заменили</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>на</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>первый</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">&quot;);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">myFragment1.setArguments(bundle);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					FragmentTransaction
+fragmentTransaction = myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							.beginTransaction();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.replace(R.id.container,
+myFragment1,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							TAG_1);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.commit();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}
+else {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragment.setMsg(&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Первый</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>уже</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>загружен</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&quot;);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		});</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		button2.setOnClickListener(new
+OnClickListener() {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			public
+void onClick(View arg0) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">MyFragment2
+fragment = (MyFragment2) myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">						.findFragmentByTag(TAG_2);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">				if
+(fragment == null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					Bundle
+bundle = new Bundle();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					bundle.putString(KEY_MSG_2,
+&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Заменили</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>на</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>второй</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">&quot;);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">myFragment2.setArguments(bundle);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					FragmentTransaction
+fragmentTransaction = myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							.beginTransaction();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.replace(R.id.container,
+myFragment2,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							TAG_2);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.commit();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}
+else {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragment.setMsg(&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Второй</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>уже</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>загружен</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">&quot;);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		});</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		button3.setOnClickListener(new
+OnClickListener() {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			@Override</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			public
+void onClick(View arg0) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">MyFragment3
+fragment = (MyFragment3) myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">						.findFragmentByTag(TAG_3);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">				if
+(fragment == null) {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					Bundle
+bundle = new Bundle();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					bundle.putString(KEY_MSG_3,
+&quot;</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Заменили</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>на</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>третий</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>фрагмент</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">&quot;);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="de-DE">					</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">myFragment3.setArguments(bundle);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					FragmentTransaction
+fragmentTransaction = myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							.beginTransaction();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.replace(R.id.container,
+myFragment3,</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">							TAG_3);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragmentTransaction.commit();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">				}
+else {</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					fragment</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>.</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">setMsg</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>(&quot;Третий
+фрагмент уже загружен&quot;);</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>				</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			}</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		});</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		myFragmentManager
+= getFragmentManager();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		myFragment1
+= new MyFragment1();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		myFragment2
+= new MyFragment2();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		myFragment3
+= new MyFragment3();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		if</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+(</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">savedInstanceState</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>
+== </FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">null</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>)
+{</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>			//
+при первом запуске программы</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>			</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">FragmentTransaction
+fragmentTransaction = myFragmentManager</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">					</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>.beginTransaction();</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>			//
+добавляем в контейнер при помощи метода add()</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>			</FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">fragmentTransaction.add(R.id.container,
+myFragment1, TAG_1);</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">			fragmentTransaction.commit();</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">		</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>	}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+При первом запуске приложения мы добавляем фрагмент в контейнер через
+метод <B>add()</B>. Далее при нажатии на одну из трёх кнопок мы
+заменяем фрагмент другим фрагментов. Если мы хотим заменить фрагмент
+на этот же фрагмент, то выводим сообщение, что данный фрагмент уже
+загружен.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk9_html_3a42f891.png" NAME="graphics5" ALIGN=BOTTOM WIDTH=225 HEIGHT=400 BORDER=0></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<H2 LANG="ru-RU" CLASS="western">Литература</H2>
+<OL>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+	<FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/theory/fragments.php">http://developer.alexanderklimov.ru/android/theory/fragments.php</A></U></FONT></FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+	<FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/views/fragment.php">http://developer.alexanderklimov.ru/android/views/fragment.php</A></U></FONT>
+	</FONT>
+	</P>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+	<FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/theory/fragment-add.php">http://developer.alexanderklimov.ru/android/theory/fragment-add.php</A></U></FONT></FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+	<FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/theory/fragment-replace.php">http://developer.alexanderklimov.ru/android/theory/fragment-replace.php</A></U></FONT>
+	</FONT>
+	</P>
+	<P LANG="ru-RU" CLASS="western" STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+	</P>
+</OL>
+<DIV TYPE=FOOTER>
+	<P LANG="ru-RU"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

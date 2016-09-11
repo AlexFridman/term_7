@@ -1,0 +1,2235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Никита">
+	<META NAME="CREATED" CONTENT="20160612;14180000">
+	<META NAME="CHANGEDBY" CONTENT="Andrew Yankovsky">
+	<META NAME="CHANGED" CONTENT="20160614;22432311">
+	<META NAME="AppVersion" CONTENT="14.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 2; orphans: 2 }
+		H2 { margin-top: 0.14in; margin-bottom: 0in; direction: ltr; color: #4f81bd; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H2.western { font-family: "Cambria", serif; font-size: 13pt }
+		H2.cjk { font-family: "SimSun"; font-size: 13pt }
+		H2.ctl { font-family: ; font-size: 13pt }
+		H3 { margin-top: 0.14in; margin-bottom: 0in; direction: ltr; color: #4f81bd; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H3.western { font-family: "Cambria", serif; font-size: 11pt }
+		H3.cjk { font-family: "SimSun"; font-size: 11pt }
+		H3.ctl { font-family: ; font-size: 11pt }
+		H4 { margin-top: 0.07in; margin-bottom: 0.07in; direction: ltr; color: #000000; line-height: 100%; widows: 2; orphans: 2; page-break-after: auto }
+		H4.cjk { font-family: "Times New Roman"; so-language: ru-RU }
+		H4.ctl { font-family: "Times New Roman" }
+		A:link { color: #0000ff; so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-bottom: 0.14in"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>Лекция
+1. Знакомство </B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><B>c</B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>
+архитектурой </B></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><B>Android</B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>.</B></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.14in"><BR><BR>
+</P>
+<OL>
+	<OL>
+		<LI><P STYLE="margin-bottom: 0.14in"><FONT SIZE=4><B>Введение</B></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%"><A NAME="keyword2"></A><A NAME="keyword3"></A><A NAME="keyword4"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android -
+операционная система для мобильных устройств: смартфонов, планшетных
+компьютеров, КПК. В настоящее время именно Android является самой
+широко используемой операционной системой для мобильных устройств.
+Подтверждение этого факта можно найти в таблице, составленной по
+данным аналитической компании Gartner.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_48d9fed0.jpg" ALIGN=BOTTOM WIDTH=624 HEIGHT=245 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<BR><BR>
+</P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%"><A NAME="keyword5"></A><A NAME="keyword6"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Внимательное
+изучение таблицы позволяет увидеть подавляющую популярность
+смартфонов под управлением ОС Android в мире, доля таких устройств не
+первый год превышает половину от общего числа купленных смартфонов.
+Кроме всего прочего, эта популярность продолжает расти. Очевидно, что
+армия пользователей смартфонов под управлением Android будет искать
+дополнительные приложения для своих устройств, в связи с этим умение
+разрабатывать эти самые приложения может принести много пользы своему
+владельцу. Например, можно разрабатывать для себя полезные,
+интересные, занимательные (нужное подчеркнуть) приложения, а можно,
+разведав обстановку и осмотревшись, сделать разработку мобильных
+приложений своей профессиональной деятельностью, основной или
+дополнительной.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%"><A NAME="keyword7"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Курс &quot;Разработка
+приложений для смартфонов на ОС Android&quot; предоставляет
+возможность приобрести начальные навыки разработки мобильных
+приложений, если остановиться только на первой его части. Изучение
+полной версии курса позволит сделать серьезный шаг к тому, чтобы
+профессионально разрабатывать мобильные приложения и получать от этой
+деятельности не только моральное, но и материальное удовлетворение.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%"><A NAME="keyword8"></A><A NAME="keyword9"></A><A NAME="keyword10"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Данная лекция
+является первой для всего курса, призвана ввести читателя в курс
+дела. В первую очередь в ней рассматриваются вопросы становления и
+развития ОС Android. Для успешного программирования под Android
+необходимо понимать внутреннюю организацию и архитектуру этой
+платформы, а также полезно знать, какие инструменты и среды
+разработки можно использовать. Этим вопросам посвящена основная часть
+лекции. Кроме того, в лекции рассматриваются особенности запуска и
+отладки мобильных приложений.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<BR><BR>
+</P>
+<H4 CLASS="western">Немного истории</H4>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Рассмотрим, как все
+начиналось. В 2003 году в Пало Альто, штат Калифорния Энди Рубин с
+единомышленниками (Рич Майнер, Ник Сирс и Крис Уайт) основали
+компанию Android Inc. Поначалу в компании занимались проектированием
+мобильных гаджетов, которые на основе геолокационных данных
+автоматически подстраивались под нужды пользователей.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>В августе 2005 года
+Android Inc. стала дочерней компанией Google. Энди Рубин, Рич Майнер
+и Крис Уайт остались в Android Inc. и начали работать над
+операционной системой, базирующейся на ядре Linux. В Google задумали
+реализовать мощнейшую платформу, пригодную к использованию на тысячах
+различных моделей телефонов. В связи с этим был создан Open Handset
+Alliance (OHA) - консорциум, состоящий из более 80 компаний,
+направляющий свои усилия на разработку открытых стандартов для
+мобильных устройств. В состав OHA входят такие гиганты, как Google
+(организатор и идейный вдохновитель), HTC, Sony, Dell, Intel,
+Motorola, Qualcomm, Texas Instruments, Samsung Electronics, LG
+Electronics, T-Mobile, Sprint Corporation, NVIDIA и многие другие.</FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Первая версия
+Android была представлена 23 сентября 2008 года, версии было дано
+название Apple Pie (можно заметить созвучие с прямым конкурентом).
+Далее так повелось, что название каждой очередной версии представляет
+какой-либо десерт, при этом первые буквы наименований в порядке
+версий соответствуют буквам латинского алфавита по порядку. С
+развитием обновлений Android можно познакомиться в таблице 1.1.</FONT></FONT></P>
+<TABLE WIDTH=630 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+	<COL WIDTH=86>
+	<COL WIDTH=536>
+	<TR>
+		<TD COLSPAN=2 WIDTH=626 BGCOLOR="#d8d8d8">
+			<P ALIGN=CENTER><A NAME="table.1.2"></A>Таблица 1.1. История
+			обновлений ОС Android</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=86 BGCOLOR="#d8d8d8">
+			<P ALIGN=CENTER><B>Версия, логотип, дата выхода</B></P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#d8d8d8">
+			<P ALIGN=CENTER><B>Основные возможности</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in"><A NAME="Bookmark"></A>
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 1.0</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-top: 0.07in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Apple
+			Pie</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<P STYLE="margin-bottom: 0.14in"><A NAME="table."></A>Первый
+			стабильный релиз, основан на ядре Linux 2.6.25.</P>
+			<P STYLE="margin-bottom: 0.14in">Поддерживается: 
+			</P>
+			<UL>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">файловая
+				система FAT32, стек интернет-протоколов TCP/IP;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">протоколы
+				передачи данных: 802.11 b/g Wi-Fi,Bluetooth 2.0 EDR, GPRS, EDGE,
+				UMTS, HSDPA;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">фото и
+				видео съемка, однако недостаточно опций для настройки разрешения
+				камеры, баланса белого и др.;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">сенсорные
+				дисплеи и landscape режим отображения данных на экране,
+				максимальная цветность дисплея - 16 бит (тип HVGA);</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">виджеты
+				и ярлыки на рабочем столе (Home Screen), сменные обои;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">регулярные
+				телефонные функции, контроль вызова, конференц-связь, легкая
+				интеграция с контактами;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">полноценный
+				web-браузер на движке WebKit, HTML, XHTML;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">e-mail
+				клиент, протоколы POP3, IMAP4, SMTP;</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">медиа
+				проигрыва</P>
+				<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in">ель,
+				позволяющий управлять, импортировать, проигрывать медиа контент в
+				различных форматах.</P>
+			</UL>
+			<P STYLE="margin-bottom: 0.14in">Базовые приложения:</P>
+			<P STYLE="margin-bottom: 0.14in">будильник; калькулятор;
+			календарь; камера; контакты; сообщения (в том числе MMS);
+			настройки; голосовой набор.</P>
+			<P STYLE="margin-bottom: 0.14in">Минимальные системные требования
+			для запуска и 
+			</P>
+			<P STYLE="margin-bottom: 0.14in">аботы:</P>
+			<P STYLE="margin-bottom: 0.14in">архитектура<SPAN LANG="en-US">
+			ARM, 128 MB RAM, 256 MB ROM.</SPAN></P>
+			<P STYLE="margin-bottom: 0.14in">Видео презентация:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://www.youtube.com/watch?feature=player_embedded&amp;v=1FJHYqE0RDg">http://www.youtube.com/watch?feature=player_embedded&amp;v=1FJHYqE0RDg</A></P>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android
+			1.1</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Banana Bread</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>февраль 2009</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 2)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Исправлены проблемы: с будильником; со спящим режимом; с
+						вызовом дисплея набора номера; в IMAP ошибки запроса пароля и
+						др.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Изменения API.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Добавлены подробности и отзывы к картам.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Добавлена поддержка вложений из MMS.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Локализации:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Английская US (en_US)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Немецкая (de)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-1.1.html">http://developer.android.com/about/versions/android-1.1.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=76 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=72>
+				<TR>
+					<TD WIDTH=72 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Android 1.5</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=72 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Cupcake</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=83 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=79>
+				<TR>
+					<TD WIDTH=79 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>апрель 2009</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=79 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 3)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Поддержка экранной клавиатуры (портретный и книжный режимы);
+						акселерометра; видеозапись и воспроизведение видео; приложение
+						для работы с YouTube; стерео Bluetooth; функция копирования и
+						вставки между приложениями (copy&amp;paste).</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Локализации:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>добавились очень многие, в том числе и русская (ru_RU).</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Система:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>новое Linux ядро (версия 2.6.27); автоматическая проверка и
+						восстановление файловой системы на SD card; новое приложение
+						для просмотра СТК меню оператора (SIM Application Toolkit 1.0).</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Изменения в пользовательском интерфейсе (UI):</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>изменено большинство UI-элементов, добавлены новые виджеты;
+						определение режима (книжный или портретный) работы программы;
+						анимированное переключение между окнами.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-1.5.html">http://developer.android.com/about/versions/android-1.5.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 1.6</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Donut</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>сентябрь 2009</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 4)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Система:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>новое ядро Linux (версия 2.6.29); поддержка сотового
+						стандарта CDMA; поддержка разрешений дисплеев: QVGA и WVGA;
+						обновленный медиа-движок OpenCore 2; движок синтеза речи
+						(многоязыковой); Gesture Builder поддержка возможности (для
+						разработчиков) создавать, сохранять, загружать и распознавать
+						жесты, прикреплять к определенным действиям.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Пользовательские возможности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>строка быстрого поиска (прямо с рабочего стола): история и
+						закладки в браузере, контакты и поиск в интернете; возможность
+						подключаться к видам VPN: L2TP/IPSEC pre-shared key based VPN,
+						L2TP/IPSEC certificate based VPN, L2TP only VPN, PPTP only VPN;
+						ускорение работы камеры; индикатор работы батареи позволяет
+						увидеть сколько энергии потребляют работающие программы и
+						сервисы.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Обновленный Android Market.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-1.6.html">http://developer.android.com/about/versions/android-1.6.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=79 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=75>
+				<TR>
+					<TD WIDTH=75 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Android 2.0,</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=75 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>2.0.1, 2.1</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Eclair</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>октябрь 2009</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 5)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 6)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 7)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<P STYLE="margin-bottom: 0.14in">Нововведения в 2.0:</P>
+			<P STYLE="margin-bottom: 0.14in">поддержка работы нескольких
+			почтовых аккаунтов одновременно, возможность использования
+			совместных папок (входящие, исходящие) для всех аккаунтов; быстрый
+			способ работы с контактами Quick Contact;</P>
+			<P STYLE="margin-bottom: 0.14in">поиск по всем сохраненным SMS и
+			MMS сообщ</P>
+			<P STYLE="margin-bottom: 0.14in">ниям, удаление старых после
+			заданного срока;</P>
+			<P STYLE="margin-bottom: 0.14in">возможности камеры: вспышка,
+			цифровой зум, сценические режимы, баланс белого, цветовые эффекты,
+			макрофокусировка;</P>
+			<P STYLE="margin-bottom: 0.14in">улучшенное расположение
+			виртуальных клавиш клавиатуры, поддержка комбинированных нажатий
+			клавиш (технология мультитач), усовершенствованная функция</P>
+			<P STYLE="margin-bottom: 0.14in">автодополнения;</P>
+			<P STYLE="margin-bottom: 0.14in">поддержка HTML5, версии Bluetooth
+			2.1, новых профилей OPP и PBAP.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-2.0.html">http://developer.android.com/about/versions/android-2.0.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 2.0.1:</P>
+			<P STYLE="margin-bottom: 0.14in">подрелиз версии 2.0, включающий в
+			себя незначительные изменения в функционале и по большей части
+			bugfix-ом версии 2.0.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-2.0.1.html">http://developer.android.com/about/versions/android-2.0.1.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 2.1:</P>
+			<P STYLE="margin-bottom: 0.14in">основным новшеством,
+			представляющим интерес для конечного пользователя, стало
+			добавление анимированных (живых) обоев, остальные изменения в
+			Framework API, представляют интерес для разработчиков.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-2.1.html">http://developer.android.com/about/versions/android-2.1.html</A></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 2.2</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=80 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=76>
+				<TR>
+					<TD WIDTH=76 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Froyo</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=76 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>май 2010</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=76 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 8)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>рост производительности примерно в 3-5 раз за счет
+						использования Dalvik Virtual Machine Just-in-Time компилятора;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>возможности установки приложений на SD-карту, переноса
+						приложений из внутренней памяти на карту и обратно;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>возможность использовать смартфон в качестве точки доступа к
+						интернету, в качестве модема для других устройств;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>поддержка Adobe Flash;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>V8 javascript существенно повысил скорость работы штатного
+						браузера.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-2.2.html">http://developer.android.com/about/versions/android-2.2.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=79 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=75>
+				<TR>
+					<TD WIDTH=75 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Android 2.3,</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=75 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>2.3.3</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Gingerbread</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>декабрь 2010</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 9)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 10)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<P STYLE="margin-bottom: 0.14in">До весны 2013 года самая массовая
+			версия на рынке.</P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения:</P>
+			<P STYLE="margin-bottom: 0.14in">новое ядро Linux 2.6.35;
+			поддержка открытых мультимедийных стандартов (VP8 и WebM),
+			форматов ACC/AMR, звуковых эффектов и эквалайзера, фронтальной
+			камеры (интеграция с VOIP(SIP));</P>
+			<P STYLE="margin-bottom: 0.14in">обновленный GUI: уменьшение
+			времени доступа к функциям, повышение общей энергоэфф</P>
+			<P STYLE="margin-bottom: 0.14in">ктивности системы;</P>
+			<P STYLE="margin-bottom: 0.14in">улучшение стандартной клавиатуры
+			системы: поддержка словарей, технологии мультитач, упрощенное
+			выделение и копирование текста;</P>
+			<P STYLE="margin-bottom: 0.14in">поддержка технологии NFC;
+			расширение возможностей работы с датчиками положения телефона.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-2.3.html">http://developer.android.com/about/versions/android-2.3.html</A></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 3.0-3.2</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in">Honeycomb</P>
+			<P STYLE="margin-bottom: 0.14in">февраль 2011</P>
+			<P STYLE="margin-bottom: 0.14in">(API level: 11)</P>
+			<P STYLE="margin-bottom: 0.14in">(API 
+			</P>
+			<P STYLE="margin-bottom: 0.14in">evel: 12)</P>
+			<P STYLE="margin-bottom: 0.14in">(API level: 13)</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<P STYLE="margin-bottom: 0.14in">Специальная версия для работы на
+			планшетах (MID, tablets).</P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 3.0:</P>
+			<P STYLE="margin-bottom: 0.14in">новое ядро Linux 2.6.36;
+			поддержка файловой системы ext4, файловой системы FUSE для MTP
+			устройств; поддержка режима USB-хост для работы с клавиатурой,
+			мышью и USB-хабами; поддержка MTP/PTP;</P>
+			<P STYLE="margin-bottom: 0.14in">виртуальная машина Dalvik:
+			поддержка и оптимизация SMP, множество улучшений JIT, улучшенный
+			сборщик мусора;</P>
+			<P STYLE="margin-bottom: 0.14in">совершенно новый интерфейс с
+			полноценной оптимизацией под устройства с большими экранами;
+			поддержка виртуальных рабочих столов, каждый из которых может
+			иметь свой набор виджетов и ярлыков;</P>
+			<P STYLE="margin-bottom: 0.14in">улучшенные и переработанные
+			базовые приложения: Browser, e-mail и др.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-3.0.html">http://developer.android.com/about/versions/android-3.0.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 3.1:</P>
+			<P STYLE="margin-bottom: 0.14in">поддержка работы кардридера;</P>
+			<P STYLE="margin-bottom: 0.14in">усовершенствован GUI: доработан
+			менеджер задач, позволяющий переключаться между множеством
+			различных приложений (в 3.0 только 5 программ одновременно);
+			возможность менять размер виджетов, как по горизонтали, так и по
+			вертикали.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-3.1.html">http://developer.android.com/about/versions/android-3.1.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Новов</P>
+			<P STYLE="margin-bottom: 0.14in">едения 3.2:</P>
+			<P STYLE="margin-bottom: 0.14in">расширен спектр поддерживаемых
+			планшетов; возможность автоматического масштабирования приложений
+			для отображения на более крупных экранах.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-3.2.html">http://developer.android.com/about/versions/android-3.2.html</A></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Android 4.0, 4.0.3</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Ice Cream Sandwich</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>ноябрь 2011</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 14)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 15)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>поддержка и смартфонов, и планшетов; поддержка новых
+						процессорных архитектур, помимо ARM поддержка Intel x86 и MIPS;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>возможность разблокировки экрана: при помощи функции
+						определения лица; жестами: перетащить замочек из центра экрана
+						на иконку приложения и оно запустится;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>многозадачность: кнопка Recent Apps позволяет мгновенно
+						переходить от одной задачи к другой с помощью списка в
+						системной панели;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>новые элементы управления передачей данных через сеть: в
+						приложении Настройки можно увидеть общее использование данных
+						по каждому типу сети, объем данных, используемых каждым
+						работающим приложением;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>доступность Android 4.0 для слепых и слабовидящих
+						пользователей, браузер поддерживает экранного чтеца, который
+						воспроизводит все видимое активное содержимое на экране;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>AndroidBeam - удобное средство обмена между двумя
+						NFC-устройствами;</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Wi-Fi Direct и Bluetooth HDP, HFP: возможность прямого
+						подключения к соответствующим устройствам.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-4.0.html">http://developer.android.com/about/versions/android-4.0.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 4.1-4.3</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Jelly Bean</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>июль 2012</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 16)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 17)</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 18)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<P STYLE="margin-bottom: 0.14in">Нововведения 4.1:</P>
+			<P STYLE="margin-bottom: 0.14in">увеличена скорость прорисовки
+			интерфейса, улучшен поиск, добавлено несколько полезных сервисов;</P>
+			<P STYLE="margin-bottom: 0.14in">улучшена работа со словарями,
+			возможно использовать голосовой ввод без подключения к интернет</P>
+			<P STYLE="margin-bottom: 0.14in">;</P>
+			<P STYLE="margin-bottom: 0.14in">специальные возможности:
+			возможность управления смартфоном с помощью жестов и голосовых
+			подсказок, подключения устройств ввода, поддерживающих шрифт
+			Брайля;</P>
+			<P STYLE="margin-bottom: 0.14in">существенно доработана функция
+			передачи данных Beam; переработан поиск (вместо ссылок ответ на
+			запрос); голосовой поиск; Google Now: нужная информация в нужное
+			время.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-4.1.html">http://developer.android.com/about/versions/android-4.1.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 4.2:</P>
+			<P STYLE="margin-bottom: 0.14in">реализована поддержка нескольких
+			пользователей (планшеты); поддержка wireless display: возможность
+			трансляции видео и изображений на внешний экран; возможность
+			отображения полезной информации в режиме сна, при подключении к
+			док-станции или на зарядке; улучшена панель уведомлений.</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://android.com.ua/android_42.html">http://android.com.ua/android_42.html</A></P>
+			<P STYLE="margin-bottom: 0.14in">Нововведения 4.3:</P>
+			<P STYLE="margin-bottom: 0.14in">ускорение работы системы; более
+			точный набор на клавиатуре; скрытая возможность управления
+			процессами программ (необходима активация); поддержка OpenGL/ES
+			3.0 (не на всех устройствах).</P>
+			<P STYLE="margin-bottom: 0.14in">Подробности:</P>
+			<P STYLE="margin-bottom: 0.14in"><A HREF="http://developer.android.com/about/versions/android-4.3.html">http://developer.android.com/about/versions/android-4.3.html</A></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=86 BGCOLOR="#eaeaea">
+			<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+			<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android 4.4</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+			<TABLE WIDTH=84 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=80>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Kit Kat</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>октябрь 2013</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=80 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>(API level: 19)</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+		<TD WIDTH=536 BGCOLOR="#eaeaea">
+			<TABLE WIDTH=534 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+				<COL WIDTH=530>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Нововведения:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>многозадачность, оптимизация распределения ресурсов между
+						приложениями; определитель номера работает не только с адресной
+						книгой (например, Google maps); серьезная интеграция приложения
+						Hangouts (отправка SMS, MMS, голосовые и видеовызовы); в состав
+						вошел Quickoffice, интегрированный с Google Drive; поддержка
+						принтеров, подключение через приложения поддерживающие печать
+						(например, Google Cloud Print, HP ePrint); поддержка стандарта
+						Wi-Fi Miracast, позволяющий вещать изображение на телевизор;
+						возможность захвата экрана для записи видео.</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P>Подробности:</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD WIDTH=530 VALIGN=TOP BGCOLOR="#eaeaea">
+						<P><A HREF="http://developer.android.com/about/versions/android-4.4.html">http://developer.android.com/about/versions/android-4.4.html</A></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P STYLE="margin-bottom: 0.14in"><BR><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<BR><BR>
+</P>
+<OL>
+	<OL START=2>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT SIZE=4><B>Обзор
+		достоинств и недостатков ОС Android.</B></FONT></FONT></FONT></P>
+	</OL>
+</OL>
+<P ALIGN=CENTER STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_m7167e04.jpg" ALIGN=BOTTOM WIDTH=300 HEIGHT=225 BORDER=0></P>
+<H2 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#0066ff"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-weight: normal">Плюсы
+операционной системы Андроид</SPAN></FONT></FONT></FONT></H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Разнообразие
+	приложений</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>&nbsp;</B></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>и
+	игр.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Их
+число в официальном магазине
+(https://www.android.com/intl/ru_ru/play/) давно уже преодолело
+миллионную отметку. Плееры, браузеры, текстовые редакторы и многое
+другое &ndash; всего этого в избытке и на любой вкус. Каждое решение
+имеет свои платные и бесплатные варианты, различающиеся функционалом
+и ограничениями.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Android
+	&ndash; операционная система</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>с
+	открытым исходным кодом.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Производство
+приложений, игр, всяческих поправок и обновлений упрощено до
+невозможности. Стремительно набирает обороты новая профессия
+&mdash;</FONT><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333">программист</FONT><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333">приложений
+для Андроид.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+	системе хорошо реализована</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>многозадачность,
+	когда без проблем работает одновременно несколько приложений.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Даже
+на не слишком мощном устройстве может эффективно работать сразу
+несколько вкладок браузера, музыкальный плеер и какое-нибудь
+ресурсоемкое приложение. Переключение между задачами происходит
+быстро.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Оперативные</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>обновления.
+	Компанией Google ведется непрерывная работа над улучшением
+	функционала операционной системы, исправляются баги, вносятся
+	изменения в интерфейс.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Кроме
+того, независимые разработчики тоже прилагают немало усилий по
+совершенствованию своих приложений, быстро адаптируя их под новые
+версии ОС.</FONT></FONT></FONT></P>
+<H2 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#0066ff"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-weight: normal">Минусы
+операционной системы Android</SPAN></FONT></FONT></FONT></H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Вне
+	зависимости от того, насколько хорошее в вашем устройстве железо,
+	смартфон или другой девайс под управлением OS Android приходится
+	довольно</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>часто
+	подзаряжать.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Связано
+это с тем, что сама система не экономит на предоставляемых ей
+аппаратных ресурсах. Частично недостаток можно исправить настройкой
+энергосбережения, отключением ненужных функций, но лишь частично.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Некоторые
+пользователи приобретают даже 2 зарядных устройства &ndash; для дома
+и для работы, как говорится, чтобы было всегда под рукой. Активные
+пользователи шутят, что с появлением смартфона или планшета на
+Андроиде у Вас автоматически появляется новая обязанность &ndash;
+каждый день ставить свое устройство на зарядку.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Проблемы
+	совместимости.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Новые
+версии операционной системы часто конфликтуют со снятыми с продажи
+устаревшими устройствами или устройствами, которые выпущены
+неизвестными &ldquo;китайскими&rdquo; производителями.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Вот
+и получается, что телефон после обновления начинает вести себя не
+так, как хотелось того &ndash; батарея быстро садится, начинаются
+зависания, перезагрузки и все в таком духе. Приходится принудительно
+откатываться на старую версию и отключать автоматическое обновление.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; line-height: 0.21in"><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Обилие
+	настроек.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Любителям
+часами копаться в телефоне, превращая его в многофункционального
+помощника, разнообразие настроек придется по душе, а вот обычные
+пользователи, у которых на первое место выходит практичность и
+скорость работы, могут оказаться недовольны. В этом плане система
+от</FONT><FONT COLOR="#333333">&nbsp;</FONT><A HREF="http://www.compgramotnost.ru/it-specialistu/stiv-dzhobs-on-prosto-vzyal-i-izmenil-mir"><FONT COLOR="#0066ff"><SPAN STYLE="text-decoration: none">Apple</SPAN></FONT></A><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333">выглядит
+более привлекательно: в ней даже ребенок разберется.</FONT></FONT></FONT></P>
+<H3 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#0066ff"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-weight: normal">Заключение</SPAN></FONT></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Несмотря
+на все свои недостатки, операционная система Android была и будет
+востребована на рынке мобильных устройств. Основной причиной тому
+является лояльное отношение к пользователям.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Широкий
+ассортимент устройств под управлением Андроид охватывает все ценовые
+сегменты &ndash; как бюджетные модели, так и премиум класс, позволяя
+обзавестись устройством с операционной системой от Google практически
+каждому.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<BR><BR>
+</P>
+<OL>
+	<OL START=3>
+		<LI><P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT SIZE=4><B>Сравнение
+		с другими мобильными ОС. Архитектура приложений для Android.</B></FONT></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>На&nbsp;стороне
+Android облачные сервисы, множество бесплатных приложений, лояльное
+отношение со&nbsp;стороны разработчика и&nbsp;невероятно широкий
+выбор девайсов. В&nbsp;этом кроются и&nbsp;его слабости&nbsp;&mdash;
+зачастую разрыв между бюджетными трубками и&nbsp;флагманами
+подпитывает стереотип о&nbsp;том, что платформа &laquo;тормозит&raquo;
+и&nbsp;&laquo;Android неудобный&raquo;.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Глядя на&nbsp;&laquo;победы&raquo;
+iOS, платформа оставляет впечатление более целостной, здесь
+внушительная библиотека полезных приложений, миллион разнообразных
+аксессуаров и&nbsp;шикарная камера. Так&nbsp;же в&nbsp;пользу Apple
+говорит очень серьёзное отношение к&nbsp;безопасности устройств
+и&nbsp;обновлениям прошивки. Из&nbsp;минусов&nbsp;&mdash; это цена
+устройств, формирующая образ закрытого псевдо-элитарного клуба,
+отсутствие более глубоких настроек системы и&nbsp;дорогие облачные
+сервисы.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Windows Phone
+является более молодой платформой, но&nbsp;с&nbsp;точки зрения
+удобства она ничем не&nbsp;хуже, чем Android и&nbsp;iOS. В&nbsp;обновлении
+8.1 платформу заметно прихорошили, а&nbsp;нововведения вроде
+голосового ассистента Cortana говорят о&nbsp;том, что здесь
+оптимистично смотрят в&nbsp;будущее. Но&nbsp;на&nbsp;Windows Phone
+мало интересного софта и&nbsp;этот факт сложно игнорировать.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<H3 CLASS="western" STYLE="margin-top: 0.05in; margin-bottom: 0.05in; background: #ffffff">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>1.3.
+</FONT></FONT></FONT><FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>Архитектура
+приложений для Android.</FONT></FONT></FONT></H3>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword53"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">Рассмотрим
+основные компоненты операционной системы</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">(</FONT><A HREF="#image.1.2"><FONT COLOR="#0071a6">Рис.
+1.2</FONT></A><FONT COLOR="#000000">).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword54"></A><A NAME="keyword55"></A><A NAME="keyword56"></A><A NAME="keyword57"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><B>Applications.</B></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">поставляется
+с набором основных приложений, включающим календарь,
+карты,</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>браузер</I></FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>менеджер</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">контактов
+и другие. Все перечисленные приложения написаны на</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Java</I></FONT><FONT COLOR="#000000">.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword58"></A><A NAME="keyword59"></A><A NAME="keyword60"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><B>Application
+Framework.</B></FONT><FONT COLOR="#000000"><B>&nbsp;</B></FONT><FONT COLOR="#000000">Предоставляя
+открытую платформу разработки,</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">дает
+разработчикам возможность создавать гибкие и инновационные
+приложения. Разработчики могут использовать аппаратные возможности
+устройства, получать информацию о местоположении, выполнять задачи в
+фоновом режиме, устанавливать оповещения и многое другое.
+Разработчики имеют полный</FONT><FONT COLOR="#000000"><I>доступ</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">к
+тем же</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>API</I></FONT><FONT COLOR="#000000">,
+что используются в основных приложениях.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword61"></A><A NAME="keyword62"></A><A NAME="keyword63"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><I>Архитектура</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">приложений
+разработана с целью упрощения повторного использования компонентов;
+любое</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>приложение</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">может
+&quot;публиковать&quot; свои возможности и любое
+другое</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>приложение</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">может
+затем использовать эти возможности (с учетом ограничений
+безопасности). Этот же механизм позволяет заменять стандартные
+компоненты на пользовательские.</FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.14in; background: #ffffff; line-height: 0.21in"><A NAME="image.1.2"></A>
+<IMG SRC="lk1_html_m438d58d8.jpg" ALIGN=BOTTOM WIDTH=516 HEIGHT=371 BORDER=0></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.14in; background: #ffffff; line-height: 0.21in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><BR></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Рис.
+1.2.</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>&nbsp;</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Архитектура
+операционной системы Android</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword64"></A><A NAME="keyword65"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><B>Libraries.</B></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">включает
+в себя набор C/C++ библиотек, используемых различными компонентами
+системы. Эти возможности доступны разработчикам в контексте
+применения</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">Aplication
+Framework. Некоторые основные библиотеки, перечислены ниже:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Mедиа
+	библиотеки &ndash; эти библиотеки предоставляют поддержку
+	воспроизведения и записи многих популярных аудио, видео форматов и
+	форматов изображений, в том числе MPEG4, MP3, AAC, AMR, JPG, PNG и
+	других;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Surface
+	Manager &ndash; управляет доступом к подсистеме отображения 2D и 3D
+	графических слоев;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>LibWebCore
+	&ndash; современный веб-движок, на котором построен браузер Android;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>SGL
+	&ndash; основной графический движок 2D;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>3D
+	библиотеки &ndash; реализованы на основе OpenGL; библиотеки
+	используют либо аппаратное 3D-ускорение (при его наличии), либо
+	включены программно;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>FreeType
+	&ndash; поддержка растровых и векторных шрифтов</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>SQLite
+	&ndash; механизм базы данных, доступной для всех приложений.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword66"></A><A NAME="keyword67"></A><A NAME="keyword68"></A><A NAME="keyword69"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><B>Android
+Runtime.</B></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">включает
+в себя набор основных библиотек, которые обеспечивают большинство
+функций, доступных в библиотеках</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Java</I></FONT><FONT COLOR="#000000">.
+Каждое</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>приложение</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">работает
+в своем собственном процессе, со своим собственным экземпляром
+виртуальной машины Dalvik. Dalvik была написана так, что устройство
+может работать эффективно с несколькими виртуальными машинами
+одновременно.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword70"></A><A NAME="keyword71"></A><A NAME="keyword72"></A><A NAME="keyword73"></A><A NAME="keyword74"></A><A NAME="keyword75"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">Dalvik
+проектировалась специально под платформу</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Виртуальная
+машина</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">оптимизирована
+для низкого потребления памяти и работы на мобильном аппаратном
+обеспечении. Dalvik использует собственный
+байт-код.</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">-приложения
+переводятся компилятором в специальный машинно-независимый
+низкоуровневый код. И именно Dalvik интерпретирует и выполняет такую
+программу при выполнении на платформе. Кроме того, с помощью
+специальной утилиты, входящей в состав</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>SDK</I></FONT><FONT COLOR="#000000">,
+Dalvik способна переводить байт-коды</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Java</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">в
+коды собственного формата и также исполнять их в своей виртуальной
+среде.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword76"></A><A NAME="keyword77"></A><A NAME="keyword78"></A><A NAME="keyword79"></A><A NAME="keyword80"></A><A NAME="keyword81"></A>
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000"><B>Linux
+Kernel.</B></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">основан
+на Linux версии 2.6 с основными системными службами
+&ndash;</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>безопасность</I></FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>управление
+памятью</I></FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#000000"><I>управление
+процессами</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">и
+модель драйверов. Разработчики</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>Android</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">модифицировали</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>ядро</I></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">Linux,
+добавив поддержку аппаратного обеспечения, используемого в мобильных
+устройствах и, чаще всего, недоступного на компьютерах.</FONT></FONT></FONT></P>
+<OL>
+	<OL START=4>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT SIZE=4><B>Ресурсы
+		приложения.</B></FONT></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">В
+Android принято хранить такие объекты, как изображения, строковые
+константы, цвета, анимацию, стили и тому подобное, за пределами
+исходного кода. Система поддерживает хранение ресурсов во внешних
+файлах. Внешние ресурсы легче поддерживать, обновлять и
+редактировать.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">В
+основном, ресурсы хранятся в виде XML-файлов в каталоге res с
+подкаталогами values, drawable-ldpi, drawable-mdpi, drawable-hdpi,
+layout. Но также бывают еще два типа ресурсов: raw и assets.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Для
+удобства система создает идентификаторы ресурсов и использует их в
+файле&nbsp;</FONT></FONT></FONT><FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">R.java</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;(класс
+R, который содержит ссылки на все ресурсы проекта), что позволяет
+ссылаться на ресурсы внутри кода программы. Статический класс R
+генерируется на основе заданных ресурсов и создается во время
+компиляции проекта. Так как файл R генерируется автоматически, то нет
+смысла его редактировать вручную, потому что все изменения будут
+утеряны при повторной генерации.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">В
+общем виде ресурсы представляют собой файл (например, изображение)
+или значение (например, заголовок программы), связанные с создаваемым
+приложением. Удобство использования ресурсов заключается в том, что
+их можно изменять без повторной компиляции или новой разработки
+приложения.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Самыми
+распространенными ресурсами являются, пожалуй, строки (string), цвета
+(color) и графические рисунки (bitmap).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">В
+следующей таблице перечислены основные ресурсы Android-приложения:</FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<IMG SRC="lk1_html_m673bd923.png" ALIGN=BOTTOM WIDTH=624 HEIGHT=303 BORDER=0><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Рис.
+1.3.</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>&nbsp;</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Основные
+ресурсы Android-приложения</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<BR><BR>
+</P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Помимо
+изображений в каталоге res/drawable могут храниться ресурсы простых
+геометрических фигур. Вот лишь некоторые из возможных атрибутов:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">android:shape</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;задает
+	тип фигуры: rectangle (прямоугольник), oval (овал), line (линия),
+	ring (окружность);</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&lt;corners&gt;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;создает
+	закругленные углы для прямоугольника;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&lt;gradient&gt;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;задает
+	градиентную заливку для фигуры; в Android можно создавать три типа
+	градиентов: Linear (линейный), Radial (радиальный) и Sweep
+	(разверточный);</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&lt;size&gt;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;задает
+	размеры фигуры;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&lt;solid&gt;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;задает
+	сплошной цвет для фигуры.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Анимация
+в Android бывает двух видов:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Frame
+	Animation</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;&ndash;
+	кадровая анимация, традиционная анимация при помощи быстрой смены
+	последовательных изображений, как на кинопленке.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.03in; margin-bottom: 0.03in; line-height: 0.17in">
+	<FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">Tween
+	Animation</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;&ndash;
+	анимация преобразований может выполняться в виде ряда простых
+	преобразований: изменение позиции (класс TranslateAnimation),
+	размера (ScaleAnimation), угла вращения (RotateAnimation) и уровня
+	прозрачности (AlphaAnimation). Команды анимации определяют
+	преобразования, которые необходимо произвести над объектом.
+	Преобразования могут быть последовательными или одновременными.
+	Последовательность команд анимации определяется в XML-файле
+	(предпочтительно) или в программном коде.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">В
+Android имеется еще один каталог, в котором моrут храниться файлы,
+предназначенные для включения в пакет &ndash;&nbsp;</FONT></FONT></FONT><FONT COLOR="#8b0000"><FONT FACE="Courier New, serif"><FONT SIZE=2 STYLE="font-size: 9pt">/assets</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Tahoma, serif"><FONT SIZE=2 STYLE="font-size: 9pt">.
+Это не ресурсы, а просто необработанные файлы. Этот каталог находится
+на том же уровне, что и /res. Для файлов, располагающихся в /assets,
+в R.java не генерируются идентификаторы ресурсов. Для их считывания
+необходимо указать путь к файлу. Путь к файлу является относительным
+и начинается с /assets. Этот каталог, в отличие от подкаталога res/,
+позволяет задавать произвольную глубину подкаталогов и произвольные
+имена файлов.</FONT></FONT></FONT></P>
+<OL>
+	<OL START=5>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>Пользовательский
+		интерфейс.</B></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>Графический
+интерфейс пользователя представляет собой иерархию
+объектов</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000">android.view.View</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>и</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000">android.view.ViewGroup</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>.
+Каждый объект</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000">ViewGroup</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>представляет
+контейнер, который содержит и упорядочивает дочерние объекты</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000">View</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>.
+Объекты</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000">View</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>представляют
+собой элементы управления и прочие виджеты, например, кнопки,
+текстовые поля и т.д., через которые пользователь взаимодействует с
+программой:</FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<IMG SRC="lk1_html_m949202.png" ALIGN=BOTTOM WIDTH=487 HEIGHT=253 BORDER=0></P>
+<P ALIGN=CENTER STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Рис.
+1.4.</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>&nbsp;</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Verdana, serif"><FONT SIZE=2>Иерархия
+объектов</FONT></FONT></FONT></P>
+<H3 CLASS="western" STYLE="background: #f7f7fa"><FONT COLOR="#000000">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Создание интерфейса
+в файлах XML</FONT></FONT></FONT></H3>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">Объявление
+пользовательского интерфейса в файлах XML позволяет отделить
+интерфейс приложения от кода. Что означает, что мы можем изменять
+определение интерфейса без изменения и перекомпиляции кода. Например,
+в приложении могут быть определены разметки в файлах XML для
+различных ориентаций монитора, различных размеров устройств,
+различных языков и т.д. Кроме того, объявление разметки в XML
+позволяет легче визуализировать структуру интерфейса и облегчает
+отладку.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">Создание
+разметки в XML облегчает тот факт, что при объявлении элемента
+интерфейса в XML часто применяются те же классы и методы, а элементы,
+как правило, соответствуют классам, а их атрибуты - методам. Правда,
+некоторые различия в именовании все равно есть. Например, элемент
+разметки в XML</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>EditText</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">имеет
+атрибут</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>text</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">,
+который соответствует методу</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>EditText.setText()</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">При
+создании разметки в XML следует соблюдать некоторые правила: каждый
+файл разметки должен содержать один корневой элемент, который должен
+представлять объект</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>View</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">или</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>ViewGroup</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">.
+XML-файлы разметки должны находиться в проекте в каталоге</FONT><FONT COLOR="#000000"><I>res/layout/</I></FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#000000">При
+компиляции каждый XML-файл разметки компилируется в ресурс</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>View</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">.
+Загрузка ресурса разметки осуществляется в методе</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Activity.onCreate</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">.
+Чтобы установить разметку для текущего объекта activity, надо в
+метод</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>setContentView</FONT></FONT></FONT></FONT></FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000">в
+качестве параметра передать ссылку на ресурс разметки (например, эта
+ссылка может выглядеть как R.layout.имя_файла_разметки). Допустим, у
+нас разметка сохранена в файле</FONT><FONT COLOR="#000000">&nbsp;</FONT><FONT COLOR="#000000"><I>hello_layout.xml</I></FONT><FONT COLOR="#000000">:</FONT></FONT></FONT></P>
+<TABLE WIDTH=914 BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=35>
+	<COL WIDTH=879>
+	<TR>
+		<TD WIDTH=35>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>1</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>2</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>3</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>4</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>5</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>6</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>7</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>8</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>9</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>10</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>11</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>12</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>13</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>14</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>15</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>16</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>17</FONT></FONT></P>
+			<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3>18</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=879>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;?xml
+			version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;LinearLayout
+			xmlns:android=&quot;</SPAN></FONT></FONT><A HREF="http://schemas.android.com/apk/res/android"><FONT COLOR="#0000ff"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><U>http://schemas.android.com/apk/res/android</U></SPAN></FONT></FONT></FONT></A><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">xmlns:tools=&quot;</SPAN></FONT></FONT><A HREF="http://schemas.android.com/tools"><FONT COLOR="#0000ff"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><U>http://schemas.android.com/tools</U></SPAN></FONT></FONT></FONT></A><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_height=&quot;match_parent&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:orientation=&quot;horizontal&quot;
+			&gt;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;EditText
+			android:id=&quot;@+id/edit_message&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_weight=&quot;1&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_width=&quot;0dp&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:hint=&quot;@string/edit_message&quot;
+			/&gt;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&lt;Button</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_width=&quot;wrap_content&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">android:text=&quot;@string/button_send&quot;</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3>android:onClick=&quot;sendMessage&quot;&nbsp;
+			/&gt;</FONT></FONT></P>
+			<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&lt;/LinearLayout&gt;</FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Тогда
+метод&nbsp;onCreate&nbsp;выглядел бы так:</FONT></FONT></FONT></P>
+<TABLE WIDTH=914 BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=28>
+	<COL WIDTH=886>
+	<TR>
+		<TD WIDTH=28>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>1</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>2</FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>3</FONT></FONT></P>
+			<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3>4</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=886>
+			<P STYLE="margin-bottom: 0in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">public
+			void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">super.onCreate(savedInstanceState);</SPAN></FONT></FONT></P>
+			<P STYLE="margin-bottom: 0in">&nbsp;&nbsp;&nbsp;&nbsp;<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">setContentView(R.layout.hello_layout);</SPAN></FONT></FONT></P>
+			<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3>}</FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #f7f7fa; line-height: 0.22in">
+<BR><BR>
+</P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<BR><BR>
+</P>
+<OL>
+	<OL START=6>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT SIZE=4><B>Инструментарий
+		разработки приложений для Android.</B></FONT></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword11"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Перед
+тем, как приступить к созданию&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-приложений,
+необходимо выбрать подходящий&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>инструментарий</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;разработки.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword12"></A><A NAME="keyword13"></A><A NAME="keyword14"></A><A NAME="keyword15"></A><A NAME="keyword16"></A><A NAME="keyword17"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Как
+правило, разработка&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-приложений
+осуществляется на языке&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Поэтому, в первую&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>очередь</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+необходимо установить</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java
+Development Kit</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>JDK</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>).
+Но для начала следует разобраться, что представляет из себя&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword18"></A><A NAME="keyword19"></A><A NAME="keyword20"></A><A NAME="keyword21"></A><A NAME="keyword22"></A><A NAME="keyword23"></A><A NAME="keyword24"></A><A NAME="keyword25"></A><A NAME="keyword26"></A><A NAME="keyword27"></A><A NAME="keyword28"></A><A NAME="keyword29"></A><A NAME="keyword30"></A><A NAME="keyword31"></A><A NAME="keyword32"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Java</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;&ndash;
+это объектно-ориентированный&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>язык
+программирования</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Программы на&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;транслируются
+в байт-код, выполняемый виртуальной машиной&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+которая обрабатывает байтовый код и передает инструкции оборудованию
+как&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>интерпретатор</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Достоинство подобного способа выполнения программ заключается в
+полной независимости байт-кода от операционной системы и
+оборудования, что позволяет выполнять&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-приложения
+на любом устройстве, для которого существует
+соответствующая</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>виртуальная
+машина</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Другой важной особенностью&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;является
+гибкая система безопасности благодаря тому, что&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>исполнение</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>программы
+полностью контролируется виртуальной машиной. Любые&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>операции</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+которые превышают установленные полномочия программы (например,
+попытка несанкционированного доступа к данным или соединения с другим
+компьютером) вызывают немедленное&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>прерывание</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Следует заметить, что фактически, большинство архитектурных решений,
+принятых при создании&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+было продиктовано желанием предоставить&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>синтаксис</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+схожий с С/C++. В&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;используются
+практически идентичные соглашения для объявления переменных, передачи
+параметров и операторов. Поэтому те, кто уже
+имеет&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>опыт</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;программирования
+на C/C++, смогут быстро освоиться и начать писать&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-приложения.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword33"></A><A NAME="keyword34"></A><A NAME="keyword35"></A><A NAME="keyword36"></A><A NAME="keyword37"></A><A NAME="keyword38"></A><A NAME="keyword39"></A><A NAME="keyword40"></A><A NAME="keyword41"></A><A NAME="keyword42"></A><A NAME="keyword43"></A><A NAME="keyword44"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>JDK</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;&ndash;
+это бесплатно распространяемый комплект разработчика приложений на
+языке&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+включающий в себя&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>компилятор</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+стандартные библиотеки классов&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+примеры, документацию, различные утилиты и исполнительную
+систему&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Java</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;Runtime</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Environment</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>JRE</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>).
+В состав&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>JDK</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;не
+входит интегрированная&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>среда
+разработки</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(Integrated&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Development
+Environment</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>).
+Поэтому после того, как будет установлен&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>JDK</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>,
+следует установить&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>IDE</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword45"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Существует
+несколько популярных сред разработки, но в данном курсе мы остановим
+свой выбор на&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Eclipse
+IDE</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;и
+соответствующем для нее плагине&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android
+Development Tools</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>ADT</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword46"></A><A NAME="keyword47"></A><A NAME="keyword48"></A><A NAME="keyword49"></A><A NAME="keyword50"></A><A NAME="keyword51"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android
+Software Development Kit</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>SDK</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>)
+содержит множество инструментов и утилит для создания и тестирования
+приложений. Например, с помощью&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>SDK</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Manager</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;можно
+установить&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>API</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;любой
+версии (</FONT></FONT></FONT><A HREF="#image.1.1"><FONT COLOR="#0071a6"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Рис.
+1.1</FONT></FONT></FONT></A><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>),
+а также проверить&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>репозиторий</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;на
+наличие доступных, но еще не установленных пакетов и архивов.</FONT></FONT></FONT></P>
+<P STYLE="margin-left: 0.28in; margin-bottom: 0in; background: #ffffff; line-height: 0.21in"><A NAME="image.1.1"></A>
+<IMG SRC="lk1_html_41b13da9.jpg" ALIGN=BOTTOM WIDTH=506 HEIGHT=362 BORDER=0></P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 0.21in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Рис.
+1.1.&nbsp;</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Окно
+SDK Manager, в котором разработчику предоставляется возможность
+выбрать версии Android API для установки</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword52"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android
+Native Development Kit</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(NDK)
+позволяет осуществлять разработку&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-приложений
+на языке C/C++. Зачем это может потребоваться? Есть несколько причин.
+Например, необходимость использовать код, который уже написан для
+нативной платформы, или ускорение выполнения критических кусков кода.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>1.6</B></FONT></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>
+Обзор шагов разработки типичного приложения под Android.</B></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+<BR><BR>
+</P>
+<H3 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Установка
+Eclipse и Android SDK</FONT></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Рекомендуемое
+окружение для разработки</FONT><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333">Android
+приложений - это Eclipse с установленным плагином Android Development
+Toolkit (ADT). Я опишу все далее.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<IMG SRC="lk1_html_m1dc6d79e.gif" ALIGN=BOTTOM WIDTH=500 HEIGHT=519 BORDER=0></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Скачайте
+	Android SDK для вашей платформы (Windows, Mac OS X или Linux).</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Распакуйте
+	скачанные файлы в любое запоминающееся место на жестком диске (в
+	Linux я придерживаюсь пути /opt/local/).</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Если
+	Eclipse уже установлен, скачайте и установите пакет</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;</FONT></FONT></FONT><A HREF="http://eclipse.org/downloads/packages/eclipse-ide-java-developers/galileosr2"><FONT COLOR="#337ab7"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Eclipse
+	IDE for Java Developers</FONT></FONT></FONT></A><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+	Для программирования Google рекомендует использовать Eclipse 3.5
+	(Galileo).</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Запустите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Eclipse </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>и</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>выберите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Help-&gt;Install New Software.</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Add </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>в</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>окне</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Available Software.</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Введите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Android Development Tools </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>в</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>поле</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Name </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>и</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	https://dl-ssl.google.com/android/eclipse/ </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>в</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>поле</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Location.</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите
+	OK и проверьте Developer Tools в списке доступного ПО. Этим самым мы
+	установим Android Development Tools и DDMS, отладочный инструмент
+	для Android.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите
+	Next и Finish для установки плагина. Нужно перезапустить Eclipse
+	единожды после установки.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>После
+	перезапуска Eclipse выберите Window-&gt;Preferences, и вы увидите
+	Android в списке категорий.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Теперь
+	нужно указать Eclipse, где расположен установленный Android SDK.
+	Нажмите Android, затем Browse для выбора местоположения
+	распакованных файлов SDK. К примеру, /opt/local/android-sdk.<BR><BR></FONT></FONT></FONT><IMG SRC="lk1_html_m3b0038e6.jpg" ALIGN=BOTTOM WIDTH=500 HEIGHT=466 BORDER=0></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите OK для
+	запоминания Eclipse'ом расположения SDK.</FONT></FONT></P>
+</UL>
+<H3 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Ориентация
+под платформу Android при разработке</FONT></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Перед
+тем, как начать написание приложений для Android, нужно скачать SDK
+для платформы Android. Каждая платформа имеет собственную версию
+Android SDK, которая установлена на устройствах пользователей. Для
+версии Android 1.5 и выше существует две платформы: Android Open
+Source Project и Google.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Android
+Open Source Project - платформа с открытым исходным кодом, но не
+включает в себя расширения Google, такие как Google Maps. Если вы не
+хотите использовать Google API, функциональность карт Google будет
+недоступна для вашего приложения. Если у вас нет особых причин делать
+это, я бы рекомендовал вам настроить таргетинг на одной из платформ
+Google, так как это позволит вам использовать собственные расширения
+Google.</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Window-&gt;Android SDK and AVD Manager.</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите
+	Available Packagesв левой колонке и проверьте репозиторий, чтобы
+	показать список доступных платформ Android.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Вы
+	можете выбрать платформы для загрузки из списка или оставить все
+	отмеченными, чтобы загрузить все доступные платформы. По завершению,
+	нажмите Install Selected и следуйте инструкции по установке.</FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">После
+того как все было успешно загружено, вы готовы приступить к
+разработке под Android.</FONT></FONT></FONT></P>
+<H3 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#78848e"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-weight: normal">Создание
+нового проекта Android</SPAN></FONT></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Мастер
+настройки Eclipse New Project Wizard поможет создать приложение
+Android, сгенерировав файлы и код, готовые к запуску, справа от
+блока. Это быстрый способ убедиться в работоспособности и хорошая
+начальная точка при начале разработки приложений:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите
+	File-&gt;New-&gt;Project&hellip;</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите
+	Android Project</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+	диалоге New Project введите следующие настройки:</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Project
+	Name: BrewClock</FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Build
+	Target: Google Inc. 1.6 (Api Level 4)</SPAN></FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Application
+	Name: BrewClock</FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Package
+	Name: com.example.brewclock</FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Create
+	Activity: BrewClockActivity</FONT></FONT></FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-left: 0.5in; margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Min
+SDK Version: 4</FONT></FONT></FONT></FONT></FONT></P>
+<P STYLE="margin-left: 0.5in; margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<IMG SRC="lk1_html_m2571642d.jpg" ALIGN=BOTTOM WIDTH=525 HEIGHT=1061 BORDER=0></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">После
+нажатия Finish, Eclipse создаст новый проект Android, готовый к
+запуску и разработке под Android. Помните, вы говорили Eclipse
+сгенерировать Activity, названный BrewClockActivity? Это код, который
+Android на самом деле использует для запуска приложения.
+Сгенерированный код будет отображен в виде простого сообщения в духе
+&lsquo;Hello World&rsquo;.</FONT></FONT></FONT></P>
+<H4 CLASS="western" STYLE="margin-top: 0.1in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#333333"><SPAN STYLE="font-weight: normal">Пакеты</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Имя
+пакета - идентификатор для вашего приложения. Когда настанет время
+публикации результата на Android Market, этот идентификатор будет
+использоваться для отслеживания обновлений для приложения, поэтому
+важно убедиться, что этот идентификатор уникален. Хотя здесь мы
+используем имя com.example.brewclock,для реального приложения лучше
+выбрать что-то вроде com.yourcompanyname.yourapplication.</FONT></FONT></FONT></P>
+<H4 CLASS="western" STYLE="margin-top: 0.1in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#333333"><SPAN STYLE="font-weight: normal">Версии SDK</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Версия
+Min SDK Version (название говорит само за себя) - самая ранняя версия
+Android, на которой приложение будет работать. С каждым новым
+выпуском Android, SDK добавляет и изменяет различные методы. При
+выборе версии SDK, Android (и Android Market) знает, что ваше
+приложение будет работать только на устройствах с версией платформы
+Android указанной версии и выше.</FONT></FONT></FONT></P>
+<H3 CLASS="western" STYLE="margin-top: 0.21in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#00000a"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Запуск
+вашего приложения</FONT></FONT></FONT></H3>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Сейчас
+попробуем запустить наше приложение в Eclipse. Поскольку это первый
+запуск, Eclipse спросит, с каким из типов проекта вы работаете:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите
+	Run-&gt;Run или нажмите Ctrl+F11.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Android Application </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>и</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>нажмите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	OK.</SPAN></FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Eclipse
+попробует запустить приложение на устройстве с Android. На данный
+момент, однако, у вас нет устройств под управлением Android, так что
+запустить проект не удастся, и вам будет предложено создать новое
+устройство Android Virtual Device (AVD).</FONT></FONT></FONT></P>
+<H4 CLASS="western" STYLE="margin-top: 0.1in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#333333"><SPAN STYLE="font-weight: normal">Виртуальные
+устройства (Android Virtual Devices)</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Android
+Virtual Device (AVD) эмулирует среду Android, будь то мобильный
+телефон или планшетный ПК. Вы можете создавать сколько угодно
+устройств AVD, с разными версиями платформы Android. Для каждого AVD
+вы можете настроить различные параметры устройств, указав наличие
+физической клавиатуры, поддержки GP, разрешение камеры и так далее.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Перед
+тем как запустить приложение, вы должны создать свой первое
+устройство AVD с платформой SDK (Google API, 1,6).</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Давайте
+сделаем это сейчас:</FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Если
+	вы еще не пробовали запустить приложение, нажмите Run (или сочетание
+	клавиш Ctrl+F11)</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Когда
+	всплывает предупреждение, нажмите Yes для создания AVD.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	New </SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>в</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>диалоге</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Android SDK and AVD Manager.</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Установите
+	следующие параметры для AVD:</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Name:
+	Android_1.6</FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Target:
+	Google APIs (Google Inc.) - API Level 4</SPAN></FONT></FONT></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+	<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>SD
+	Card Size: 16 MiB</FONT></FONT></FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-left: 0.5in; margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #cccccc; padding: 0.1in; line-height: 100%">
+<FONT FACE="Courier New, serif"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">Skin
+Built In: Default (HVGA)</SPAN></FONT></FONT></FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Нажмите
+	Create AVD.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.25in">
+	<FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Закройте</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>диалог</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+	Android SDK and AVD Manager.</SPAN></FONT></FONT></FONT></P>
+</UL>
+<H4 CLASS="western" STYLE="margin-top: 0.1in; margin-bottom: 0.1in; background: #ffffff">
+<FONT COLOR="#333333"><SPAN STYLE="font-weight: normal">Запуск кода</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Попробуйте
+запустить приложение снова (Ctrl + F11). Eclipse теперь будет
+создавать ваш проект и запускать новый AVD. Помните, AVD полностью
+эмулирует среду Android, причем вам даже не нужно наблюдать
+достаточно медленный процесс загрузки, как в случае с реальным
+устройством. По этой причине, как только AVD будет готов к работе,
+лучше не закрывать окно, пока вы закончили программировать, в течение
+всего дня.</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT COLOR="#333333">Когда</FONT><FONT COLOR="#333333">&nbsp;</FONT><A HREF="http://softdroid.net/luchshie-besplatnye-emulyatory-dlya-os-android"><FONT COLOR="#337ab7">android-эмулятор</FONT></A><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333">загрузится,
+Eclipse автоматически установит и запустит приложение:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.26in; background: #ffffff; line-height: 100%">
+<IMG SRC="lk1_html_22fb93e9.jpg" ALIGN=BOTTOM WIDTH=499 HEIGHT=355 BORDER=0></P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; background: #ffffff; line-height: 100%">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0.1in; background: #ffffff; line-height: 0.21in">
+<BR><BR>
+</P>
+<OL>
+	<OL START=7>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=3><FONT SIZE=4><B>Особенности
+		разработки с использованием эмулятора.</B></FONT></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword150"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Эмулятор&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;&ndash;
+это важный инструмент разработчика. Необходимо изучить его
+особенности и использовать его на начальном этапе разработки. Однако,
+следует помнить, что эмулятор лишь моделирует общее поведение
+реального устройства. Поэтому окончательное тестирование необходимо
+проводить на настоящем телефоне.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword151"></A><A NAME="keyword152"></A><A NAME="keyword153"></A><A NAME="keyword154"></A><A NAME="keyword155"></A><A NAME="keyword156"></A><A NAME="keyword157"></A><A NAME="keyword158"></A><A NAME="keyword159"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Эмулятор
+создается при помощи</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>Android</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>Virtual</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>Device</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>Manager</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>(</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>AVD</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><I>Manager</I></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>).
+Создавая новое&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>виртуальное</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;устройство,
+в окне свойств можно задать&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>произвольное</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;название
+для эмулятора, указать версию&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>API</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;и
+установить остальные параметры (например, разрешение, плотность
+пикселей на экране, емкость SD-карты и другие).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword160"></A><A NAME="keyword161"></A><A NAME="keyword162"></A><A NAME="keyword163"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>С
+помощью эмулятора можно иметь полноценный&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>доступ</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;к
+интернету, настраивать скорость и&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>латентность
+</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;соединения.
+Также можно имитировать входящие и исходящие телефонные звонки
+и&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>SMS</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>-сообщения.
+Но в то же время эмулятор не поддерживает виброзвонок, светодиоды,
+камеру,&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>акселерометр</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;и
+работу с компасом.</FONT></FONT></FONT></P>
+<OL>
+	<OL START=8>
+		<LI><P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in">
+		<FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>Отладка кода в
+		эмуляторе и на реальных устройствах.</B></FONT></FONT></P>
+	</OL>
+</OL>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Отладку
+программы для&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;можно
+производить несколькими способами - с помощью эмулятора, через
+подключение&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>USB</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;и
+через сетевое подключение&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>TCP/IP</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;(например
+по Wi-Fi).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>[</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Отладка
+с помощью эмулятора</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>]</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+среду Android Studio уже встроен эмулятор устройств Android, на
+котором можно отлаживать свои программы. Достоинство такого метода в
+том, что нет необходимости покупать специально для отладки смартфон
+или другое устройство с установленной системой Android, и можно точно
+подобрать конфигурацию эмулируемого устройства. Недостаток состоит в
+том, что эмулятор работает очень медленно, и он очень требователен к
+хосту, на котором идет отладка - и к памяти, и к процессорным
+ресурсам.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>[</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Отладка
+через USB</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>]</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Описание
+процесса запуска отладки под Windows XP в Android Studio, по шагам:</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>1</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Сначала нужно разрешить режим отладки USB. Войдите в Настройки -&gt;
+Параметры разработчика -&gt; Поставьте галочку &quot;Отладка USB&quot;.
+Высветится предупреждение, подтвердите положительно - &quot;Да&quot;.</FONT></FONT></FONT></P>
+<TABLE WIDTH=490 BORDER=0 CELLPADDING=1 CELLSPACING=0>
+	<COL WIDTH=243>
+	<COL WIDTH=243>
+	<TR>
+		<TD WIDTH=243>
+			<P><IMG SRC="lk1_html_m7e9724fa.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=240 HEIGHT=384 BORDER=0></P>
+		</TD>
+		<TD WIDTH=243>
+			<P><IMG SRC="lk1_html_3f3b91f6.png" NAME="graphics2" ALIGN=BOTTOM WIDTH=240 HEIGHT=384 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>2</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Нужно на компьютере установить драйвер&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android
+ADB Driver</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Это можно сделать, если скачать и запустить программу
+UsbDriverTool-sfx.exe [4,5]. После запуска укажите папку, куда нужно
+распаковать утилиту, например c:\temp, утилита распакуется в папку
+c:\temp\UsbDriverTool\. В папке c:\temp\UsbDriverTool\AndroidUsb\
+будет находиться драйвер Android ADB Driver, который нам нужен.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>3</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Подключите Ваш смартфон с Android через USB к компьютеру. Внимание,
+это важно: на смартфоне должен определиться режим &quot;Подключен как
+камера (PTP)&quot;, ни в коем случае не как USB Mass Storage
+устройство/флешка и не Мультимедиа-устройство MTP. Компьютер
+обнаружит новое устройство, запустится мастер установки драйвера.
+Подсуньте ему папку c:\temp\UsbDriverTool\AndroidUsb.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_m2ed554ab.png" NAME="graphics3" ALIGN=BOTTOM WIDTH=240 HEIGHT=384 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Установить
+драйвер можно также с помощью утилиты UsbDriverTool.exe, которая
+находится в архиве [5]. Запустите эту программу при подключенном
+через USB Android-устройстве. На стартовом экране будет отображено
+устройство SAMSUNG_Android:</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_6401ca4d.png" NAME="graphics4" ALIGN=BOTTOM WIDTH=400 HEIGHT=297 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите
+строку с устройством Android и нажмите кнопку Change driver type.
+Появится следующий экран, где будет предложено выбрать тип драйвера.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_7d201b65.png" NAME="graphics5" ALIGN=BOTTOM WIDTH=439 HEIGHT=346 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Выберите</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+Android ADB Driver </SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>и</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>нажмите</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+Install. </SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Через
+несколько секунд драйвер установится и будет готов к работе.</FONT></FONT></FONT></P>
+<TABLE WIDTH=614 BORDER=0 CELLPADDING=1 CELLSPACING=0>
+	<COL WIDTH=203>
+	<COL WIDTH=202>
+	<COL WIDTH=203>
+	<TR>
+		<TD WIDTH=203>
+			<P><IMG SRC="lk1_html_m294b7ceb.png" NAME="graphics6" ALIGN=BOTTOM WIDTH=200 HEIGHT=156 BORDER=0></P>
+		</TD>
+		<TD WIDTH=202>
+			<P><IMG SRC="lk1_html_4ee30b75.png" NAME="graphics7" ALIGN=BOTTOM WIDTH=200 HEIGHT=156 BORDER=0></P>
+		</TD>
+		<TD WIDTH=203>
+			<P><IMG SRC="lk1_html_m3a24970e.png" NAME="graphics8" ALIGN=BOTTOM WIDTH=200 HEIGHT=54 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>4</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Запустите Android Studio. Откройте Ваш проект программы (или создайте
+новый). Зайдите в меню Run -&gt; Edit Configurations..., слева в
+дереве настроек выберите Android Application -&gt; MyApplication
+(Ваше созданное приложение) -&gt; справа выберите в Target Device
+радиокнопку &quot;USB Device&quot;, нажмите OK.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>5</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Запустите приложение на отладку.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_m230722fb.png" NAME="graphics9" ALIGN=BOTTOM WIDTH=240 HEIGHT=230 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Если
+в консоли отладки видите сообщение &quot;Waiting for device. USB
+device not found&quot;, и в Android Debug Monitor Вы получаете
+сообщения типа &quot;Unable to debug device:
+samsung-gt_n7000-0019a2fe5212ce&quot; или &quot;Missing forwarded
+port for 0019a2fe5212ce&quot; - переподключите устройство к USB и
+попробуйте заново запустить отладку.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>[</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Отладка
+через Wi-Fi</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>]<BR><BR></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>ADB</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;можно
+запустить по каналу связи TCP/IP, для чего можно использовать
+подключение Wi-Fi. Отладка через Wi-Fi является необычайно удобной.
+Не нужны провода, и отладка программы запускается очень быстро, так
+же как и при отладке через USB. Означает, что при отладке можно
+подключить устройство через коннектор USB к зарядке или куда-то еще.
+Это особенно удобно, когда отлаживаемых устройств Android у Вас
+больше, чем портов USB, и когда Вы хотели бы тестировать Ваши
+последние сборки через сеть, с помощью других людей. Подробнее про
+adb можно прочитать в [7]. Здесь приведено пошаговое руководство, как
+запустить такую отладку (подразумевается, что у Вас на компьютере уже
+установлены Android SDK, ADB, и Вы можете осуществлять отладку
+программ через USB).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>1</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Подключите устройство Android к Вашему компьютеру через USB в режиме
+разрешенной отладки через USB (как этот режим включается - см. раздел
+&quot;Отладка через USB&quot;). Перейдите в папку, где находится
+утилита adb.exe (на операционных системах Windows это обычно папка
+c:\Program Files\Android\android-studio\sdk\platform-tools),
+запустите интерпретатор команд cmd и введите команду:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>adb
+tcpip 5555</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+ответ должно быть выведено сообщение:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">restarting
+in TCP mode port: 5555</SPAN></FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Если
+у Вас была запущена среда Android Studio, и Вы следили за консолью
+Devices и логом сообщений logcat, то в этот момент увидите, что
+подключенное устройство Android исчезло из списка, в logcat перестали
+появляться новые сообщения. Сейчас Вы разрешили отладку через TCP/IP
+соединение с использованием порта 5555 (Вы также можете использовать
+любой другой свободный порт), осталось подключить ADB к устройству
+Android.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>2</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Теперь нужно узнать, какой IP-адрес у устройства Android. Этот адрес
+он получил, когда подключился к сети Wi-Fi. Адрес можно узнать, если
+зайти в Настройки -&gt; Об устройстве -&gt; Состояние (Settings -&gt;
+About -&gt; Status).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_m19815ae7.png" NAME="graphics10" ALIGN=BOTTOM WIDTH=240 HEIGHT=384 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Итак,
+у нашего устройства IP-адрес 192.168.0.53. Теперь введите следующую
+команду:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>adb
+connect 192.168.0.53</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+ответ получите сообщение:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>connected
+to 192.168.0.53</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>3</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Если Ваш компьютер находится в той же подсети (192.168.0/24), то
+теперь в среде Android Studio консоль Devices покажет подключенное
+устройство Android, и Вы свободно можете производить отладку точно
+так же, как раньше это делали через USB. Состояние моста ADB можно
+проверить командой:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>adb
+devices</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+ответ должен быть выведен список подключенных устройств:</FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">List
+of devices attached:</SPAN></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; background: #f8f8f8; line-height: 0.14in">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&quot;IP-</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>адрес</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">_</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Вашего</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">_</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>устройства</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">:</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>порт</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&quot;
+device</SPAN></FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<IMG SRC="lk1_html_5f49c291.png" NAME="graphics11" ALIGN=BOTTOM WIDTH=450 HEIGHT=235 BORDER=0></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+Вашей среде разработки теперь доступен лог Logcat, и можно запустить
+на отладку Ваше разрабатываемое приложение. Будут работать следующие
+функции (как и при отладке через USB):</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000">&bull; <FONT FACE="Times New Roman, serif"><FONT SIZE=3>Вывод
+Logcat.<BR>&bull; Развертывание отлаживаемого приложения на
+устройстве (копирование его из среды разработки в устройство).<BR>&bull;
+Отладка приложения.<BR>&bull; Создание скриншотов через ADB.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>[</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Отладка
+на виртуальном устройстве AVD</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>]</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US"><B>AVD</B></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">&nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>переводится</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>как</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN LANG="en-US">
+Android Virtual Device. </SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Программа
+AVD Manager позволяет создавать такие виртуальные устройства, которые
+Вы можете использовать при отладке своих программ. Отладка на AVD
+имеет свои преимущества, потому что позволяет создать множество
+устройств Android с разными характеристиками (разное разрешение
+экрана, разные версии операционной системы Android, разный объем
+памяти и т. п.). Однако отладка на AVD работает чрезвычайно медленно,
+и очень требовательна к ресурсам хостового компьютера, который
+запускает AVD (как по памяти, так и по процессорному времени).
+Ускорить отладку на AVD можно, если запускать виртуальное устройство
+из снапшотов (это настраивается при создании виртуального
+устройства), или если применить специальные приемы работы с
+эмулятором [6], но в любом случае отладка на реальном устройстве
+предпочтительнее отладки на AVD.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+среде&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Android
+Studio</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;виртуальные
+устройства создаются запуском программы AVD Manager через меню Tools
+-&gt; Android -&gt; AVD Manager. В&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>Eclipse</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;виртуальные
+устройства создаются и настраиваются через меню Window -&gt; Android
+Virtual Device Manager. Также AVD Manager можно запустить из
+командной строки, если выполнить команду&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>android.bat
+avd</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>.
+Скрипт&nbsp;android.bat находится в директории sdk\tools, папка
+установленного SDK (пакет SDK входит в состав ADT на основе Eclipse и
+также входит в установку Android Studio).</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>[</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>LogCat</B></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>]</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Система
+Android предоставляет мощное средство вывода отладочных сообщений
+LogCat. LogGat позволяет в режиме реального времени, не останавливая
+программу, выводить текстовые сообщения в консоль, что дает
+возможность разобраться - что именно сейчас происходит в программе.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>В
+системе разработки Eclipse консоль LogCat открывается автоматически
+после запуска отлаживаемой программы.</FONT></FONT></FONT></P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; line-height: 100%">
+<BR><BR>
+</P>
+<P STYLE="margin-top: 0.07in; margin-bottom: 0.07in; background: #ffffff; line-height: 0.17in"><A NAME="keyword164"></A>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>Теперь,
+когда известны основные принципы программирования для&nbsp;</FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I>Android</I></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>&nbsp;и
+создан эмулятор, можно приступать к написанию приложений.</FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.17in; background: #ffffff; line-height: 0.25in">
+<BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.17in; background: #ffffff; line-height: 0.25in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=4><B>Литература</B></FONT></FONT></P>
+<P STYLE="margin-bottom: 0.17in; background: #ffffff; line-height: 0.25in">
+1) Хашими С., Коматинени С., Маклин Д. Разработка приложений для
+Android // СПб.: Питер, 2011 2) П. Дейтел, Х. Дейтел, Э. Дейтел, М.
+Моргано. Android для программистов: созда&#1104;м приложения // СПб.:
+Питер, 2013.</P>
+<P STYLE="margin-bottom: 0.14in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>3)</FONT></FONT>
+<A HREF="http://developer.alexanderklimov.ru/android/"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>http://developer.alexanderklimov.ru/android/</FONT></FONT></A></P>
+</BODY>
+</HTML>

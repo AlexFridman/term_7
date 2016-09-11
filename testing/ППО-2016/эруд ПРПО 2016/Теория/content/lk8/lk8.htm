@@ -1,0 +1,507 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE>1</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Администратор">
+	<META NAME="CREATED" CONTENT="20120115;22080000">
+	<META NAME="CHANGEDBY" CONTENT="Andrew Yankovsky">
+	<META NAME="CHANGED" CONTENT="20160614;23032366">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-left: 0.79in; margin-right: 0.79in; margin-top: 0.79in; margin-bottom: 0.67in }
+		@page:first { margin-top: 0.79in; margin-bottom: 1.06in }
+		P { margin-bottom: 0in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ru-RU }
+		P.cjk { font-family: "Calibri", sans-serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		H1 { margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ru-RU }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ar-SA }
+		H2 { margin-top: 0.08in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ru-RU; font-style: italic }
+		H2.cjk { font-family: "Times New Roman", serif; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ar-SA; font-style: italic }
+		H3 { text-indent: 0.39in; margin-bottom: 0.08in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H3.western { font-family: "Arial", sans-serif; so-language: ru-RU }
+		H3.cjk { font-family: "Microsoft YaHei" }
+		H3.ctl { font-family: "Arial Unicode MS"; so-language: ar-SA }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="ru-RU" STYLE="text-indent: 0.39in"><BR>
+	</P>
+</DIV>
+<H1 LANG="ru-RU" CLASS="western">Лекция 8. Приложения с поддержкой
+ориентации экрана. Сохранение состояния страниц.</H1>
+<P LANG="ru-RU" CLASS="western" ALIGN=JUSTIFY STYLE="widows: 2; orphans: 2; page-break-before: auto">
+<FONT SIZE=4>Разрешение и запрет на переключение при смене ориентации
+экрана. Использование ресурсов. Сохранение состояния страницы при
+смене ориентации. Activity и реализация методов:  для сохранения
+данных onSaveInstanceState(), и для восстановления &ndash;
+onRestoreInstanceState().</FONT></P>
+<H3 LANG="ru-RU" CLASS="western">Ориентация экрана</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Любое <SPAN LANG="en-US">Android</SPAN>-устройство, оснащенное
+акселерометром, способно определить, в каком положении сейчас
+находится устройство. В зависимости от показаний акселерометра, может
+изменяться ориентация экрана: с альбомной на портретную и наоборот.
+Но не всегда это хорошо. Одно дело, если вы разрабатываете офисное
+приложение, но совсем другое, когда разрабатывается игра. В таком
+случае изменение ориентации экрана может быть не совсем желательным.
+Но вы можете принудительно задать ориентацию экрана для каждой
+деятельности. Вы можете запретить приложению менять ориентацию, если
+добавите нужный код в&nbsp;onCreate().</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT SIZE=4><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">setRequestedOrientation
+(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>для</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>альбомного</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>режима</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT SIZE=4><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">//
+</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>или</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT SIZE=4><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">setRequestedOrientation
+(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>для</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>портретного</FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>режима</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Но указанный способ не совсем желателен. Лучше установить нужную
+ориентацию через манифест, прописав в элементе &lt;activity&gt;
+параметр&nbsp;android:screenOrientation:</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>android:screenOrientation=&quot;portrait&quot;</FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>android:screenOrientation=&quot;landscape&quot;</FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>Кстати,
+существует ещё один вариант, когда устройство полагается на показания
+сенсора и некоторые другие:</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT SIZE=4><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><FONT SIZE=3>android:screenOrientation=&quot;sensor&quot;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<H2 LANG="ru-RU" CLASS="western">Запрет на создание новой активности</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+На примере программной установки ориентации можно увидеть интересный
+эффект, о котором нужно помнить. Предположим у нас есть кнопка,
+позволяющая менять ориентацию. Заодно будем менять текст на кнопке,
+чтобы операция соответствовала надписи.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">public
+class MainActivity extends Activity {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	private
+Button mButton;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	static
+final String ORIENTATION_PORTRAIT = &quot;</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">Портретный</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">режим</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">&quot;;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	static
+final String ORIENTATION_LANDSCAPE = &quot;</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">Альбомный</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">режим</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">&quot;;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">//
+определяем изменение ориентации экрана</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">	boolean
+mState = false;</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">	</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	public
+void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		super.onCreate(savedInstanceState);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		setContentView(R.layout.activity_main);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		mButton
+= (Button) findViewById(R.id.button);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		//
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">установим</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">текст</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">по</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">умолчанию</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		mButton.setText(ORIENTATION_LANDSCAPE);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	}</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	public
+void onClick(View view) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		//
+state FALSE: </SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">переключаемся</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">на</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+LANDSCAPE</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		if
+(!mState) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			mButton.setText(ORIENTATION_PORTRAIT);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		//
+state TRUE: </SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">переключаемся</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">на</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+PORTRAIT</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		else
+{</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			mButton.setText(ORIENTATION_LANDSCAPE);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		//
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">обновляем</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+state </SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">на</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">противоположное</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">значение</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">mState
+= !mState;</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">	}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь посмотрите, что у нас получилось. Запустите проект и нажмите
+на кнопку. Ориентация экрана поменялась, однако текст на кнопке
+остался прежним, хотя по нашей задумке он должен измениться.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk8_html_f14b46.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=240 HEIGHT=400 BORDER=0></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Нажмём на кнопку ещё раз. Надпись изменится, но ориентация не
+сменится. И только повторный щелчок повернёт экран в обратную
+сторону.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+По умолчанию, при смене ориентации Android уничтожает и пересоздаёт
+активность из кода, что подразумевает повторный вызов
+метода&nbsp;onCreate(). Поэтому при повороте активность устанавливала
+текст, определенный в&nbsp;onCreate(). В большинстве случаев это не
+мешает программе. Но если приложение воспроизводит видео, то при
+смене ориентации вызовonCreate()&nbsp;может привести к повторному
+началу воспроизведения (если так написан пример).</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Чтобы активность не пересоздавалась, добавьте в манифест строчку для
+нужной активности:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В этом случае система вызовет
+метод&nbsp;onConfigurationChanged(Configuration)&nbsp;и полагается на
+вас:</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">public
+void onConfigurationChanged(Configuration newConfig) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">super.onConfigurationChanged(newConfig);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">//
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">Проверяем</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">ориентацию</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">экрана</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">if
+(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">Toast.makeText(this,
+&quot;landscape&quot;, Toast.LENGTH_SHORT).show();</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">}
+else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+{</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">Toast.makeText(this,
+&quot;portrait&quot;, Toast.LENGTH_SHORT).show();</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В документации говорится, что данный способ следует избегать.</P>
+<H2 LANG="ru-RU" CLASS="western">Исчезающий текст</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Как уже говорилось, при смене ориентации активность пересоздаётся.
+При этом можно наблюдать интересный эффект с пропадающим текстом.
+Чтобы увидеть эффект, создадим два текстовых поля. Одному из них
+присвоим идентификатор, а другое поле оставим без него.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">&lt;EditText</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:id=&quot;@+id/editTest&quot;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;
+/&gt;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">&lt;EditText</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:layout_width=&quot;match_parent&quot;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">android:layout_height=&quot;wrap_content&quot;
+/&gt;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Запустите приложение, введите любой текст в обоих полях и смените
+ориентацию. Вы увидите, что у поля с идентификатором текст при
+повороте сохранится, а у поля без идентификатора текст исчезнет.
+Учитывайте данное обстоятельство.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+К вышесказанному могу добавить, что при смене ориентации у поля с
+идентификатором вызывается метод&nbsp;onTextChanged():</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">public
+void onCreate(Bundle savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	super.onCreate(savedInstanceState);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	setContentView(R.layout.activity_main);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	EditText
+editText = (EditText)findViewById(R.id.editTextTest);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">	editText.addTextChangedListener(new
+TextWatcher() {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		public
+void onTextChanged(CharSequence s, int start, int before, int count)
+{</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			Toast.makeText(MainActivity.this,
+</SPAN></FONT></FONT></FONT></FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">			
+        &quot;onTextChanged: &quot; + s, Toast.LENGTH_SHORT).show();</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		public
+void beforeTextChanged(CharSequence s, int start, int count,</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">				int
+after) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		}</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		public
+void afterTextChanged(Editable s) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">		</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">	});</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<H2 LANG="ru-RU" CLASS="western">Запоминаем значения переменных</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+С поворотом экрана возникает одна очень неприятная проблема.
+Вдумайтесь в значение слов, что при повороте экрана активность
+создаётся заново. Чтобы было понятно, нужно вернуться к проекту, в
+котором мы считали ворон. Если вы его удалили, то придётся пройти
+урок заново и восстановить его.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Щёлкните несколько раз по кнопке. Допустим на экране красуется
+надпись &quot;Я насчитал 5 ворон&quot;. Поворачиваем экран - куда
+улетели все вороны? На экране появилась надпись, что ... Впрочем, я
+не буду говорить вам, сами посмотрите.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+А что собственно произошло? Я же вас предупреждал, что активность при
+повороте создаётся заново. А значит переменная&nbsp;mCount&nbsp;снова
+принимает значение 0, т.е сбрасывается в начальное значение.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Что же делать? Для этих целей у активности существует специальный
+методonSaveInstanceState(), который вызывается системой перед
+методами&nbsp;onPause(),&nbsp;onStop()&nbsp;иonDestroy(). Метод
+позволяет сохранить значения простых типов в объекте&nbsp;Bundle.
+КлассBundle&nbsp;- это простой способ хранения данных ключ/значение.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Создадим ключ с именем&nbsp;KEY_COUNT. В Android Studio c версии 1.5
+появились живые шаблоны, позволяющие быстро создать ключ. Введите до
+метода&nbsp;onCreate()&nbsp;строчными буквами слово&nbsp;key, во
+время набора появится подсказка. Нажимаем&nbsp;Enter&nbsp;и получаем
+заготовку. После символа подчёркивания вводим название ключа. В
+результате получим ключ следующего вида.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">private
+static final String KEY_COUNT = &quot;COUNT&quot;;</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Далее<SPAN LANG="en-US"> </SPAN>создаём<SPAN LANG="en-US">
+</SPAN>метод<SPAN LANG="en-US">&nbsp;</SPAN><SPAN LANG="en-US">onSaveInstanceState()</SPAN><SPAN LANG="en-US">&nbsp;</SPAN>после<SPAN LANG="en-US">
+</SPAN>метода<SPAN LANG="en-US">&nbsp;</SPAN><SPAN LANG="en-US">onCreate()</SPAN><SPAN LANG="en-US">.
+</SPAN>Во время набора имени метода подсказка покажет, что имеется
+два метода. Выбирайте метод с одним параметров (обычно он идёт
+вторым). Записываем в ключа значение счётчика.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">protected
+void onSaveInstanceState(Bundle outState) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">super.onSaveInstanceState(outState);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">outState.putInt(KEY_COUNT,
+mCount);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+А в методе&nbsp;onCreate()&nbsp;делаем небольшую проверку.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">@Override</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">protected
+void onCreate(</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US"><B>Bundle</B></SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+savedInstanceState) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">super.onCreate(savedInstanceState);</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">setContentView(R.layout.activity_main);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">mInfoTextView
+= (TextView) findViewById(R.id.textView);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">if
+(savedInstanceState != null) {</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">mCount
+= savedInstanceState.getInt(KEY_COUNT, 0);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">mInfoTextView.setText(&quot;</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">Я</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">насчитал</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">
+&quot; + mCount + &quot; </SPAN></FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">ворон</FONT></FONT></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace"><SPAN LANG="en-US">&quot;);</SPAN></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT COLOR="#333333">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.1in; background: #f5f5f5; border: 1px solid #c0c0c0; padding: 0.1in">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#333333"><FONT FACE="Consolas, monospace">}</FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+У метода в параметре содержится объект&nbsp;Bundle. Только здесь он
+назван&nbsp;savedInstanceStateвместо&nbsp;outState, но пусть вас это
+не вводит заблуждение. Имена вы можете придумывать сами. Главное, что
+объект содержит сохранённое значение переменной при повороте. При
+первом запуске приложения объект не существует (null), а потом мы его
+создали своим кодом. Для этого и нужна проверка. Обратите внимание,
+что здесь мы не прибавляем единицу к счётчику, как у кнопки. Если
+скопировать код у кнопки, то получится, что счётчик будет
+увеличиваться самостоятельно при поворотах без нажатия на кнопку.</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<H2 LANG="ru-RU" CLASS="western">Литература</H2>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<OL>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.alexanderklimov.ru/android/orientation.php">http://developer.alexanderklimov.ru/android/orientation.php</A></U></FONT></FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Майер Р. - <SPAN LANG="en-US">Android</SPAN>
+	4. Программирование приложений для планшетных компьютеров и
+	смартфонов</FONT></P>
+</OL>
+<DIV TYPE=FOOTER>
+	<P LANG="ru-RU"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

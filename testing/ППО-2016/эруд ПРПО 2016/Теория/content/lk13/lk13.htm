@@ -1,0 +1,1613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE>1</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Администратор">
+	<META NAME="CREATED" CONTENT="20120115;22080000">
+	<META NAME="CHANGEDBY" CONTENT="cltif">
+	<META NAME="CHANGED" CONTENT="20160615;14040000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-left: 0.79in; margin-right: 0.79in; margin-top: 0.79in; margin-bottom: 0.67in }
+		@page:first { margin-top: 0.79in; margin-bottom: 1.06in }
+		P { margin-bottom: 0in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ru-RU }
+		P.cjk { font-family: "Calibri", sans-serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		H4 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H4.western { font-size: 14pt; so-language: ru-RU }
+		H4.cjk { font-family: "Calibri", sans-serif; font-size: 14pt }
+		H4.ctl { font-family: "Times New Roman", serif; font-size: 14pt; so-language: ar-SA }
+		H5 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2; page-break-after: auto }
+		H5.western { font-family: "Calibri", sans-serif; font-size: 13pt; so-language: ru-RU; font-style: italic }
+		H5.cjk { font-family: "Times New Roman", serif; font-size: 13pt; font-style: italic }
+		H5.ctl { font-family: "Times New Roman", serif; font-size: 13pt; so-language: ar-SA; font-style: italic }
+		H6 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2; page-break-after: auto }
+		H6.western { font-family: "Calibri", sans-serif; font-size: 14pt; so-language: ru-RU }
+		H6.cjk { font-family: "Times New Roman", serif; font-size: 14pt }
+		H6.ctl { font-family: "Calibri", sans-serif; font-size: 11pt; so-language: ar-SA }
+		A:link { color: #0000ff }
+		A:visited { color: #954f72 }
+		A.western:visited { so-language: en-US }
+		A.cjk:visited { so-language: zh-CN }
+		A.ctl:visited { so-language: hi-IN }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" VLINK="#954f72" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="ru-RU" STYLE="text-indent: 0.39in"><BR>
+	</P>
+</DIV>
+<H4 LANG="ru-RU" CLASS="western" ALIGN=CENTER STYLE="margin-left: 0.49in; margin-right: 0.43in; margin-bottom: 0.08in">
+Лекция 13. <SPAN STYLE="font-weight: normal">Работа со звуком и видео
+в Android</SPAN></H4>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+Класс MediaPlayer &ndash; аудио/видео плеер, основные возможности.</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Android API содержит класс MediaPlayer, упрощающий
+разработку приложений, воспроизводящих аудио и видеоинформацию.
+Мультимедиа библиотека Android включает поддержку воспроизведения
+множества наиболее распространенных форматов, что позволяет легко
+использовать в приложениях аудио, видео и изображения. Можно
+проигрывать аудио или видео из медиа файлов сохраненных как ресурсы
+приложения (raw ресурсы), из файлов, расположенных в файловой системе
+или из потока данных, получаемого через сетевое соединение, для всего
+этого используется MediaPlayer API. Актуальная информация о
+поддерживаемых форматах аудио и видео приводится по
+ссылке:<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://developer.android.com/guide/appendix/media-formats.html" TARGET="_blank"><FONT SIZE=4 STYLE="font-size: 13pt">http://developer.android.com/guide/appendix/media-formats.html</FONT></A></U></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Для воспроизведения аудио и видео необходимо создать
+новый экземпляр класса MediaPlayer, задать источник медиа-информации
+и подготовить его к воспроизведению. <FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">Подробно
+жизненный цикл класса MediaPlayer рассмотрен в </FONT></FONT><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="https://developer.android.com/reference/android/media/MediaPlayer.html#StateDiagram" TARGET="_blank"><FONT SIZE=4 STYLE="font-size: 13pt">официальной
+документации </FONT></A></U></FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">.</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Рассмотрим работу с аудио-данными. Самый простой способ
+инициализации плеера для воспроизведения аудио-контента заключается в
+использовании метода<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">create()</FONT></FONT>,
+в который в качестве параметров передаются контекст приложения и
+источник аудио-данных.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; background: #ffffff"><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>MediaPlayer
+mediaPlayer = MediaPlayer.create(context, source)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; text-indent: 0.39in; background: #ffffff">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>параметр<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">source</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>задает
+источник и может иметь одно из следующих значений:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>идентификатор ресурса;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>путь URI к локальному файлу (используя схему file://);</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>путь URI к удаленному ресурсу с аудио, предоставленному
+в виде URL;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>путь URI к записи внутри локального Источника данных.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Следующий код демонстрирует разные источники
+инициализации медиаплеера. Необходимо отметить, что для объекта
+MediaPlayer, возвращаемого методом<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">create()</FONT></FONT>,
+уже был вызван метод <FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">prepare()</FONT></FONT>,
+поэтому не надо вызывать его еще раз.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff"><A NAME="example_11.1"></A>
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>MediaPlayer
+resPlayer = MediaPlayer.create(getApplicationContext(),</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>R.raw.my_audio)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>MediaPlayer
+filePlayer = MediaPlayer.create(getApplicationContext(),</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Uri.parse(&quot;file:</FONT></FONT><FONT COLOR="#696969"><FONT SIZE=4>///sdcard/localfile.mp3&quot;));</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>MediaPlayer
+urlPlayer = MediaPlayer.create(getApplicationContext(),</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Uri.parse(&quot;http:</FONT></FONT><FONT COLOR="#696969"><FONT SIZE=4>//site.com/audio/audio.mp3&quot;));</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>MediaPlayer
+contPlayer = MediaPlayer.create(getApplicationContext(),</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Settings.System.DEFAULT_RINGTONE_URI)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Другой способ инициализации плеера для воспроизведения
+аудио-контента заключается в использовании метода<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setDataSource()</FONT></FONT>,
+в этом случае сначала необходимо создать экземпляр класса
+MediaPlayer. В качестве параметра этот метод принимает путь к файлу,
+путь URI к источнику данных, адрес URL мультимедийного потока или
+файловый дескриптор.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Используя данный подход, важно не забыть вызвать
+метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">prepare()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>класса
+MediaPlayer, прежде чем начинать воспроизведение, как показано в<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>
+примере ниже:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff"><A NAME="example_11.2"></A>
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>MediaPlayer
+mediaPlayer = new MediaPlayer()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.setDataSource(&quot;/sdcard/test.3gp&quot;)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.prepare()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Если вы передаете адрес URL, который ссылается на файл в
+Интернете, удаленный сервер должен поддерживать последовательную
+загрузку с помощью протоколов RTSP или HTTP.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4><B>Рассмотрим работу с видео-данными</B>. </FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Первым делом при использовании медиаплеера с целью
+воспроизведения видео необходимо подготовить поверхность, на которой
+это видео будет отображаться. Поэтому необходимо, чтобы окно
+активности приложения содержало элемент SurfaceView, а медиаплеер
+получил объект класса SurfaceHolder с помощью метода<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setDisplay()</FONT></FONT>:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff"><A NAME="example_11.3"></A>
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>MediaPlayer
+mediaPlayer = new MediaPlayer()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.setDisplay(((SurfaceView)findViewById(R.id.surfaceView1)).GetHolder())</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.setDataSource(&quot;/sdcard/test2.3gp&quot;)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.prepare()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Инициализация видео-контента использует
+метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setDataSource()</FONT></FONT>.
+В отличие от ресурсов с аудиоданными, Android не поддерживает
+проигрывание видео, включенного в проект в качестве ресурса. А также
+нет возможности использовать статический метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">create()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>для
+упрощенного создания объекта<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">MediaPlayer</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>и
+путь URI, ссылающийся на локальный файл с помощью схемы file://.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>После подготовки медиаплеера можно начать
+воспроизведение соответствующих мультимедийных данных, для запуска
+воспроизведения используется метод:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.start()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Процессом воспроизведения можно управлять с помощью
+методов<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">stop()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>и<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">pause()</FONT></FONT>,
+позволяющих остановить или приостановить воспроизведение, и
+метода<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">start()</FONT></FONT>,
+позволяющего снова запустить воспроизведение.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Класс<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">MediaPlayer</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>также
+предоставляет методы<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">getDuration()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>&mdash;
+позволяет получить длину воспроизводимого аудио или видео
+и<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">getCurrentPosition()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>&mdash;возвращает
+текущую позицию. Чтобы перейти к определенной позиции, необходимо
+использовать метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">seekTo()</FONT></FONT>.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В процессе воспроизведения медиаплеер позволяет
+регулировать громкость:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.setVolume(1f,
+0.5f)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setVolume()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>позволяет
+управлять громкостью каждого аудиоканала. В качестве параметров этот
+метод принимает скалярные значения с плавающей точкой в диапазоне
+между 0 и 1 для обоих каналов (где 0 &mdash; полная тишина, а 1 &mdash;
+максимальная громкость).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В процессе воспроизведения медиаплеер позволяет уберечь
+подсветку экрана от автоматического отключения с помощью
+метода<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setScreenOnWhilePlaying()</FONT></FONT>.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaPlayer.setScreenOnWhilePlaying(true)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В случае, если в приложении предполагается сохранение
+экрана и процессора от засыпания, или использование методов класса
+MediaPlayer:<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setWakeMode()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>и<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setScreenOnWhilePlaying()</FONT></FONT>,
+необходимо добавить в файл манифеста следующую строку:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>uses-permission</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>android.permission.WAKE_LOCK</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Медиаплеер предоставляет возможность проигрывать файлы в
+режиме повторения для этого существуют
+методы<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">isLooping()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>и<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">setLooping()</FONT></FONT>:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>if
+(!mediaPlayer.isLooping())</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+ <FONT FACE="Courier New, monospace"><FONT SIZE=4>mediaPlayer.setLooping(true);</FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В настоящее время нельзя воспроизводить аудиоданные
+одновременно с разговором по телефону. Медиаплеер всегда использует
+стандартное устройство для вывода звука &mdash; динамик или
+подключенную по Bluetooth гарнитуру. При воспроизведении
+видеоресурсов можно использовать метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">getFrame()</FONT></FONT>,
+чтобы получить заданный кадр.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>При завершении процесса воспроизведения необходимо
+вызвать метод<FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT><FONT COLOR="#000000"><FONT SIZE=4 STYLE="font-size: 13pt">release()</FONT></FONT><FONT SIZE=4 STYLE="font-size: 13pt">&nbsp;</FONT>класса
+MediaPlayer, чтобы освободить соответствующие ресурсы:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>mediaPlayer.release();</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Android поддерживает ограниченное число одновременно
+работающих объектов MediaPlayer. Если не выполнять освобождение
+ресурсов, можно столкнуться с выбросом исключения, когда система
+исчерпает ресурсы.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+Запись видео с помощью MediaRecorder.</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in"><A NAME="sect5"></A>
+<FONT SIZE=4>Самый простой способ записи видео заключается в
+использовании intent-объектов для запуска стандартного приложения,
+управляющего камерой. Для запуска записи видео необходимо создать
+новый intent-объект, используя константу ACTION_VIDEO_CAPTURE класса
+MediaStore:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>Intent
+intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<FONT SIZE=4>Можно (но не обязательно) настроить пару свойств
+intent-объекта:</FONT></P>
+<OL>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-right: 0.43in"><FONT SIZE=4>место
+	сохранения видеозаписи, если есть необходимость сохранить ее в
+	месте, отличном от используемого по умолчанию, применяют константу
+	EXTRA_OUTPUT класса MediaStore:</FONT></P>
+</OL>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>intent.putExtra(MediaStore.EXTRA_OUTPUT,
+outputpath)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<FONT SIZE=4>outputpath &ndash; указывает альтернативный путь URI;</FONT></P>
+<OL START=2>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-right: 0.43in"><FONT SIZE=4>качество
+	видеозаписи, если есть необходимость сохранить картинку в качестве,
+	отличном от используемого по умолчанию, применяют константу
+	EXTRA_VIDEO_QUALITY класса MediaStore:</FONT></P>
+</OL>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,
+VIDEO_QUALITY)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<FONT SIZE=4>VIDEO_QUALITY &mdash; указывает качество видеозаписи,
+может принимать всего два значения 0 и 1, значение 0 задает низкое
+качество (подходит для MMS), значение 1 задает высокое качество. По
+умолчанию используется 1.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>После создания и настройки intent-объекта необходимо
+вызвать метод startActivityForResult() и передать ему полученный
+Intent в качестве параметра:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>startActivityForResult(intent,
+RECORD_VIDEO)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Этот код запускает стандартную активность, управляющую
+видеокамерой и позволяющую начать, остановить, просмотреть и
+повторить запись видео. При этом нет необходимости создавать
+собственное приложение для этих нужд.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Другой способ записи мультимедийных файлов состоит в
+использовании класса MediaRecorder, который позволяет указать
+источник для аудио и видео, формат итогового файла, а также
+кодировщики, использующиеся для записи. Чтобы иметь возможность
+записывать мультимедийные файлы в Android, приложение должно получить
+полномочия RECORD_AUDIO и/или RECORD_VIDEO. Для этого необходимо
+добавить в манифест приложения следующие строки:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>uses-permission</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>android.permission.RECORD_AUDIO</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>uses-permission</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>android.permission.RECORD_VIDEO</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Для управления записью медиа-контента с помощью класса
+MediaRecorder необходимо выполнить следующие действия в заданной
+последовательности:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>создать<SPAN LANG="en-US"> </SPAN>экземпляр<SPAN LANG="en-US">
+</SPAN>класса<SPAN LANG="en-US"> MediaRecorder:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>MediaRecorder
+mediaRecorder = new MediaRecorder()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>определить источник записи с помощью методов
+setAudioSource() и setVideoSource(), которым в качестве параметра
+передаются статические константы классов MediaRecorder.AudioSource и
+MediaRecorder.VideoSource, определяющие источники для аудио и
+видеоданных соответственно:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>задать итоговый формат с помощью метода
+setOutputFormat(), передав ему одну из констант
+классаMediaRecorder.OutputFormat:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>определить<SPAN LANG="en-US"> </SPAN>кодировщики<SPAN LANG="en-US">
+</SPAN>для<SPAN LANG="en-US"> </SPAN>аудио<SPAN LANG="en-US"> </SPAN>и<SPAN LANG="en-US">
+</SPAN>видео<SPAN LANG="en-US"> </SPAN>с<SPAN LANG="en-US"> </SPAN>помощью<SPAN LANG="en-US">
+</SPAN>методов<SPAN LANG="en-US"> setAudioEncoder() </SPAN>и<SPAN LANG="en-US">
+setVideoEncoder(), </SPAN>используя<SPAN LANG="en-US"> </SPAN>константы<SPAN LANG="en-US">
+</SPAN>класса<SPAN LANG="en-US"> MediaRecorder.AudioEncoder </SPAN>и<SPAN LANG="en-US">
+MediaRecorder.VideoEncoder, </SPAN>соответственно<SPAN LANG="en-US">:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>При желании можно установить частоту кадров и размер
+итогового видео.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>выбрать итоговый файл с помощью метода setOutputFile():</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setOutputFile(&quot;/sdcard/myoutputfile.mp4&quot;)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>После выполнения вышеперечисленных действий, получим
+экземпляр класса MediaRecorder, настроенный для записи аудио- и
+видеоданных с микрофона и камеры, соответственно, при этом
+использованы итоговый формат и кодировщики по умолчанию, а запись
+будет сохранена на карту SD.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>подготовить к записи с помощью метода prepare():</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.prepare()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>начать запись с помощью метода start():</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.start()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>завершить запись с помощью метода stop() &ndash;
+завершение записи, и метода release() &ndash; освобождение ресурсов
+объекта MediaRecorder:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.stop()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.release()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Метод setOutputFile() нужно вызвать до метода prepare()
+и после метода setOutputFormat(), иначе произойдет выброс исключения
+IllegalStateException.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В процессе записи видео, как правило, предполагается
+предварительный просмотр записываемой картинки. Метод
+setPreviewDisplay() позволяет задать объект Surface для показа
+видеопотока во время записи. Работает данный подход так же, как
+воспроизведение видео с помощью медиаплеера, описанное ранее.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.setPreviewDisplay((SurfaceView)findViewById(R.id.surface).getHolder().getSurface())</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>mediaRecorder.prepare()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>После настройки предварительного просмотра необходимо
+вызвать метод prepare(), после этого на экране в режиме реального
+времени начнет отображаться записываемый видеопоток.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+Запись звука с помощью AudioRecorder</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Рассмотренный ранее MediaRecorder записывал звук либо
+видео сразу в файл. AudioRecorder не пишет данные, а позволяет нам их
+получать в приложении. т.е. является посредником между приложением и
+микрофоном. Когда мы стартуем запись,  AudioRecorder начинает
+получать данные с микрофона и хранит их у себя во внутреннем буфере.
+Мы можем при создании AudioRecorder указать желаемый размер этого
+буфера и далее запрашивать из него данные методом read.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Т.е. AudioRecorder будет полезен, если вы хотите как-то
+обработать данные перед записью в файл или, если вы хотите отправлять
+данные не в файл, а куда-либо еще.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Напишем приложение, в котором рассмотрим основные методы
+работы с AudioRecorder.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Добавим строки в <SPAN LANG="en-US">strings</SPAN>.<SPAN LANG="en-US">xml</SPAN>:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>start_record</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Start
+record</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>stop_record</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Stop
+record</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>start_read</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Start
+read</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>stop_read</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Stop
+read</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>string</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Нарисуем<SPAN LANG="en-US"> </SPAN>экран<SPAN LANG="en-US">
+main.xml:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#004a43"><FONT SIZE=4>&lt;?</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>xml</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>version</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#7d0045"><FONT SIZE=4>1.0</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>encoding</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>utf-8</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>?&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">
+</FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#666616"><FONT SIZE=4>xmlns</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#666616"><FONT SIZE=4>http</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>//</B></FONT></FONT><FONT COLOR="#5555dd"><FONT SIZE=4>schemas.android.com</FONT></FONT><FONT COLOR="#40015a"><FONT SIZE=4>/apk/res/android</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#666616"><FONT SIZE=4>xmlns</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>tools</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#666616"><FONT SIZE=4>http</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>//</B></FONT></FONT><FONT COLOR="#5555dd"><FONT SIZE=4>schemas.android.com</FONT></FONT><FONT COLOR="#40015a"><FONT SIZE=4>/tools</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>match_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>match_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>orientation</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>vertical</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>tools</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>context</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>.MainActivity</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>match_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>recordStart</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@string/start_record</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>recordStop</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@string/stop_record</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>match_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>readStart</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@string/start_read</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>readStop</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000"> </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@string/stop_read</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Верхние кнопки стартуют/останавливают запись звука с
+микрофона в <SPAN LANG="en-US">AudioRecorder</SPAN>, нижние &ndash;
+чтение данных из <SPAN LANG="en-US">AudioRecorder</SPAN> в наш буфер.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<IMG SRC="lk13_html_m402359ec.jpg" NAME="graphics1" ALIGN=BOTTOM WIDTH=322 HEIGHT=533 BORDER=0></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В манифесте добавьте разрешение на запись звука:
+android.permission.RECORD_AUDIO.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>MainActivity.java:</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>package</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+ru</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>startandroid</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>develop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>p1301audiorecorder</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>app</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Activity</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>media</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>AudioFormat</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>media</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>AudioRecord</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>media</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>MediaRecorder</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>os</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Bundle</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>util</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>view</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>View</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>class</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+MainActivity </FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>extends</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Activity </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>final</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>String</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+TAG </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;myLogs&quot;</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+myBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>8192</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>AudioRecord
+audioRecord</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>boolean</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+isReading </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>false</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>protected</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onCreate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Bundle
+savedInstanceState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>super</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>onCreate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>savedInstanceState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>setContentView</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>R</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>layout</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>main</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>createAudioRecorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;init state = &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>getState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>())</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+createAudioRecorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+sampleRate </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>8000</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+channelConfig </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>CHANNEL_IN_MONO</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>ENCODING_PCM_16BIT</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>getMinBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>sampleRate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>channelConfig</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>*</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>4</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;minInternalBufferSize
+= &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4> </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;,
+internalBufferSize = &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;, myBufferSize
+= &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4> </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+myBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>MediaRecorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>AudioSource</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>MIC</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>sampleRate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+channelConfig</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+recordStart</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;record
+start&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>startRecording</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+recordingState </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>getRecordingState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;recordingState
+= &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4> </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+recordingState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+recordStop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;record stop&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>stop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+readStart</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;read start&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>isReading
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>true</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>Thread</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Runnable</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">      </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">      </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+run</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>if</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>audioRecord
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>==</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>null</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>return</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>byte</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>[]</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+myBuffer </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>byte</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>[</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>myBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>]</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+readCount </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>0</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+totalCount </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>0</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>while</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>isReading</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>readCount
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>read</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>myBuffer</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>0</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+myBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>totalCount
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+readCount</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;readCount = &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+readCount </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;, totalCount =
+&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">              </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+totalCount</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">      </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>).</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>start</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+readStop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;read stop&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>isReading
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>false</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>protected</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onDestroy</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>super</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>onDestroy</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>isReading
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>false</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>if</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>audioRecord
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>!=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>null</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">      <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>release</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Смотрим код.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В onCreate мы вызываем свой метод создания AudioRecorder
+и выводим в лог состояние созданного объекта. Состояние можно
+получить методом getState. Может быть всего два состояния:
+STATE_INITIALIZED и STATE_UNINITIALIZED. Означают они соответственно
+то, что AudioRecorder к работе готов или не готов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В createAudioRecorder создаем AudioRecorder. Для этого
+нам понадобится несколько входных параметров:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>- источник звука</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>- сэмплрейт </FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>- режим каналов моно/стерео</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>- формат аудио</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>- размер буфера</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Сэмплрейт мы ставим 8000. Режим  - моно. Формат аудио &ndash;
+16 бит.  Чтобы узнать размер буфера, есть метод getMinBufferSize. Он,
+исходя из переданных ему на вход данных о формате аудио, возвращает
+минимально-возможный размер буфера, с которым сможет работать
+AudioRecorder. Мы получаем минимальный размер и в переменную
+internalBufferSize помещаем этот размер, умноженный на 4. Такой
+размер буфера будет в созданном AudioRecord.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Далее создаем AudioRecord. В качестве источника звука
+указываем микрофон. Также указываем сэмплрейт, режим каналов, формат
+и размер буфера.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В методе recordStart стартуем запись методом
+startRecording. С помощью метода getRecordingState получаем статус -
+идет запись или нет. Вариантов тут два: RECORDSTATE_RECORDING (запись
+идет) и RECORDSTATE_STOPPED (запись остановлена).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В recordStop останавливаем запись методом stop.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В<SPAN LANG="en-US"> readStart </SPAN>ставим<SPAN LANG="en-US">
+</SPAN>метку<SPAN LANG="en-US"> isReading </SPAN>в<SPAN LANG="en-US">
+true. </SPAN>Она будет означать, что мы сейчас находимся в режиме
+чтения данных из AudioRecorder. Далее создаем новый поток и чтение
+выполняем в нем, чтобы не занимать основной поток. Мы создаем свой
+буфер размером myBufferSize и читаем в него данные методом read. Это
+происходит в цикле, который проверяет, что мы в режиме чтения. Метод
+read на вход принимает массив (в который будут помещены данные),
+отступ (если вам надо прочесть данные не сначала, а с какой-то
+позиции), и размер порции получаемых данных. В readCount метод read
+возвращает число байт, которые он нам отдал. В totalCount мы
+суммируем общее количество полученных байтов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>У метода read кстати есть еще несколько реализаций, если
+эта вам не подходит. Подробнее смотрите в официальной документации.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В методе readStop мы выключаем режим чтения, присваивая
+переменной isReading значение false. Поток из readStart прочтет это
+значение, выйдет из цикла и завершит свою работу.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В onDestroy выключаем режим чтения и методом release
+освобождаем ресурсы, занятые AudioRecord.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Все сохраняем, запускаем приложение.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В логах мы видим:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>minInternalBufferSize = 1024, internalBufferSize = 4096,
+myBufferSize = 8192</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>init state = 1</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Мы видим, что минимальный размер буфера AudioRecorder
+насчитал равным 1024. Внутренний буфер будет 4096. Размер нашего
+буфера будет 8192.  Состояние рекордера = 1, это значение переменной
+STATE_INITIALIZED, значит все ок, к работе готов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Жмем<SPAN LANG="en-US"> Start record.</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>record start</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>recordingState = 3</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Состояние записи рекордера = 3, это значение переменной
+RECORDSTATE_RECORDING, значит все ок, запись идет.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>AudioRecorder сейчас получает данные с микрофона и
+держит их в своем буфере. Попробуем прочесть эти данные. Жмем Start
+read, и через несколько секунд Stop read</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Логи:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:48.519: D/myLogs(14361): read start</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:48.519: D/myLogs(14361): readCount = 4096,
+totalCount = 4096</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:48.779: D/myLogs(14361): readCount = 4096,
+totalCount = 8192</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:49.039: D/myLogs(14361): readCount = 4096,
+totalCount = 12288</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:49.289: D/myLogs(14361): readCount = 4096,
+totalCount = 16384</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:49.549: D/myLogs(14361): readCount = 4096,
+totalCount = 20480</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:49.809: D/myLogs(14361): readCount = 4096,
+totalCount = 24576</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:50.069: D/myLogs(14361): readCount = 4096,
+totalCount = 28672</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:50.319: D/myLogs(14361): readCount = 4096,
+totalCount = 32768</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:50.569: D/myLogs(14361): readCount = 4096,
+totalCount = 36864</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:50.829: D/myLogs(14361): readCount = 4096,
+totalCount = 40960</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:51.079: D/myLogs(14361): readCount = 4096,
+totalCount = 45056</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:51.179: D/myLogs(14361): read stop</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>14:03:51.339: D/myLogs(14361): readCount = 4096,
+totalCount = 49152</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Видим, что прошло несколько чтений буфера. Таким
+образом, мы получали данные с микрофона с помощью AudioRecorder.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Разберемся, как подсчитать сколько места занимает звук,
+когда его пишешь. Вспоминаем наши параметры, которые мы задавали при
+создании AudioRecorder: сэмплрейт (как часто считывается звук) = 8000
+Hz, формат (сколько места занимает одна запись) = 16 бит, канал =
+моно. Эти параметры означают, что одна секунда звука будет занимать
+8000 * 16 * 1 = 128 000 бит = 16 000 байт.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Теперь посмотрим на логи. Первое чтение звука было в
+14:03:48.519, а последнее в 14:03:51.339.  Т.е. мы писали звук
+примерно три секунды. Три секунды &ndash; это 16 000 * 3 = 48 000
+байт.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Снова смотрим логи, последнее значение totalCount = 49
+152. Как видите, расчетная и реальная цифры похожи.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H6 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in">
+Слушатель отданных фреймов</H6>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Когда AudioRecorder отдает нам данные, он ведет подсчет
+отданных фреймов. Фрейм &ndash; это единица записи звука. Сколько
+байт занимает один фрейм? Это мы уже считали чуть раньше &ndash;
+формат * режим каналов. Т.е. если мы пишем звук в формате 16
+бит/моно, то фрейм займет 16 * 1 = 16 бит = 2 байта.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Мы можем на AudioRecorder повесить слушателя с парой
+методов. Один метод будет срабатывать периодически через каждое
+указанное кол-во отданных фреймов, а другой разово по достижению
+определенного кол-ва отданных фреймов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Перепишем<SPAN LANG="en-US"> createAudioRecorder:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>void
+createAudioRecorder() </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+sampleRate </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>8000</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+channelConfig </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>CHANNEL_IN_MONO</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>ENCODING_PCM_16BIT</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>getMinBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>sampleRate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>channelConfig</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>*</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>4</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;minInternalBufferSize
+= &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4> </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+minInternalBufferSize</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;,
+internalBufferSize = &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;, myBufferSize
+= &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4> </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+myBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+AudioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>MediaRecorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>AudioSource</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>MIC</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>sampleRate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+channelConfig</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+audioFormat</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+internalBufferSize</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setPositionNotificationPeriod</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>1000</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>audioRecord</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setNotificationMarkerPosition</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>10000</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+    <FONT FACE="Courier New, monospace"><FONT SIZE=4>audioRecord</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setRecordPositionUpdateListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+OnRecordPositionUpdateListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onPeriodicNotification</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>AudioRecord
+recorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;onPeriodicNotification&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onMarkerReached</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>AudioRecord
+recorder</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>d</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>TAG</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;onMarkerReached&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>isReading
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>false</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">          </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.49in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">  </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Метод<SPAN LANG="en-US"> setRecordPositionUpdateListener
+</SPAN>устанавливает<SPAN LANG="en-US"> </SPAN>слушателя<SPAN LANG="en-US">
+</SPAN>с<SPAN LANG="en-US"> </SPAN>методами<SPAN LANG="en-US">
+onPeriodicNotification </SPAN>и<SPAN LANG="en-US"> onMarkerReached,
+</SPAN>которые<SPAN LANG="en-US"> </SPAN>я<SPAN LANG="en-US"> </SPAN>описал<SPAN LANG="en-US">
+</SPAN>выше<SPAN LANG="en-US">. </SPAN>Метод<SPAN LANG="en-US">
+setPositionNotificationPeriod </SPAN>устанавливает<SPAN LANG="en-US">
+</SPAN>кол<SPAN LANG="en-US">-</SPAN>во<SPAN LANG="en-US"> </SPAN>фреймов<SPAN LANG="en-US">
+</SPAN>для<SPAN LANG="en-US"> </SPAN>срабатывания<SPAN LANG="en-US">
+onPeriodicNotification, </SPAN>а<SPAN LANG="en-US">
+setNotificationMarkerPosition &ndash; </SPAN>для<SPAN LANG="en-US">
+</SPAN>срабатывания<SPAN LANG="en-US"> onMarkerReached.</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Т<SPAN LANG="en-US">.</SPAN>е<SPAN LANG="en-US">. </SPAN>метод<SPAN LANG="en-US">
+onPeriodicNotification </SPAN>будет<SPAN LANG="en-US"> </SPAN>срабатывать<SPAN LANG="en-US">
+</SPAN>каждые<SPAN LANG="en-US"> 1000 </SPAN>отданных<SPAN LANG="en-US">
+</SPAN>фреймов<SPAN LANG="en-US">. </SPAN>А onMarkerReached &ndash;
+по достижению 10000 отданных фреймов. В onMarkerReached мы остановим
+чтение.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Все сохраним, запустим приложение и жмем Start record,
+затем Start read. В этот раз мы можем вручную не останавливать
+процесс чтения, т.к. он остановится сам по достижении 10000 фреймов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Смотрим<SPAN LANG="en-US"> </SPAN>логи<SPAN LANG="en-US">:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>read start</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>readCount = 4096, totalCount = 4096</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>readCount = 4096, totalCount = 8192</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>readCount = 4096, totalCount = 12288</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>readCount = 4096, totalCount = 16384</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onMarkerReached</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onPeriodicNotification</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>readCount = 4096, totalCount = 20480</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Видим, что onPeriodicNotification срабатывал примерно
+каждые 2000 байт, а onMarkerReached сработал около получения 20000
+байт.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Вспоминаем, что один фрейм при текущих настройках
+занимает два байта. А значит, как мы и указали, метод
+onPeriodicNotification срабатывал каждые 1000 фреймов, а
+onMarkerReached &ndash; как только было получено 10000 фреймов.</FONT></P>
+<H5 LANG="ru-RU" CLASS="western">Литература</H5>
+<OL>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Разработка
+	приложений для смартфонов на ОС Аndroid. Лекция&nbsp;6: Работа с
+	аудио и видеоинформацией в приложениях для смартфона</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://www.intuit.ru/studies/courses/12786/1219/lecture/22496?page=1">http://www.intuit.ru/studies/courses/12786/1219/lecture/22496?page=1</A></U></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://www.intuit.ru/studies/courses/12786/1219/lecture/22496?page=2">http://www.intuit.ru/studies/courses/12786/1219/lecture/22496?page=2</A></U></FONT></FONT></P>
+<OL START=2>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">startandroid.ru
+	</SPAN>Уроки<SPAN LANG="en-US"> 126, 127, 129, 130, 133.</SPAN></FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in"><FONT SIZE=4><A CLASS="western" HREF="http://startandroid.ru/ru/uroki/vse-uroki-spiskom/247-urok-130-media-zapis-zvuka-s-pomoschju-audiorecorder.html"><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">http</SPAN></U></FONT><FONT COLOR="#0000ff"><U>://</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">startandroid</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">uroki</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">vse</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">uroki</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">spiskom</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/247-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">urok</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-130-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">media</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">zapis</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">zvuka</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">s</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">pomoschju</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">audiorecorder</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">html</SPAN></U></FONT></A>
+</FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://www.startandroid.ru/ru/uroki/vse-uroki-spiskom.html">http://www.startandroid.ru/ru/uroki/vse-uroki-spiskom.html</A></U></FONT></FONT></P>
+<OL START=3>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Введение в
+	разработку приложений для ОС Android. 9.4 Работа с мультимедиа</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://www.intuit.ru/studies/courses/12643/1191/lecture/21992?page=2#sect7">http://www.intuit.ru/studies/courses/12643/1191/lecture/21992?page=2#sect7</A></U></FONT></FONT></P>
+<OL START=4>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">Supported
+	Media Formats</SPAN>.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://developer.android.com/guide/appendix/media-formats.html"><SPAN LANG="en-US">http://developer.android.com/guide/appendix/media-formats.html</SPAN></A></U></FONT></FONT></P>
+<OL START=5>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>MediaPlayer:
+	проигрывание звука. </FONT>
+	</P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://microsin.net/programming/android/mediaplayer-play-sound.html">http://microsin.net/programming/android/mediaplayer-play-sound.html</A></U></FONT></FONT></P>
+<OL START=6>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">MediaPlayer
+	class.</SPAN></FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://developer.android.com/reference/android/media/MediaPlayer.html"><SPAN LANG="en-US">http://developer.android.com/reference/android/media/MediaPlayer.html</SPAN></A></U></FONT></FONT></P>
+<OL START=7>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Создание<SPAN LANG="en-US">
+	</SPAN>проигрывателя<SPAN LANG="en-US">.</SPAN></FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="https://developers.google.com/interactive-media-ads/docs/sdks/android/v3/player?hl=ru"><SPAN LANG="en-US">https://developers.google.com/interactive-media-ads/docs/sdks/android/v3/player?hl=ru</SPAN></A></U></FONT></FONT></P>
+<OL START=8>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">Simple
+	example to play stream video from internet using MediaPlayer.</SPAN></FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://android-er.blogspot.com/2013/05/simple-example-to-play-stream-video.html"><SPAN LANG="en-US">http://android-er.blogspot.com/2013/05/simple-example-to-play-stream-video.html</SPAN></A></U></FONT></FONT></P>
+<OL START=9>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Работа с камерой в
+	Android  снимаем видео.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://habrahabr.ru/post/113480/">http://habrahabr.ru/post/113480/</A></U></FONT>
+</FONT>
+</P>
+<OL START=10>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Запись видео в
+	андроиде.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://darkraha.com/rus/mobile/android/api/video.php">http://darkraha.com/rus/mobile/android/api/video.php</A></U></FONT>
+</FONT>
+</P>
+<OL START=11>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Пишем игру под
+	Android: Часть 8: Фоновая музыка в игре .</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://dajver.blogspot.com/2012/08/android-8.html">http://dajver.blogspot.com/2012/08/android-8.html</A></U></FONT></FONT></P>
+<OL START=12>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4>Как работать с
+	Mp3-файлами.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://android-helper.com.ua/mp3-files/">http://android-helper.com.ua/mp3-files/</A></U></FONT></FONT></P>
+<OL START=13>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">VideoView
+	class</SPAN>.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://developer.android.com/reference/android/widget/VideoView.html"><SPAN LANG="en-US">http://developer.android.com/reference/android/widget/VideoView.html</SPAN></A></U></FONT></FONT></P>
+<OL START=14>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">VideoView</SPAN>.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://developer.alexanderklimov.ru/android/views/videoview.php"><SPAN LANG="en-US">http://developer.alexanderklimov.ru/android/views/videoview.php</SPAN></A></U></FONT><SPAN LANG="en-US">
+</SPAN></FONT>
+</P>
+<OL START=15>
+	<LI><P LANG="ru-RU" CLASS="western"><FONT SIZE=4><SPAN LANG="en-US">Android
+	VideoView Example</SPAN>.</FONT></P>
+</OL>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A CLASS="western" HREF="http://examples.javacodegeeks.com/android/android-videoview-example/"><SPAN LANG="en-US">http://examples.javacodegeeks.com/android/android-videoview-example/</SPAN></A></U></FONT><SPAN LANG="en-US">
+</SPAN></FONT>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<DIV TYPE=FOOTER>
+	<P LANG="ru-RU"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

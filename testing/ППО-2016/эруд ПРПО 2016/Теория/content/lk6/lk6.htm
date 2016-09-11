@@ -1,0 +1,2277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE>1</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Администратор">
+	<META NAME="CREATED" CONTENT="20120115;22080000">
+	<META NAME="CHANGEDBY" CONTENT="Andrew Yankovsky">
+	<META NAME="CHANGED" CONTENT="20160614;22552306">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-right: 1.07in; margin-top: 0.79in; margin-bottom: 0.67in }
+		@page:first { margin-top: 0.79in; margin-bottom: 1.06in }
+		P { margin-bottom: 0in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ru-RU }
+		P.cjk { font-family: "Calibri", sans-serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		H1 { margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ru-RU }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ar-SA }
+		H2 { margin-top: 0.08in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; page-break-inside: avoid; widows: 2; orphans: 2 }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ru-RU; font-style: italic }
+		H2.cjk { font-family: "Times New Roman", serif; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial", sans-serif; font-size: 14pt; so-language: ar-SA; font-style: italic }
+		H3 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H3.western { font-family: "Calibri Light", sans-serif; font-size: 13pt; so-language: ru-RU }
+		H3.cjk { font-family: "Times New Roman", serif; font-size: 13pt }
+		H3.ctl { font-family: "Times New Roman", serif; font-size: 13pt; so-language: ar-SA }
+		H4 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H4.western { font-size: 14pt; so-language: ru-RU }
+		H4.cjk { font-family: "Calibri", sans-serif; font-size: 14pt }
+		H4.ctl { font-family: "Times New Roman", serif; font-size: 14pt; so-language: ar-SA }
+		H5 { margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: left; widows: 2; orphans: 2; page-break-after: auto }
+		H5.western { font-size: 13pt; so-language: ru-RU; font-style: italic }
+		H5.cjk { font-family: "Times New Roman", serif; font-size: 13pt; font-style: italic }
+		H5.ctl { font-family: "Times New Roman", serif; font-size: 13pt; so-language: ar-SA; font-style: italic }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="ru-RU" ALIGN=LEFT><BR>
+	</P>
+</DIV>
+<H1 LANG="ru-RU" CLASS="western">Лекция 6. Обработка касаний экрана.</H1>
+<H3 LANG="ru-RU" CLASS="western">Сенсорное (touch) управление</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in"><A NAME="keyword31"></A><A NAME="keyword32"></A>
+В этом разделе лекции рассмотрим возможности добавления сенсорного
+управления в мобильные приложения под Android. Сенсорное управление
+подразумевает использование сенсорных жестов для взаимодействия с
+приложением. В <FONT COLOR="#0000ff"><U><A HREF="http://www.intuit.ru/studies/courses/12643/1191/lecture/21992?page=1#table.9.1">таблице
+9.1</A></U></FONT> представлен набор жестов, поддерживаемый системой
+Android.</P>
+<TABLE WIDTH=621 BORDER=0 CELLPADDING=2 CELLSPACING=0>
+	<COL WIDTH=271>
+	<COL WIDTH=342>
+	<TR>
+		<TD COLSPAN=2 WIDTH=617 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.39in"><A NAME="table.9.1"></A>
+			<FONT SIZE=4>Таблица 9.1. Система жестов Android</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_5498e55d.jpg" NAME="graphics1" ALIGN=BOTTOM WIDTH=189 HEIGHT=369 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Касание
+			(touch).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Запуск действия по умолчанию для выбранного
+			элемента.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			нажать, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_m456ce289.jpg" NAME="graphics2" ALIGN=BOTTOM WIDTH=270 HEIGHT=492 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Длинное
+			касание (long touch).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Выбор элемента. Не стоит использовать этот
+			жест для вызова контекстного меню.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			нажать, ждать, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_7168ea02.jpg" NAME="graphics3" ALIGN=BOTTOM WIDTH=252 HEIGHT=492 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Скольжение
+			или перетаскивание (swipe or drag).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Прокрутка содержимого или навигация между
+			элементами интерфейса одного уровня иерархии.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			нажать, переместить, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_7fc8e919.jpg" NAME="graphics4" ALIGN=BOTTOM WIDTH=189 HEIGHT=369 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Скольжение
+			после длинного касания (long press drag).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Перегруппировка данных или перемещение в
+			контейнер.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			длительное касание, переместить, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_13a314ab.jpg" NAME="graphics5" ALIGN=BOTTOM WIDTH=189 HEIGHT=369 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Двойное
+			касание (double touch).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Увеличение масштаба, выделение текста.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			быстрая последовательность двух касаний. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_63f96db8.jpg" NAME="graphics6" ALIGN=BOTTOM WIDTH=252 HEIGHT=492 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Перетаскивание
+			с двойным касанием (double touch drag).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> Изменение размеров: расширение или сужение
+			по отношению к центру жеста.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			касание, следующее за двойным касанием со смещением вверх или вниз
+			при этом: </FONT>
+			</P>
+			<UL>
+				<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+				<FONT SIZE=4>смещение вверх уменьшает размер содержимого;</FONT></P>
+				<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-top: 0.19in">
+				<FONT SIZE=4>смещение вниз увеличивает размер содержимого.</FONT></P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_m2b698a1.jpg" NAME="graphics7" ALIGN=BOTTOM WIDTH=189 HEIGHT=369 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Сведение
+			пальцев (pinch close).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> уменьшение содержимого, сворачивание.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			касание экрана двумя пальцами, свести, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=271 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><IMG SRC="lk6_html_511b75fd.jpg" NAME="graphics8" ALIGN=BOTTOM WIDTH=189 HEIGHT=369 BORDER=0></P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+			</P>
+		</TD>
+		<TD WIDTH=342 BGCOLOR="#eaeaea">
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-bottom: 0.19in"><B>Разведение
+			пальцев (pinch open).</B></P>
+			<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+			<B>Использование:</B> увеличение содержимого, разворачивание.</P>
+			<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Выполнение:</B>
+			касание экрана двумя пальцами, развести, отпустить. </FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in"><A NAME="keyword33"></A><A NAME="keyword34"></A>
+О возможности управлять приложением с помощью сенсорных жестов можно
+говорить в том случае, когда приложение способно распознать, что под
+набором касаний экрана скрывается некоторый жест и выполнить
+соответствующее действие. Процесс распознавания жеста обычно состоит
+из двух этапов: сбор данных и распознавание жеста. Рассмотрим эти
+этапы подробнее.</P>
+<H4 LANG="ru-RU" CLASS="western"><A NAME="sect5"></A>9.3.1 Сбор
+данных о сенсорных событиях</H4>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Основные действия, которые может произвести пользователь при
+взаимодействии с сенсорным экраном: коснуться экрана пальцем,
+переместить палец по экрану и отпустить. Эти действия распознаются
+системой Android, как сенсорные события (touch-события).</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Каждый раз при появлении сенсорного события инициируется вызов метода
+onTouchEvent(). Обработка события станет возможной, если этот метод
+реализован в классе активности или некоторого компонента, иначе
+событие просто игнорируется.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Жест начинается, при первом касании экрана, продолжается пока система
+отслеживает положение пальцев пользователя и заканчивается получением
+финального события, состоящего в том, что ни один палец не касается
+экрана. Объект MotionEvent, передаваемый в метод onTouchEvent(),
+предоставляет детали каждого взаимодействия. Рассмотрим основные
+константы класса MotionEvent, определяющие сенсорные события:</P>
+<UL>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-top: 0.19in">
+	<FONT SIZE=4>MotionEvent.ACTION_DOWN - касание экрана пальцем,
+	является начальной точкой для любого сенсорного события или жеста;</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT><FONT SIZE=4>MotionEvent.ACTION_MOVE
+	- перемещение пальца по экрану;</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0.19in">
+	<FONT SIZE=4>MotionEvent.ACTION_UP - поднятие пальца от экрана.</FONT></P>
+</UL>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Приложение может использовать предоставленные данные для
+распознавания жеста.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Можно реализовать свою собственную обработку событий для
+распознавания жеста, таким образом можно работать с произвольными
+жестами в приложении. Если же в приложении необходимо использовать
+стандартные жесты, описанные в <FONT COLOR="#0000ff"><U><A HREF="http://www.intuit.ru/studies/courses/12643/1191/lecture/21992?page=1#table.9.1">таблице
+9.1</A></U></FONT>, можно воспользоваться классом GestureDetector.
+Этот класс позволяет распознать стандартные жесты без обработки
+отдельных сенсорных событий.</P>
+<H4 LANG="ru-RU" CLASS="western"><A NAME="sect6"></A>9.3.2
+Распознавание жестов</H4>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Android предоставляет класс GestureDetector для распознавания
+стандартных жестов. Некоторые жесты, которые он поддерживает
+включают: onDown(), onLongPress(), onFling() и т. д. Можно
+использовать класс GestureDetector в связке с методом onTouchEvent().
+Подробно распознавание поддерживаемых жестов рассмотрено в первой
+части лабораторной работы в этой теме.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Начиная с версии 1.6, Android предоставляет API для работы с жестами,
+который располагается в пакете android.gesture и позволяет сохранять,
+загружать, создавать и распознавать жесты. Виртуальное устройство
+Android (AVD), начиная все с той же версии 1.6, содержит
+предустановленное приложение, которое называется Gesture Builder и
+позволяет создавать жесты. После создания жесты сохраняются на SD
+карте виртуального устройства и могут быть добавлены в приложение в
+виде бинарного ресурса.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для распознавания жестов необходимо добавить компонент
+GestureOverlayView, в XML файл активности. Этот компонент может быть
+добавлен как обычный элемент графического интерфейса пользователя и
+встроен в компоновку, например RelativeLayout. C другой стороны он
+может быть использован, как прозрачный слой поверх других
+компонентов, в этом случае в XML файле активности он должен быть
+записан, как корневой элемент.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Кроме всего вышеперечисленного, для использования собственных жестов
+в приложении необходимо реализовать интерфейс
+OnGesturePerformedListener и его метод onGesturePerformed()</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4 STYLE="font-size: 16pt"><B>----------------------------------------------------------------------------------</B></FONT></P>
+<P LANG="ru-RU" ALIGN=CENTER STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4>[1]</FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4><B>Обработка событий,основанных на взаимодействии с
+пользователем</B></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4>Чтобы ваше новое Представление было интерактивным, оно
+должно реагировать на события, инициированные пользователем, &mdash;
+касание экрана, нажатие клавиш и кнопок. В Android есть несколько
+обработчиков событий, которые позволяют реагировать на
+пользовательский ввод.</FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&bull; onKeyDown. Вызывается при нажатии любой аппаратной клавиши,
+включая</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+манипулятор D-pad, клавиатуру, а также кнопки для телефонного вызова,</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+отмены звонка, возврата и управления камерой.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&bull; onKeyUp. Вызывается, когда пользователь отпускает нажатую
+клавишу.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&bull; onTrackballEvent. Вызывается при перемещении трекбола.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&bull; onTouchEvent. Вызывается при нажатии/отпускании сенсорного
+экрана или</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+же при обнаружении движения.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4>В листинге показан каркас класса, в котором
+переопределяются все обработчики событий, отвечающие за
+взаимодействие с пользователем.</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in">&hellip;</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onKeyDown(int keyCode, KeyEvent keyEvent) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Верните значение true, если событие было обработано,</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onKeyUp(int keyCode, KeyEvent keyEvent) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Верните значение true, если событие было обработано,</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onTrackballEvent(MotionEvent event )	{</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Получите тип действия, которое представлено данным событием,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>int</I></SPAN><I>
+</I><SPAN LANG="en-US"><I>actionPerformed</I></SPAN><I> =
+</I><SPAN LANG="en-US"><I>event</I></SPAN><I>.</I><SPAN LANG="en-US"><I>getAction</I></SPAN><I>();</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Верните значение </I><SPAN LANG="en-US"><I>true</I></SPAN><I>, если
+событие было обработано,</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onTouchEvent(MotionEvent event) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Получите тип действия, которое представлено данным событием,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>int</I></SPAN><I>
+</I><SPAN LANG="en-US"><I>actionPerformed</I></SPAN><I> =
+</I><SPAN LANG="en-US"><I>event</I></SPAN><I>.</I><SPAN LANG="en-US"><I>getAction</I></SPAN><I>();</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Верните значение </I><SPAN LANG="en-US"><I>true</I></SPAN><I>, если
+событие было обработано,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>return</I></SPAN><I>
+</I><SPAN LANG="en-US"><I>true</I></SPAN><I>;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT SIZE=4>[1]</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Использование
+клавиатуры, аппаратных клавиш</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Событие,
+сигнализирующее о нажатии любой аппаратной кнопки, обрабатывается
+методами <SPAN LANG="en-US">onKeyDown</SPAN> и <SPAN LANG="en-US">onKeyUp</SPAN>,
+принадлежащими Активности или выделенному Представлению. Это касается
+клавиатуры, манипулятора <SPAN LANG="en-US">D</SPAN>-<SPAN LANG="en-US">pad</SPAN>,
+клавиш для изменения звука, навигации, вызова и отбоя. Единственное
+исключение &mdash; <B>кнопка </B><SPAN LANG="en-US"><B>home</B></SPAN>,
+взаимодействие с которой ограничено, чтобы пользователь всегда мог
+выйти  из приложения.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Чтобы
+ваши Представления и Активности реагировали на нажатия клавиш,
+переопределите обработчики событий <SPAN LANG="en-US">onKeyUp</SPAN>
+и <SPAN LANG="en-US">onKeyDown</SPAN>.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onKeyDown{int _keyCode, KeyEvent _event) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>//
+Обработайте нажатие клавиши,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>//
+верните </I><SPAN LANG="en-US"><I>true</I></SPAN><I>,если обработка
+выполнена,</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>return
+false;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>@Override</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>public
+boolean onKeyUp(int _keyCode, KeyEvent _event) {</I></SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>/
+Обработайте отпускание клавиши,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>//
+верните </I><SPAN LANG="en-US"><I>true</I></SPAN><I>, если обработка
+выполнена,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><SPAN LANG="en-US"><I>return</I></SPAN><I>
+</I><SPAN LANG="en-US"><I>false</I></SPAN><I>;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Параметр
+_<SPAN LANG="en-US">keyCode</SPAN> содержит код клавиши, которая была
+нажата. Сравнивайте его со статическими кодами клавиш, хранящимися в
+классе <SPAN LANG="en-US">KeyEvent</SPAN>, чтобы выполнять
+соответствующую обработку.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Параметр
+<SPAN LANG="en-US">KeyEvent</SPAN> также включает в себя несколько
+методов: <SPAN LANG="en-US">isAltPressed</SPAN>, <SPAN LANG="en-US">isShiftPressed</SPAN>
+и <SPAN LANG="en-US">isSymPressed</SPAN>, определяющих, были ли
+нажаты функциональные клавиши, такие как <SPAN LANG="en-US">Alt</SPAN>,
+<SPAN LANG="en-US">Shift</SPAN> или <SPAN LANG="en-US">Sym</SPAN>. В
+<SPAN LANG="en-US">Android</SPAN> 3.0 (<SPAN LANG="en-US">API</SPAN>
+<SPAN LANG="en-US">level</SPAN> 11) появились методы <SPAN LANG="en-US">isCtrlPressed</SPAN>
+и <SPAN LANG="en-US">isFunctionPressed</SPAN>, которые позволяют
+определить, были ли нажаты контрольные или функциональные клавиши.
+Статический метод <SPAN LANG="en-US">isModifierKey</SPAN> принимает
+_<SPAN LANG="en-US">keyCode</SPAN> и определяет, является ли нажатая
+клавиша модификатором.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Использование
+интерфейса </B><SPAN LANG="en-US"><B>OnKeyListener</B></SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Чтобы
+среагировать на нажатие клавиши внутри существующего Представления из</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Активности,
+реализуйте интерфейс <SPAN LANG="en-US">OnKeyListener</SPAN> и
+назначьте его для объекта <SPAN LANG="en-US">View</SPAN>,</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>используя
+метод <SPAN LANG="en-US">setOnKeyListener</SPAN>. Вместо того чтобы
+реализовывать отдельные</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>методы
+для событий нажатия и отпускания клавиш, <SPAN LANG="en-US">OnKeyListener</SPAN>
+использует</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>единое<SPAN LANG="en-US">
+</SPAN>событие<SPAN LANG="en-US"> </SPAN>опКеу<SPAN LANG="en-US">.</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>myView.setOnKeyListener(new
+OnKeyListener() {</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onKey(View v, int keyCode, KeyEvent event) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+</I><SPAN LANG="en-US"><I>TODO</I></SPAN><I>: Обработайте нажатие
+клавиши,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+верните </I><SPAN LANG="en-US"><I>true</I></SPAN><I>, если обработка
+выполнена,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>return</I></SPAN><I>
+</I><SPAN LANG="en-US"><I>false</I></SPAN><I>;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Используйте
+параметр <SPAN LANG="en-US">keyCode</SPAN> для получения клавиши,
+которая была нажата.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Параметр
+<SPAN LANG="en-US">KeyEvent</SPAN> нужен для распознавания типа
+события (нажатие представлено</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>константой<SPAN LANG="en-US">
+ACTIONDOWN, </SPAN>а<SPAN LANG="en-US"> </SPAN>отпускание<SPAN LANG="en-US">
+&mdash; ACTION_UP).</SPAN></FONT></P>
+<P ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in"><BR><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in"><BR><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in"><FONT SIZE=4><B>Touch</B></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&hellip;мобильные устройства нельзя представить без пальцевого ввода
+&mdash; они разрабатываются с расчетом, что пользователи будут
+прикасаться к экрану пальцем, а не специальным стилусом и таким
+образом будут управлять пользовательским интерфейсом.</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Пальцевый
+ввод менее точный и часто основывается на движении, а не на простом
+прикосновении. Стандартные приложения в Android широко используют
+сенсорные интерфейсы, рассчитанные на пальцы, где прокручивание
+списков, перелистывание экранов или выполнение других действий
+осуществляется жестами</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>перетаскивания.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Чтобы
+создать Представление или Активность, которые могут взаимодействовать</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>с
+сенсорным экраном, переопределите обработчик onTouchEvent:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>@Override</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onTouchEvent(MotionEvent event) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>return
+super.onTouchEvent(event);</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Верните<SPAN LANG="en-US">
+true, </SPAN>если<SPAN LANG="en-US"> </SPAN>вы<SPAN LANG="en-US">
+</SPAN>обработали<SPAN LANG="en-US"> </SPAN>нажатие<SPAN LANG="en-US">
+</SPAN>на<SPAN LANG="en-US"> </SPAN>экран<SPAN LANG="en-US">. </SPAN>В
+ином случае верните</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>false,
+чтобы передавать событие по цепочке Представлений, пока оно не будет
+успешно</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>обработано.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>\</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Обработка
+одиночных и множественных касаний</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Для
+каждого жеста обработчик onTouchEvent срабатывает несколько раз:
+когда</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>пользователь
+прикасается к экрану, когда система отслеживает местоположение</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>пальца
+и когда контакт с экраном завершается.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>В
+Android 2.0 (API level 5) появилась поддержка произвольного
+количества</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>одновременных
+событий, связанных с сенсорным экраном. Для каждого касания
+выделяется отдельный точечный идентификатор, ссылающийся на параметр
+MotionEvent из обработчика onTouchEvent.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=1 STYLE="font-size: 8pt">ПРИМЕЧАНИЕ	</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=1 STYLE="font-size: 8pt">Не
+все сенсорные экраны уведомляют о нескольких одновременных нажатиях.
+Если аппаратное обеспечение не поддерживает множественные касания,
+Android возвращает одиночное событие.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Вызовите
+метод getAction из параметра MotionEvent, чтобы определить тип
+события, которое запустило обработчик. Независимо от того,
+поддерживает устройство множественные касания или нет, вы все равно
+можете использовать константы</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">ACTION
+_UP/DOWN/MOVE/CANCEL/OUTSIDE </SPAN>для<SPAN LANG="en-US"> </SPAN>получения<SPAN LANG="en-US">
+</SPAN>типа<SPAN LANG="en-US"> </SPAN>события<SPAN LANG="en-US">.</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>@Override</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onTouchEvent(MotionEvent event) {</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>int
+action = event.getAction() ;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>switch
+(action) {</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>case
+(MotionEvent.ACTION_DOWN):</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>//
+</I></SPAN><I>Нажатие</I><SPAN LANG="en-US"><I> </I></SPAN><I>на</I><SPAN LANG="en-US"><I>
+</I></SPAN><I>сенсорном</I><SPAN LANG="en-US"><I> </I></SPAN><I>экране</I><SPAN LANG="en-US"><I>,</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>case
+(MotionEvent.ACTION_MOVE):</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>//
+</I></SPAN><I>Палец</I><SPAN LANG="en-US"><I> </I></SPAN><I>переместился</I><SPAN LANG="en-US"><I>
+</I></SPAN><I>по</I><SPAN LANG="en-US"><I> </I></SPAN><I>экрану</I><SPAN LANG="en-US"><I>,</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>case
+(MotionEvent.ACTION_UP):</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>//
+</I></SPAN><I>Завершение</I><SPAN LANG="en-US"><I> </I></SPAN><I>нажатия</I><SPAN LANG="en-US"><I>.</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>case
+(MotionEvent.ACTION_CANCEL):</I></SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Касание было отменено.</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>case
+(MotionEvent.ACTION_OUTSIDE):</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+Произошло движение за пределами</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>//
+границ текущего экранного элемента,</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>return
+true;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>default:
+return super.onTouchEvent(event);</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Чтобы
+следить за касаниями в разных точках, необходимо использовать
+константы <SPAN LANG="en-US">MotionEvent</SPAN>.<SPAN LANG="en-US">ACTION</SPAN>_<SPAN LANG="en-US">MASK</SPAN>
+и <SPAN LANG="en-US">MotionEvent</SPAN>.<SPAN LANG="en-US">ACTION</SPAN>_<SPAN LANG="en-US">POINTER</SPAN>_<SPAN LANG="en-US">ID</SPAN>_<SPAN LANG="en-US">MASK</SPAN>
+для нахождения самого события (будь то <SPAN LANG="en-US">ACTION</SPAN>
+<SPAN LANG="en-US">POINTER</SPAN> <SPAN LANG="en-US">DOWN</SPAN> или
+<SPAN LANG="en-US">ACTION</SPAN>_<SPAN LANG="en-US">POINTER</SPAN>_<SPAN LANG="en-US">UP</SPAN>)
+и идентификатора контакта, который его вызвал, соответственно.
+Вызовите метод getPointerCount, чтобы определить, было ли это
+множественное касание.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>@Override</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>public
+boolean onTouchEvent(MotionEvent event) {</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>int
+action = event.getAction();</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>if
+(event.getPointerCount() &gt; 1) {</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><SPAN LANG="en-US"><I>	</I></SPAN><I>//
+</I><FONT COLOR="#ff0000"><SPAN LANG="en-US"><I>HALK</I></SPAN></FONT><FONT COLOR="#ff0000"><I>
+&ndash; это способ для  </I></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><I>API</I></SPAN></FONT><FONT COLOR="#ff0000"><I>
+</I></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><I>Level</I></SPAN></FONT><FONT COLOR="#ff0000"><I>
+&lt; 8</I></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>	</I><SPAN LANG="en-US"><I>//
+</I></SPAN><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>getActionMasked
+</B></SPAN></FONT><FONT COLOR="#ff0000"><B>и</B></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+getActionIndex </B></SPAN></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US">getPointerId</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; text-indent: 0.49in">
+<FONT SIZE=4><SPAN LANG="en-US"><I>int actionPointerld = action &amp;
+MotionEvent.ACTION_POINTER_ID_MASK;</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; text-indent: 0.49in"><FONT SIZE=4><I>int
+actionEvent = action &amp; MotionEvent. ACTION_MASK;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; text-indent: 0.49in">
+<FONT SIZE=4><I>// Выполните что-нибудь с идентификатором касания и
+событием.</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4><I>return
+super.onTouchEvent(event);</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Объект
+MotionEvent также содержит координаты текущего контакта с экраном.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Вы
+можете получить их с помощью методов getX и getY. Возвращенные
+значения &mdash;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>относительные
+для соответствующего Представления или Активности.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>В
+случае с множественными касаниями объект MotionEvent включает в себя</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>текущую
+позицию каждого контакта. Чтобы найти координаты заданного контакта,</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>передавайте
+его индекс в методы getX и getY. Обратите внимание, что этот индекс</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>не
+имеет никакого отношения к идентификатору контакта. Чтобы получить
+индекс</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>заданного
+контакта, используйте метод findPointerlndex, передав ему ID искомого</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>касания<SPAN LANG="en-US">.</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>int
+xPos = -1;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>int
+yPos = -1;</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>if
+(event.getPointerCount() &gt;1) {</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>int
+actionPointerld = action &amp; MotionEvent.ACTION_POINTER_ID_MASK;</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>int
+actionEvent = action &amp; MotionEvent.ACTION_MASK;</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>int
+pointerlndex = event.findPointerlndex(actionPointerld);</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>xPos =
+(int)event.getX(pointerlndex);</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>yPos =
+(int)event.getY(pointerlndex);</I></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US"><I>else
+{// </I></SPAN><I>Касание</I><SPAN LANG="en-US"><I> </I></SPAN><I>одним</I><SPAN LANG="en-US"><I>
+</I></SPAN><I>пальцем</I><SPAN LANG="en-US"><I>.</I></SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>xPos =
+(int)event.getX();</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>yPos
+= (int)event.getY();</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><I>}</I></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Параметр
+MotionEvent также содержит степень давления, которое было применено к
+экрану. Получить его можно с помощью метода getPressure, который
+возвращает значение в пределах между 0 (без давления) и 1 (нормальное
+давление).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=1 STYLE="font-size: 8pt">ПРИМЕЧАНИЕ	</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=1 STYLE="font-size: 8pt">В
+зависимости от калибровки аппаратного обеспечения это значение может</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=1 STYLE="font-size: 8pt">быть
+больше 1.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Наконец,
+вы также можете определить нормализованный размер текущей области
+соприкосновения, используя метод getSize. Он возвращает значения в
+диапазоне между 0 и 1, где 0 обозначает очень точное измерение, а 1
+указывает на возможное &laquo;толстое&raquo; прикосновение, при
+котором пользователь, вероятно, вовсе не пытался ничего нажать.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Отслеживание
+движений</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Каждый
+раз при изменении позиции текущего прикосновения, его давления</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>или
+размера срабатывает новый обработчик onTouchEvent с действием ACTION_</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>MOVE.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Помимо
+вышеописанных полей параметр MotionEvent может содержать це&not;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>почку
+значений, которые имели место быть. Они представляют собой все движе&not;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>ния,
+обнаруженные между текущим и предыдущим срабатыванием обработчика</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>onTouchEvent.
+Это позволяет системе добавлять в буфер быстрые изменения дви&not;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>жения,
+чтобы отслеживать такие данные в мельчайших подробностях.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Вы
+можете найти размер истории изменений, вызвав метод getHistorySize,</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>который
+вернет количество позиций, доступных для текущего события. Затем</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>можно
+узнать продолжительность, давление, размер и позицию каждого события</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>из
+буфера, используя набор методов getHistorical* и передавая индексы
+позиций.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Обратите
+внимание, что, как и в случае с методами getX и getY, описанными</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>ранее,
+вы можете передать индекс контакта для получения данных о касаниях из</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>нескольких<SPAN LANG="en-US">
+</SPAN>точек<SPAN LANG="en-US">.</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>int
+historySize = event.getHistorySize();</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>long time
+= event.getHistoricalEventTime(i);</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>if
+(event.getPointerCount() &gt;1) {</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">int
+actionPointerld = action &amp; MotionEvent.ACTION_POINTER_ID_MASK;</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>int
+pointerlndex = event.findPointerlndex(actionPointerld);</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>for (int
+i = 0; i &lt; historySize; i++) {</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float
+pressure = event.getHistoricalPressure(pointerlndex,</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>i) ;</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float x =
+event.getHistoricalX(pointerlndex, i);</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">float
+</SPAN>у<SPAN LANG="en-US"> = event.getHistoricalY(pointerlndex, i);</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float
+size = event.getHistoricalSize(pointerlndex, i);</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>//
+TODO: Сделайте что-нибудь с каждым касанием.</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>else {</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>for (int
+i = 0; i &lt; historySize; i++) {</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float
+pressure = event.getHistoricalPressure (i) ;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">float
+x = event.getHistoricalX(i);</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">float
+</SPAN>у<SPAN LANG="en-US"> = event.getHistoricalY(i);</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float
+size = event.getHistoricalSize(i);</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>//
+TODO: Сделайте что-нибудь с каждым касанием.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>На
+деле для реагирования на движения необходимо обрабатывать каждое со&not;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>бытие
+из истории, следующее за текущими значениями из объекта MotionEvent,</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>как
+продемонстрировано в листинге </FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Обработка
+касательных движений по экрану</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>@Override</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>public
+boolean onTouchEvent(MotionEvent event) {</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>int
+action = event.getAction();</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>switch
+(action) {</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">case
+(MotionEvent.ACTION_MOVE):</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>{</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>int
+historySize = event.getHistorySize();</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>for (int
+i = 0; i &lt; historySize; i++)	{</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float x =
+event.getHistoricalX(i);</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">float
+</SPAN>у<SPAN LANG="en-US"> = event.getHistoricalY(i);</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>processMovement(x,
+y);</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>float x =
+event.getX();</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">float
+</SPAN>у<SPAN LANG="en-US"> = event. getY-() ;</SPAN></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">processMovement
+(x, y) ;</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>return
+true;</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>return
+super.onTouchEvent(event);</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>private
+void processMovement(float _x, float _y) {</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>//
+TODO: Сделайте что-нибудь с движением.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>}</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>Использование
+интерфейса OnTouchListener</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>Вы
+можете отслеживать касания без наследования ранее созданных
+Представлений, просто подключив OnTouchListener к любому объекту
+View, используя метод</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>setOnTouchListener:</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>myView.setOnTouchListener(new
+OnTouchListener() {</FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4>public
+boolean onTouch.(View _view, MotionEvent _event) {</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; text-indent: 0.49in">
+<FONT SIZE=4>// TODO: Среагируйте на движения.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.49in; text-indent: 0.49in">
+<FONT SIZE=4>return false;</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.49in"><FONT SIZE=4>}</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>});</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>[2]</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in">&hellip;<FONT SIZE=4>.</FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Раньше мы для View-компонентов использовали <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/View.OnClickListener.html" TARGET="_blank">OnClickListener
+</A></U></FONT>и ловили короткие нажатия. Теперь попробуем ловить
+касания и перемещения пальца по компоненту. Они состоят из трех типов
+событий:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+- нажатие (палец прикоснулся к экрану)<BR>- движение (палец движется
+по экрану)<BR>- отпускание (палец оторвался от экрана)</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Все эти события мы сможем ловить в обработчике <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/View.OnTouchListener.html" TARGET="_blank">OnTouchListener</A></U></FONT>,
+который присвоим для View-компонента. Этот обработчик дает нам объект
+<FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html" TARGET="_blank">MotionEvent</A></U></FONT>,
+из которого мы извлекаем тип события и координаты.</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<SPAN LANG="en-US"><B>MainActivity.java</B></SPAN><SPAN LANG="en-US">:</SPAN></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">package
+</SPAN><SPAN LANG="en-US">ru.startandroid.develop.p1021touch;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.app.Activity;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.os.Bundle;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.MotionEvent;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.View;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.View.OnTouchListener;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.widget.TextView;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">public
+class </SPAN><SPAN LANG="en-US">MainActivity </SPAN><SPAN LANG="en-US">extends
+</SPAN><SPAN LANG="en-US">Activity </SPAN><SPAN LANG="en-US">implements
+</SPAN><SPAN LANG="en-US">OnTouchListener </SPAN><SPAN LANG="en-US">{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">TextView tv;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">float </SPAN><SPAN LANG="en-US">x;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">float </SPAN><SPAN LANG="en-US">y;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+String sDown;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+String sMove;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+String sUp;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">/** Called when the activity is first
+created. */</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">@Override</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">public </SPAN><SPAN LANG="en-US">void
+</SPAN><SPAN LANG="en-US">onCreate</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">Bundle
+savedInstanceState</SPAN><SPAN LANG="en-US">) {</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">super</SPAN><SPAN LANG="en-US">.onCreate</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">savedInstanceState</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+tv = </SPAN><SPAN LANG="en-US">new </SPAN><SPAN LANG="en-US">TextView</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">this</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+tv.setOnTouchListener</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">this</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+setContentView</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">tv</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">@Override</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">public </SPAN><SPAN LANG="en-US">boolean
+</SPAN><SPAN LANG="en-US">onTouch</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">View
+v, MotionEvent event</SPAN><SPAN LANG="en-US">) {</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">x = event.getX</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+y = event.getY</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">switch </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">event.getAction</SPAN><SPAN LANG="en-US">())
+{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_DOWN:
+</SPAN><SPAN LANG="en-US">// </SPAN>нажатие<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sDown = </SPAN><SPAN LANG="en-US">&quot;Down:
+&quot; </SPAN><SPAN LANG="en-US">+ x + </SPAN><SPAN LANG="en-US">&quot;,&quot;
+</SPAN><SPAN LANG="en-US">+ y;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sMove = </SPAN><SPAN LANG="en-US">&quot;&quot;</SPAN><SPAN LANG="en-US">;
+sUp = </SPAN><SPAN LANG="en-US">&quot;&quot;</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_MOVE:
+</SPAN><SPAN LANG="en-US">// </SPAN>движение<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sMove = </SPAN><SPAN LANG="en-US">&quot;Move:
+&quot; </SPAN><SPAN LANG="en-US">+ x + </SPAN><SPAN LANG="en-US">&quot;,&quot;
+</SPAN><SPAN LANG="en-US">+ y;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_UP:
+</SPAN><SPAN LANG="en-US">// </SPAN>отпускание<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_CANCEL:&nbsp;
+</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sMove = </SPAN><SPAN LANG="en-US">&quot;&quot;</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sUp = </SPAN><SPAN LANG="en-US">&quot;Up: &quot; </SPAN><SPAN LANG="en-US">+
+x + </SPAN><SPAN LANG="en-US">&quot;,&quot; </SPAN><SPAN LANG="en-US">+
+y;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">tv.setText</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">sDown
++ </SPAN><SPAN LANG="en-US">&quot;\n&quot; </SPAN><SPAN LANG="en-US">+
+sMove + </SPAN><SPAN LANG="en-US">&quot;\n&quot; </SPAN><SPAN LANG="en-US">+
+sUp</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">return true</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">}</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+MainActivity реализует интерфейс OnTouchListener для того, чтобы
+выступить обработчиком касаний.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В <B>onCreate </B>мы создаем новый TextView, сообщаем ему, что
+обработчиком касаний будет Activity, и помещаем на экран.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Интерфейс OnTouchListener предполагает, что Activity реализует его
+метод <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/View.OnTouchListener.html#onTouch%28android.view.View,%20android.view.MotionEvent%29" TARGET="_blank"><B>onTouch</B></A></U></FONT>.
+На вход методу идет View для которого было событие касания и объект
+MotionEvent с информацией о событии.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Методы <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getX%28%29" TARGET="_blank">getX
+</A></U></FONT>и <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getY%28%29" TARGET="_blank">getY</A></U></FONT>&nbsp;дают
+нам X и Y координаты касания. Метод getAction дает тип события
+касания:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_DOWN" TARGET="_blank">ACTION_DOWN
+</A></U></FONT>&ndash; нажатие<BR><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE" TARGET="_blank">ACTION_MOVE
+</A></U></FONT>&ndash; движение<BR><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP" TARGET="_blank">ACTION_UP
+</A></U></FONT>&ndash; отпускание<BR><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_CANCEL" TARGET="_blank">ACTION_CANCEL
+</A></U></FONT>&ndash; практически никогда не случается. Насколько я
+понял, возникает в случае каких-либо внутренних сбоев, и следует
+трактовать это как ACTION_UP.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В случае ACTION_DOWN мы пишем в sDown координаты нажатия.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В случае ACTION_MOVE пишем в sMove координаты точки текущего
+положения пальца. Если мы будем перемещать палец по экрану &ndash;
+этот текст будет постоянно меняться.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В случае ACTION_UP или ACTION_CANCEL пишем в sUp координаты точки, в
+которой отпустили палец.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Все это в конце события выводим в TextView. И возвращаем true &ndash;
+мы сами обработали событие.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь мы будем водить пальцем по экрану (курсором по эмулятору) в
+приложении, и на экране увидим координаты начала движения, текущие
+координаты и координаты окончания движения.</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><B>MultiTouch</B></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>[3]</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Система умеет обрабатывать до 10 касаний включительно. Есть мнение,
+что это как-то связано с количеством пальцев на руках :) При этом
+учитывайте, что далеко не все устройства поддерживают 10 касаний.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Рассмотрим систему событий для мультитача. К<SPAN LANG="en-US">
+</SPAN>событиям<SPAN LANG="en-US"> ACTION_DOWN, ACTION_MOVE </SPAN>и<SPAN LANG="en-US">
+ACTION_UP </SPAN>добавляются<SPAN LANG="en-US"> </SPAN><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN" TARGET="_blank"><SPAN LANG="en-US">ACTION_POINTER_DOWN
+</SPAN></A></U></FONT>и<SPAN LANG="en-US"> </SPAN><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP" TARGET="_blank"><SPAN LANG="en-US">ACTION_POINTER_UP</SPAN></A></U></FONT><SPAN LANG="en-US">.</SPAN></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.17in">
+ACTION_DOWN &ndash; срабатывает при касании первого
+пальца<BR>ACTION_POINTER_DOWN &ndash; срабатывает при касании каждого
+последующего пальца<BR>ACTION_MOVE - срабатывает при любом
+движении<BR>ACTION_ POINTER_UP &ndash; срабатывает при отпускании
+каждого пальца кроме последнего<BR>ACTION_ UP &ndash; срабатывает при
+отпускании последнего пальца</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь надо понять, как отличить - для какого именно пальца сработали
+события ACTION_POINTER_DOWN и ACTION_ POINTER_UP. Для этого
+используются две системы нумерации &ndash; <B>индекс </B>и <B>ID</B>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<B>Индекс </B>&ndash; порядковый номер пальца. Не привязан к пальцу &ndash;
+один палец может иметь разные индексы в течение одного касания.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<B>ID </B>- &nbsp;привязан к пальцу от начала до конца касания.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Чтобы стало понятнее, рассмотрим ситуацию с тремя пальцами. Обозначим
+их - П1, П2 и П3. Будем касаться ими экрана и смотреть какие индексы
+и ID система им присваивает.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Касаемся экрана пальцем П1.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для П1: индекс = 0, ID = 0</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Далее касаемся экрана пальцем П2, не отпуская П1. Получим такие
+данные:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П1: индекс = 0, ID = 0<BR>П2: индекс = 1, ID = 1</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Далее касаемся экрана пальцем П3, не отпуская П1 и П2. Получим такие
+данные:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П1: индекс = 0, ID = 0<BR>П2: индекс = 1, ID = 1<BR>П3: индекс = 2,
+ID = 2</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь отпускаем палец П1. Получаем:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П2: индекс = 0, ID = 1<BR>П3: индекс = 1, ID = 2</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Видим, что П2 и П3 сохранили свои ID, а их индексы сместились.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Отпустим палец П2, получим:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П3: индекс = 0, ID = 2</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П3 сохранил свой ID, который был изначально. А индекс его сначала был
+2, потом 1, теперь 0.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Держим П3. Коснемся экрана пальцем П1, получим:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П1: индекс = 0, ID = 0<BR>П3: индекс = 1, ID = 2</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П1 получил первый свободный ID - 0. &nbsp;Индекс его тоже стал 0. А
+П3 получил индекс 1.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Держим П3 и П1. Коснемся экрана пальцем П2, получим:</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П1: индекс = 0, ID = 0<BR>П2: индекс = 1, ID = 1<BR>П3: индекс = 2,
+ID = 2</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+П2 получил первый свободный ID - 1. И он сместил П3 в списке
+индексов.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+На этом примере мы видим, что новое касание получает минимальный
+свободный ID, и индексы всегда перестраиваются так, чтобы ID шли по
+возрастанию. На этом примере четко видно, что ID привязан к касанию
+(пока оно длится &ndash; ID неизменен). А индексы &ndash; это просто
+номера касаний, но эти номера вовсе не означают порядок касаний.
+Индексы и ID могут принимать значения от 0 до 9.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Можно считать, что все текущие касания хранятся в некоем массиве. И
+ID - это их идентификаторы, а индексы - индексы этого массива
+касаний.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Вернемся к событиям. События UP и DOWN содержат в себе индекс
+касания. По этому индексу мы всегда можем получить ID. Событие MOVE
+информации об индексах не дает. Оно просто уведомляет, что происходит
+какое-то движение.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Напишем приложение, которое будет выводить на экран индекс последнего
+прикоснувшегося пальца, индекс последнего отпущенного пальца и всю
+таблицу индексов, ID и координат касаний.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+&nbsp;&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<SPAN LANG="en-US"><B>MainActivity.java</B></SPAN><SPAN LANG="en-US">:</SPAN></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">package
+</SPAN><SPAN LANG="en-US">ru.startandroid.develop.p1031multitouch;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.app.Activity;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.os.Bundle;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.MotionEvent;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.View;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.view.View.OnTouchListener;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">import
+</SPAN><SPAN LANG="en-US">android.widget.TextView;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">public
+class </SPAN><SPAN LANG="en-US">MainActivity </SPAN><SPAN LANG="en-US">extends
+</SPAN><SPAN LANG="en-US">Activity </SPAN><SPAN LANG="en-US">implements
+</SPAN><SPAN LANG="en-US">OnTouchListener </SPAN><SPAN LANG="en-US">{</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">StringBuilder sb = </SPAN><SPAN LANG="en-US">new
+</SPAN><SPAN LANG="en-US">StringBuilder</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+TextView tv;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">int </SPAN><SPAN LANG="en-US">upPI = </SPAN><SPAN LANG="en-US">0</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">int </SPAN><SPAN LANG="en-US">downPI = </SPAN><SPAN LANG="en-US">0</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">boolean </SPAN><SPAN LANG="en-US">inTouch =
+</SPAN><SPAN LANG="en-US">false</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+String result = </SPAN><SPAN LANG="en-US">&quot;&quot;</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">/** Called when the activity is first
+created. */</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">@Override</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">public </SPAN><SPAN LANG="en-US">void
+</SPAN><SPAN LANG="en-US">onCreate</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">Bundle
+savedInstanceState</SPAN><SPAN LANG="en-US">) {</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">super</SPAN><SPAN LANG="en-US">.onCreate</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">savedInstanceState</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+tv = </SPAN><SPAN LANG="en-US">new </SPAN><SPAN LANG="en-US">TextView</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">this</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+tv.setTextSize</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">30</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+tv.setOnTouchListener</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">this</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+setContentView</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">tv</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">@Override</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">public </SPAN><SPAN LANG="en-US">boolean
+</SPAN><SPAN LANG="en-US">onTouch</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">View
+view, MotionEvent event</SPAN><SPAN LANG="en-US">) {</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">// </SPAN>событие<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">int </SPAN><SPAN LANG="en-US">actionMask =
+event.getActionMasked</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">// </SPAN>индекс<SPAN LANG="en-US">
+</SPAN>касания<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">int </SPAN><SPAN LANG="en-US">pointerIndex
+= event.getActionIndex</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">// </SPAN>число<SPAN LANG="en-US">
+</SPAN>касаний<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">int </SPAN><SPAN LANG="en-US">pointerCount
+= event.getPointerCount</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">switch </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">actionMask</SPAN><SPAN LANG="en-US">)
+{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_DOWN:
+</SPAN><SPAN LANG="en-US">// </SPAN>первое<SPAN LANG="en-US">
+</SPAN>касание<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">inTouch = </SPAN><SPAN LANG="en-US">true</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_POINTER_DOWN:
+</SPAN><SPAN LANG="en-US">// </SPAN>последующие<SPAN LANG="en-US">
+</SPAN>касания<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">downPI = pointerIndex;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_UP:
+</SPAN><SPAN LANG="en-US">// </SPAN>прерывание<SPAN LANG="en-US">
+</SPAN>последнего<SPAN LANG="en-US"> </SPAN>касания<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">inTouch = </SPAN><SPAN LANG="en-US">false</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sb.setLength</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">0</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_POINTER_UP:
+</SPAN><SPAN LANG="en-US">// </SPAN>прерывания<SPAN LANG="en-US">
+</SPAN>касаний<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">upPI = pointerIndex;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">case </SPAN><SPAN LANG="en-US">MotionEvent.ACTION_MOVE:
+</SPAN><SPAN LANG="en-US">// </SPAN>движение<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sb.setLength</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">0</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">for </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">int
+</SPAN><SPAN LANG="en-US">i = </SPAN><SPAN LANG="en-US">0</SPAN><SPAN LANG="en-US">;
+i &lt; </SPAN><SPAN LANG="en-US">10</SPAN><SPAN LANG="en-US">; i++</SPAN><SPAN LANG="en-US">)
+{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;Index
+= &quot; </SPAN><SPAN LANG="en-US">+ i</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">if </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">i
+&lt; pointerCount</SPAN><SPAN LANG="en-US">) {</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+ID = &quot; </SPAN><SPAN LANG="en-US">+
+event.getPointerId</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">i</SPAN><SPAN LANG="en-US">))</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+X = &quot; </SPAN><SPAN LANG="en-US">+ event.getX</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">i</SPAN><SPAN LANG="en-US">))</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+Y = &quot; </SPAN><SPAN LANG="en-US">+ event.getY</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">i</SPAN><SPAN LANG="en-US">))</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">} </SPAN><SPAN LANG="en-US">else
+</SPAN><SPAN LANG="en-US">{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+ID = &quot;</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+X = &quot;</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;,
+Y = &quot;</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">sb.append</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;\r\n&quot;</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">break</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">result = </SPAN><SPAN LANG="en-US">&quot;down:
+&quot; </SPAN><SPAN LANG="en-US">+ downPI + </SPAN><SPAN LANG="en-US">&quot;\n&quot;
+</SPAN><SPAN LANG="en-US">+ </SPAN><SPAN LANG="en-US">&quot;up: &quot;
+</SPAN><SPAN LANG="en-US">+ upPI + </SPAN><SPAN LANG="en-US">&quot;\n&quot;</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">if </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">inTouch</SPAN><SPAN LANG="en-US">)
+{</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">result += </SPAN><SPAN LANG="en-US">&quot;pointerCount
+= &quot; </SPAN><SPAN LANG="en-US">+ pointerCount + </SPAN><SPAN LANG="en-US">&quot;\n&quot;
+</SPAN><SPAN LANG="en-US">+ sb.toString</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">tv.setText</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">result</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;&nbsp;&nbsp;
+</SPAN><SPAN LANG="en-US">return true</SPAN><SPAN LANG="en-US">;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">&nbsp;
+</SPAN><SPAN LANG="en-US">}</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">}</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В <B>onCreate </B>мы создаем TextView, присваиваем обработчик &ndash;
+текущее Activity, и помещаем в Activity.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Разбираемся с <B>onTouch</B>. Если для одного касания мы использовали
+метод getAction, чтобы понять какое событие произошло, то с
+мультитачем надо использовать <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked%28%29" TARGET="_blank">getActionMasked</A></U></FONT>.
+Индекс касания определяется методом <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getActionIndex%28%29" TARGET="_blank">getActionIndex</A></U></FONT>.
+Кол-во текущих касаний &ndash; <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getPointerCount%28%29" TARGET="_blank">getPointerCount</A></U></FONT>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если событие - <B>ACTION_DOWN</B>, значит мы получили первое касание.
+Ставим метку inTouch = true. Она для нас будет означать, что есть
+касания. Обратите внимание, что в этой ветке case мы не ставим break
+&ndash; следующая case-ветка (ACTION_POINTER_DOWN) также выполнится
+при ACTION_DOWN.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если событие <B>ACTION_POINTER_DOWN </B>(или ACTION_DOWN), то в
+переменную downPI помещаем индекс касания. Это будет индекс
+последнего прикоснувшегося пальца.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если событие - <B>ACTION_UP</B>, значит последнее касание прервано и
+экрана больше ничего не касается. Ставим inTouch = false, т.е.
+отсутствие касаний. Очищаем StringBuilder, который содержит
+информацию о движениях.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если событие - <B>ACTION_POINTER_UP </B>(или ACTION_UP), то в
+переменную upPI помещаем индекс касания. Это будет индекс последнего
+прерванного касания. Т.е. когда мы одно за другим прерываем касания,
+эта переменная будет содержать один за другим индексы последнего из
+прерванных.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Если событие <B>ACTION_MOVE </B>&ndash; мы перебираем все
+существующие индексы. С помощью pointerCount определяем, какие из них
+сейчас задействованы и содержат информацию о касаниях. Для них мы
+пишем номер индекса, ID (метод <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getPointerId%28int%29" TARGET="_blank">getPointerId</A></U></FONT>)
+и координаты (<FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getX%28int%29" TARGET="_blank">getX
+</A></U></FONT>и <FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/reference/android/view/MotionEvent.html#getY%28int%29" TARGET="_blank">getY</A></U></FONT>).
+Для незадействованных пишем только номер индекса. Пишем мы это все в
+StringBuilder.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Далее при любом событии формируем result, пишем туда индекс
+последнего касания и последнего завершенного касания. Если в данный
+момент есть касание (inTouch), то добавляем в результат содержимое
+StringBuilder с подробной инфой о всех касаниях. И выводим result в
+TextView.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Все сохраним и запустим. На эмуляторе я не знаю способов добиться
+мультитача, поэтому я тестирую на планшете. Скрин с него.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<IMG SRC="lk6_html_m2de3b05d.jpg" NAME="graphics9" ALIGN=BOTTOM WIDTH=640 HEIGHT=400 BORDER=0></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Я коснулся экрана 5-ю пальцами (последовательно от большого до
+мизинца, ID от 0 до 5) и потом один (указательный, ID = 1) убрал с
+экрана.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<B>down </B>показывает, что последний прикоснувшийся палец был с
+индексом 4</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<B>up </B>показывает, что последний убранный с экрана палец был с
+индексом 1</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<B>pointerCount </B>показывает количество действующих касаний</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+И строки по индексам показывают подробную информацию о касаниях.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<BR><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+<FONT COLOR="#ff0000"><B>Методы</B></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+getActionMasked , getActionIndex,  </B></SPAN></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US">getPointerId</SPAN></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+</B></SPAN></FONT><FONT COLOR="#ff0000"><B>доступны</B></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+</B></SPAN></FONT><FONT COLOR="#ff0000"><B>только</B></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+</B></SPAN></FONT><FONT COLOR="#ff0000"><B>с</B></FONT><FONT COLOR="#ff0000"><SPAN LANG="en-US"><B>
+API Level 8.</B></SPAN></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для более ранних версий (с API Level 5) используется такой способ
+получения типа события и индекса:</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">//
+</SPAN>событие<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">actionMask
+= event.getAction</SPAN><SPAN LANG="en-US">() </SPAN><SPAN LANG="en-US">&amp;
+MotionEvent.ACTION_MASK;</SPAN><SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">//
+</SPAN>индекс<SPAN LANG="en-US"> </SPAN>касания<SPAN LANG="en-US"><BR></SPAN><SPAN LANG="en-US">pointerIndex
+= </SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">event.getAction</SPAN><SPAN LANG="en-US">()
+</SPAN><SPAN LANG="en-US">&amp; MotionEvent.ACTION_POINTER_ID_MASK</SPAN><SPAN LANG="en-US">)
+</SPAN><SPAN LANG="en-US">&gt;&gt;
+MotionEvent.ACTION_POINTER_ID_SHIFT;</SPAN></FONT></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В традиционном программировании GUI понятие жестов, таких как
+<EM>смахивание</EM>, отсутствует, однако их реализация аналогична
+программированию нажатия кнопки. Начнем с <EM>процесса прослушивания
+касания</EM>, который входит в состав базовой платформы Android, а
+затем добавим соответствующее поведение. Для обнаружения движения
+смахивания пальцем нужно вычислить разность между координатами <EM>начала</EM>
+и <EM>конца</EM> жеста, а также его скорость. (Я нахожу здесь
+полезными декартовы координаты: смахивание влево и вправо происходит
+по оси X, а вверх и вниз &#8213; по оси Y.)</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Жест может происходить в любом месте интерфейса. При подключении
+такого процесса прослушивания к любому компоненту интерфейса
+приложения начинайте с макета (который в Android представлен как
+<FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>)
+и добавьте самый простой виджет кнопки. Я использую метод Android
+<FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleOnGestureListener</FONT></FONT>
+для создания начальной реализации жеста, а затем подключаю его к <FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>
+с помощью метода <FONT FACE="Courier New, monospace"><FONT SIZE=2>onTouchListener</FONT></FONT>.
+Подключившись к экземпляру своего представления, я могу обнаруживать
+жесты смахивания по <EM>всему</EM> интерфейсу, а не только в пределах
+его компонента, такого как компонент для просмотра изображений.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Однако предварительно нужно написать класс, способный обнаруживать
+движение пальцев на мобильном устройстве.</P>
+<H3 LANG="ru-RU" CLASS="western">SwipeDetector</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Обнаружить нажатие кнопки относительно легко. Операционная система
+обычно абстрагирует координаты границ кнопки, чтобы программисту не
+нужно было заниматься их определением вручную. Программирование
+распознавания движения смахивания и реагирования на него в приложении
+немного сложнее. Android многое перекладывает на программиста, зато
+оставляет вам огромную свободу. Вы можете обнаруживать один жест, как
+мы делаем здесь. Но можете обнаруживать и другие движения пальцев,
+такие как потирание, которое иногда используют в играх. 
+</P>
+<H2 LANG="ru-RU" CLASS="western">Мышление мобильными категориями</H2>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Как ни странно, процесс прослушивания мобильного приложения
+определяется глаголом <EM>click</EM> (щелкать). Пользователи
+мобильных устройств <EM>нажимают</EM> кнопки, а не <EM>щалкают</EM>
+на них, как в случае настольной мыши. Разработка для мобильных
+устройств предполагает мышление мобильными категориями, что означает
+переосмысление традиционных Web- и настольных механизмов, таких как
+нажатие кнопок, меню Пуск и даже мастера GUI.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Для программирования обнаружения жеста смахивания приходится
+прибегать к геометрии. Если <EM>начальная координата</EM> касания по
+оси X минус <EM>конечная координата</EM> по той же оси превышает
+заданное <EM>расстояние</EM>, и если <EM>скорость</EM> этого движения
+превышает другое заданное значение, то есть все основания
+предположить, что пользователь сделал жест смахивания пальцем справа
+налево. Смахивание вверх и вниз рассчитываются аналогичным образом,
+но по оси Y. 
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Подобную логику легко абстрагировать в простой класс, который
+выполняет элементарные расчеты. <FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleOnGestureListener</FONT></FONT>
+содержит метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>onFling</FONT></FONT>.
+Метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>onFling</FONT></FONT>
+принимает два значения типа <FONT FACE="Courier New, monospace"><FONT SIZE=2>MotionEvent</FONT></FONT>
+(<EM>начало</EM> и <EM>конец</EM>), представляя значений скорости по
+оси X, и два значения типа <FONT FACE="Courier New, monospace"><FONT SIZE=2>float</FONT></FONT>
+&#8213; для представления значений скорости по оси Y. Таким образом,
+класс <FONT FACE="Courier New, monospace"><FONT SIZE=2>SwipeDetector</FONT></FONT>
+в листинге 4 содержит четыре метода, которые разграничивают весь
+диапазон движений смахивания: влево, вправо, вверх и вниз.</P>
+<H5 LANG="ru-RU" CLASS="western">Листинг<SPAN LANG="en-US"> 4.
+SwipeDetector</SPAN></H5>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>import
+android.view.MotionEvent;</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+class SwipeDetector {</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+int swipe_distance;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+int swipe_velocity;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+static final int SWIPE_MIN_DISTANCE = 120;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+static final int SWIPE_THRESHOLD_VELOCITY = 200;</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+SwipeDetector(int distance, int velocity) {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>super();</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>this.swipe_distance
+= distance;</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>this.swipe_velocity
+= velocity;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+SwipeDetector() {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>super();</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>this.swipe_distance
+= SWIPE_MIN_DISTANCE;</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>this.swipe_velocity
+= SWIPE_THRESHOLD_VELOCITY;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean isSwipeDown(MotionEvent e1, MotionEvent e2, float velocityY)
+{</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+isSwipe(e2.getY(), e1.getY(), velocityY);</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean isSwipeUp(MotionEvent e1, MotionEvent e2, float velocityY) {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+isSwipe(e1.getY(), e2.getY(), velocityY);</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean isSwipeLeft(MotionEvent e1, MotionEvent e2, float velocityX)
+{</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+isSwipe(e1.getX(), e2.getX(), velocityX);</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean isSwipeRight(MotionEvent e1, MotionEvent e2, float velocityX)
+{</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+isSwipe(e2.getX(), e1.getX(), velocityX);</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+boolean isSwipeDistance(float coordinateA, float coordinateB) {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+(coordinateA - coordinateB) &gt; this.swipe_distance;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+boolean isSwipeSpeed(float velocity) {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+Math.abs(velocity) &gt; this.swipe_velocity;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+boolean isSwipe(float coordinateA, float coordinateB, float velocity)
+{</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+isSwipeDistance(coordinateA, coordinateB)</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>&amp;&amp;
+isSwipeSpeed(velocity);</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь, когда у нас есть удобный класс, говорящий, что выполнен тот
+или иной жест, его можно включить в наш пользовательский интерфейс.
+Напомню, что вначале мы создали действие по умолчанию, которое
+назвали <FONT FACE="Courier New, monospace"><FONT SIZE=2>OverheardWord</FONT></FONT>.
+Мы сохраним все детали кода по умолчанию, которые дает Eclipse, но
+кое-что добавим. Для прослушивания действия смахивания и реагирования
+на него определим метод Android <FONT FACE="Courier New, monospace"><FONT SIZE=2>GestureDetector</FONT></FONT>,
+который принимает реализацию <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnGestureListener</FONT></FONT>.
+К счастью, разработчики Android создали удобный класс, который можно
+реализовать через анонимный класс <FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleOnGestureListener</FONT></FONT>.
+Потом мы переопределим метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>onFling</FONT></FONT>.</P>
+<H3 LANG="ru-RU" CLASS="western">Обнаружение смахивания в
+пользовательском интерфейсе</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В методе действия <FONT FACE="Courier New, monospace"><FONT SIZE=2>onCreate</FONT></FONT>
+приступаем к созданию детектора жестов <FONT FACE="Courier New, monospace"><FONT SIZE=2>GestureDetector</FONT></FONT>
+с процессом <FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleOnGestureListener</FONT></FONT>,
+в котором используется класс <FONT FACE="Courier New, monospace"><FONT SIZE=2>SwipeDetector</FONT></FONT>.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Следующим шагом нужно написать код сообщения для указания того, что
+событие по жесту смахивания сработало. Такое маленькое,
+короткоживущее сообщение в Android называется <FONT FACE="Courier New, monospace"><FONT SIZE=2>Toast</FONT></FONT>
+В некоторых случаях <FONT FACE="Courier New, monospace"><FONT SIZE=2>Toast</FONT></FONT>
+может состоять всего из одной строки кода.</P>
+<H5 LANG="ru-RU" CLASS="western">Листинг<SPAN LANG="en-US"> 5.
+GestureDetector</SPAN></H5>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+GestureDetector initGestureDetector() {</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+new GestureDetector(new SimpleOnGestureListener() {</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+SwipeDetector detector = new SwipeDetector();</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, </FONT></FONT>
+</P>
+<P ALIGN=LEFT>               <FONT FACE="Courier New, monospace"><FONT SIZE=2>float
+velocityY) {</FONT></FONT></P>
+<P ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2>try
+{</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>if
+(detector.isSwipeDown(e1, e2, velocityY)) {</FONT></FONT></P>
+<P ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+false;</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>}
+else if (detector.isSwipeUp(e1, e2, velocityY)) {</FONT></FONT></P>
+<P ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2>showToast(&quot;Up
+Swipe&quot;);</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>}else
+if (detector.isSwipeLeft(e1, e2, velocityX)) {</FONT></FONT></P>
+<P ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2>showToast(&quot;Left
+Swipe&quot;);</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>}
+else if (detector.isSwipeRight(e1, e2, velocityX)) {</FONT></FONT></P>
+<P ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2>showToast(&quot;Right
+Swipe&quot;);</FONT></FONT></P>
+<P ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2>}
+catch (Exception e) {} //for now, ignore</FONT></FONT></P>
+<P ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+false;</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+void showToast(String phrase){</FONT></FONT></P>
+<P ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2>Toast.makeText(getApplicationContext(),
+phrase, Toast.LENGTH_SHORT).show();</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>});</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Теперь у нас есть метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>initGestureDetector</FONT></FONT>,
+который вычисляет диапазон и скорость движения смахивания. Во-первых,
+он создает анонимный экземпляр <FONT FACE="Courier New, monospace"><FONT SIZE=2>SimpleOnGestureListener</FONT></FONT>
+и обеспечивает реализацию метода <FONT FACE="Courier New, monospace"><FONT SIZE=2>onFling</FONT></FONT>.
+Заметьте, как метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>onFling</FONT></FONT>
+использует <FONT FACE="Courier New, monospace"><FONT SIZE=2>SwipeDetector</FONT></FONT>.
+Например, если происходит распознавание смахивания вверх, то <FONT FACE="Courier New, monospace"><FONT SIZE=2>Toast</FONT></FONT>
+указывает на это движение.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Следующий шаг &#8213; включение действия обнаружения жеста смахивания
+в пользовательский интерфейс. Начнем с регистрации нескольких
+прослушивающих процессов с экземпляром <FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>.
+</P>
+<H5 LANG="ru-RU" CLASS="western">Листинг 6. Регистрация обнаружения
+жеста смахивания в представлении View</H5>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>private
+GestureDetector gestureDetector;</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>protected
+void onCreate(Bundle savedInstanceState) {</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>super.onCreate(savedInstanceState);</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>setContentView(R.layout.activity_overheard_word);</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>gestureDetector
+= initGestureDetector();</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>View
+view = findViewById(R.id.LinearLayout1);</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>view.setOnTouchListener(new
+View.OnTouchListener() {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+boolean onTouch(View v, MotionEvent event) {</FONT></FONT></P>
+<P ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2>return
+gestureDetector.onTouchEvent(event);</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>});</FONT></FONT></P>
+<P ALIGN=LEFT><BR>
+</P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>view.setOnClickListener(new
+OnClickListener() {</FONT></FONT></P>
+<P ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+void onClick(View arg0) {</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>});</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В методе <FONT FACE="Courier New, monospace"><FONT SIZE=2>onCreate</FONT></FONT>
+я получаю дескриптор для фактического экземпляра <FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>
+посредством его <FONT FACE="Courier New, monospace"><FONT SIZE=2>Id</FONT></FONT>.
+Большинство Java-разработчиков оценит эту удобную особенность
+<EM>Android</EM>.</P>
+<H3 LANG="ru-RU" CLASS="western">Метод поиска представления по ID</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Помните, как мы определили XML-файл для своего пользовательского
+интерфейса вместе с соответствующими значениями в различных файлах
+ресурсов (таких как <FONT FACE="Courier New, monospace"><FONT SIZE=2>strings.xml</FONT></FONT>)?
+При компиляции Android-приложения этот XML-файл превращается в
+сгенерированный код, и ему присваиваются соответствующие <FONT FACE="Courier New, monospace"><FONT SIZE=2>Id</FONT></FONT>
+в классе <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>.
+Прежде чем пойти дальше, проверьте класс <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>
+в каталоге <FONT FACE="Courier New, monospace"><FONT SIZE=2>gen</FONT></FONT>
+своего проекта.</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Посмотрите на XML-файл макета (как вы помните, я назвал его
+<FONT FACE="Courier New, monospace"><FONT SIZE=2>activity_overheard_word.xml</FONT></FONT>).
+В этом XML-файле у каждого виджета есть атрибут <FONT FACE="Courier New, monospace"><FONT SIZE=2>id</FONT></FONT>.
+Например, <FONT FACE="Courier New, monospace"><FONT SIZE=2>id</FONT></FONT>
+макета моего приложения будет <FONT FACE="Courier New, monospace"><FONT SIZE=2>android:id=&quot;@+id/LinearLayout1&quot;</FONT></FONT>,
+или для краткости <FONT FACE="Courier New, monospace"><FONT SIZE=2>LinearLayout1</FONT></FONT>.
+Имя <FONT FACE="Courier New, monospace"><FONT SIZE=2>Id</FONT></FONT>
+Eclipse генерирует автоматически, но его можно изменить. Важно, что у
+<FONT FACE="Courier New, monospace"><FONT SIZE=2>idLinearLayout1</FONT></FONT>
+есть соответствующее свойство в классе <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>,
+как показано в листинге 7. 
+</P>
+<H5 LANG="ru-RU" CLASS="western">Листинг 7. Идентификаторы виджетов в
+классе R</H5>
+<P ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final class id {</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final int LinearLayout1=0x7f090000;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final int action_settings=0x7f090004;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final int word_study_definition=0x7f090003;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final int word_study_part_of_speech=0x7f090002;</FONT></FONT></P>
+<P ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2>public
+static final int word_study_word=0x7f090001;</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2>}</FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Объединяя содержимое XML-файла с соответствующим файлом <FONT FACE="Courier New, monospace"><FONT SIZE=2>R</FONT></FONT>,
+можно вызывать виджеты без необходимости анализа XML. Поэтому,
+возвращаясь к методу <FONT FACE="Courier New, monospace"><FONT SIZE=2>onCreate</FONT></FONT>,
+можно вызвать виджет <FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>
+по его <FONT FACE="Courier New, monospace"><FONT SIZE=2>id</FONT></FONT>:
+<FONT FACE="Courier New, monospace"><FONT SIZE=2>R.id.LinearLayout1</FONT></FONT>.
+Метод <FONT FACE="Courier New, monospace"><FONT SIZE=2>findViewById</FONT></FONT>
+предоставляется платформой Android при расширении <FONT FACE="Courier New, monospace"><FONT SIZE=2>Activity</FONT></FONT>.
+</P>
+<H3 LANG="ru-RU" CLASS="western">Смахивание пальцем работает!</H3>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+Когда у нас есть экземпляр <FONT FACE="Courier New, monospace"><FONT SIZE=2>View</FONT></FONT>,
+к нему можно добавить свой экземпляр <FONT FACE="Courier New, monospace"><FONT SIZE=2>gestureDetector</FONT></FONT>
+посредством метода <FONT FACE="Courier New, monospace"><FONT SIZE=2>setOnTouchListener</FONT></FONT>.
+В листинге 6 еще один анонимный класс теперь обрабатывает все
+действия касания. Когда пользователь касается экрана устройства, это
+событие срабатывает и воздействует на <FONT FACE="Courier New, monospace"><FONT SIZE=2>gestureDetector</FONT></FONT>.
+Я также реализовал <FONT FACE="Courier New, monospace"><FONT SIZE=2>OnClickListener</FONT></FONT>
+и установил его в методе <FONT FACE="Courier New, monospace"><FONT SIZE=2>setOnClickListener</FONT></FONT>;
+но в этом случае у анонимного класса нет поведения. 
+</P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-top: 0.19in; margin-bottom: 0.19in">
+В результате получился совсем не сложный интерфейс, который реагирует
+на жесты смахивания пальцем. Таких жестов три: влево, вправо и вверх.
+Попробуйте этот код в своем AVD. Для имитации смахивания нажмите
+кнопку мыши и перетащите ее влево, вправо или вверх.</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">[6]
+   Detecting a long press with Android</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in">&hellip;</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">final</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">GestureDetector</SPAN><SPAN LANG="en-US">
+gestureDetector </SPAN><SPAN LANG="en-US">=</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">new</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">GestureDetector</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">new</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">GestureDetector</SPAN><SPAN LANG="en-US">.</SPAN><SPAN LANG="en-US">SimpleOnGestureListener</SPAN><SPAN LANG="en-US">()</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">{</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">void</SPAN><SPAN LANG="en-US">
+onLongPress</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">MotionEvent</SPAN><SPAN LANG="en-US">
+e</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US"> </SPAN><SPAN LANG="en-US">{</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">Log</SPAN><SPAN LANG="en-US">.</SPAN><SPAN LANG="en-US">e</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">&quot;&quot;</SPAN><SPAN LANG="en-US">,</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">&quot;Longpress detected&quot;</SPAN><SPAN LANG="en-US">);</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">}</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">});</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">public</SPAN><SPAN LANG="en-US">
+</SPAN><SPAN LANG="en-US">boolean</SPAN><SPAN LANG="en-US">
+onTouchEvent</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">MotionEvent</SPAN><SPAN LANG="en-US">
+event</SPAN><SPAN LANG="en-US">)</SPAN><SPAN LANG="en-US"> </SPAN><SPAN LANG="en-US">{</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">return</SPAN><SPAN LANG="en-US">
+gestureDetector</SPAN><SPAN LANG="en-US">.</SPAN><SPAN LANG="en-US">onTouchEvent</SPAN><SPAN LANG="en-US">(</SPAN><SPAN LANG="en-US">event</SPAN><SPAN LANG="en-US">);</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US">};</SPAN></FONT></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in">&hellip;</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><SPAN LANG="en-US">[7]
+how to set the drag and zoom image center to the layout?</SPAN></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>public</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>class</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MainActivity</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>extends</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>Activity</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>ImageView</I></SPAN><SPAN LANG="en-US"><I>
+imageDetail</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>LinearLayout</I></SPAN><SPAN LANG="en-US"><I>
+linear</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>Matrix</I></SPAN><SPAN LANG="en-US"><I>
+matrix </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>Matrix</I></SPAN><SPAN LANG="en-US"><I>();</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>Matrix</I></SPAN><SPAN LANG="en-US"><I>
+savedMatrix </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>Matrix</I></SPAN><SPAN LANG="en-US"><I>();</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>PointF</I></SPAN><SPAN LANG="en-US"><I>
+startPoint </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>PointF</I></SPAN><SPAN LANG="en-US"><I>();</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>PointF</I></SPAN><SPAN LANG="en-US"><I>
+midPoint </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>PointF</I></SPAN><SPAN LANG="en-US"><I>();</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+oldDist </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>1f</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>static</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>final</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>int</I></SPAN><SPAN LANG="en-US"><I>
+NONE </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>0</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>static</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>final</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>int</I></SPAN><SPAN LANG="en-US"><I>
+DRAG </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>1</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>static</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>final</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>int</I></SPAN><SPAN LANG="en-US"><I>
+ZOOM </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>2</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>int</I></SPAN><SPAN LANG="en-US"><I>
+mode </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+NONE</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>/**
+Called when the activity is first created. */</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>@Override</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>public</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>void</I></SPAN><SPAN LANG="en-US"><I>
+onCreate</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>Bundle</I></SPAN><SPAN LANG="en-US"><I>
+savedInstanceState</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>super</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>onCreate</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>savedInstanceState</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>setContentView</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>R</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>layout</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>activity_main</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>imageDetail
+</I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>ImageView</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+findViewById</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>R</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>id</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>imageView1</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>imageDetail</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>setScaleType</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>ImageView</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ScaleType</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>MATRIX</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>ColorFilter</I></SPAN><SPAN LANG="en-US"><I>
+filter </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>LightingColorFilter</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>Color</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>BLUE</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>Color</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>BLUE</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>imageDetail</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>setColorFilter</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>filter</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>/**</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>         <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>*
+set on touch listner on image</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>         <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>*/</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>imageDetail</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>setOnTouchListener</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>new</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>View</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>OnTouchListener</I></SPAN><SPAN LANG="en-US"><I>()</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>@Override</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>public</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>boolean</I></SPAN><SPAN LANG="en-US"><I>
+onTouch</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>View</I></SPAN><SPAN LANG="en-US"><I>
+v</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>ImageView</I></SPAN><SPAN LANG="en-US"><I>
+view </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>ImageView</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+v</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>System</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>out</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>println</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>&quot;matrix=&quot;</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>+</I></SPAN><SPAN LANG="en-US"><I>
+savedMatrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>toString</I></SPAN><SPAN LANG="en-US"><I>());</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>switch</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getAction</I></SPAN><SPAN LANG="en-US"><I>()</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>&amp;</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_MASK</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>case</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_DOWN</I></SPAN><SPAN LANG="en-US"><I>:</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>Log</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>e</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>&quot;action
+down&quot;</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>&quot;down&quot;</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>savedMatrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>set</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>startPoint</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>set</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>(),</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>());</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>mode
+</I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+DRAG</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>break</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>case</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_POINTER_DOWN</I></SPAN><SPAN LANG="en-US"><I>:</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>oldDist
+</I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+spacing</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>if</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>oldDist
+</I></SPAN><SPAN LANG="en-US"><I>&gt;</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>10f</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>savedMatrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>set</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>midPoint</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>midPoint</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>mode
+</I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+ZOOM</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>break</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>case</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_UP</I></SPAN><SPAN LANG="en-US"><I>:</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>case</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_POINTER_UP</I></SPAN><SPAN LANG="en-US"><I>:</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>mode
+</I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+NONE</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>break</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>case</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>ACTION_MOVE</I></SPAN><SPAN LANG="en-US"><I>:</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>if</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>mode
+</I></SPAN><SPAN LANG="en-US"><I>==</I></SPAN><SPAN LANG="en-US"><I>
+DRAG</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>set</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>savedMatrix</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                           
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>postTranslate</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>()</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>-</I></SPAN><SPAN LANG="en-US"><I>
+startPoint</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>x</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                                   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>()</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>-</I></SPAN><SPAN LANG="en-US"><I>
+startPoint</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>y</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>else</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>if</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>mode
+</I></SPAN><SPAN LANG="en-US"><I>==</I></SPAN><SPAN LANG="en-US"><I>
+ZOOM</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+newDist </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+spacing</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>if</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>newDist
+</I></SPAN><SPAN LANG="en-US"><I>&gt;</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>10f</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                               
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>set</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>savedMatrix</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+scale </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+newDist </I></SPAN><SPAN LANG="en-US"><I>/</I></SPAN><SPAN LANG="en-US"><I>
+oldDist</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                               
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>postScale</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>scale</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+scale</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+midPoint</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>x</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                                       
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>midPoint</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>y</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                        <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>break</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                   
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>view</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>setImageMatrix</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>matrix</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>                    <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>return</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>true</I></SPAN><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>@SuppressLint</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>&quot;FloatMath&quot;</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>private</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+spacing</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+x </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>0</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>-</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>1</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+y </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>0</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>-</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>1</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>return</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>FloatMath</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>sqrt</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>x
+</I></SPAN><SPAN LANG="en-US"><I>*</I></SPAN><SPAN LANG="en-US"><I> x
+</I></SPAN><SPAN LANG="en-US"><I>+</I></SPAN><SPAN LANG="en-US"><I> y
+</I></SPAN><SPAN LANG="en-US"><I>*</I></SPAN><SPAN LANG="en-US"><I>
+y</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>private</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>void</I></SPAN><SPAN LANG="en-US"><I>
+midPoint</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>PointF</I></SPAN><SPAN LANG="en-US"><I>
+point</I></SPAN><SPAN LANG="en-US"><I>,</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>MotionEvent</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+x </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>0</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>+</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getX</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>1</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="en-US"><I>float</I></SPAN><SPAN LANG="en-US"><I>
+y </I></SPAN><SPAN LANG="en-US"><I>=</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>0</I></SPAN><SPAN LANG="en-US"><I>)</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>+</I></SPAN><SPAN LANG="en-US"><I>
+</I></SPAN><SPAN LANG="en-US"><I>event</I></SPAN><SPAN LANG="en-US"><I>.</I></SPAN><SPAN LANG="en-US"><I>getY</I></SPAN><SPAN LANG="en-US"><I>(</I></SPAN><SPAN LANG="en-US"><I>1</I></SPAN><SPAN LANG="en-US"><I>);</I></SPAN></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>                <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>point</I><I>.</I><I>set</I><I>(</I><I>x
+</I><I>/</I><I> </I><I>2</I><I>,</I><I> y </I><I>/</I><I> </I><I>2</I><I>);</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>            <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>}</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>        <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>});</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><BR>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT>    <FONT FACE="Courier New, monospace"><FONT SIZE=2><I>}</I></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; border-top: none; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>[8]</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; margin-bottom: 0.17in"><A NAME="more"></A>
+<FONT SIZE=4>Под масштабированием будем понимать жесты
+трансформирующие наше View, и использующие более одного касания
+(мультитач).<BR><BR>Основой для приложения будет класс
+ScaleGestureDetector, &nbsp;основной задачей которого является
+&quot;узнавание&quot; жестов масштабирования, и уведомления
+приложения с помощью CallBack'ов. При его использовании необходимо
+учитывать, что данная возможность доступна с версии Android 2.0
+(Froyo).<BR><BR>Начнем с создания собственного ImageView.<BR><BR>Его
+код предельно прост:</FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B>package</B></I></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><I>
+</I></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><I>com.malice.scale</I></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><I>;</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.content.Context</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.graphics.Canvas</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.graphics.drawable.Drawable</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.view.MotionEvent</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.view.ScaleGestureDetector</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>android.view.View</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>class</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+MyImageView </I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>extends</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#003399"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>View</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>private</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+Drawable image</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>private</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>float</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+scaleFactor </I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>=</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+1.0f</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>private</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+ScaleGestureDetector scaleGestureDetector</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+MyImageView</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#003399"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>Context</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+context</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>super</B></I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>context</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>image
+</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>=</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+context.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>getResources</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>getDrawable</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>R.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>drawable</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>ic_launcher</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>setFocusable</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>true</B></I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>image.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>setBounds</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#cc66cc"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>0</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>,
+</I></SPAN></FONT><FONT COLOR="#cc66cc"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>0</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>,
+image.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>getIntrinsicWidth</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>,
+image.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>getIntrinsicHeight</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>())</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleGestureDetector
+</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>=</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>new</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+ScaleGestureDetector</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>context,
+</I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>new</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+ScaleListener</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>())</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 9pt"><I>@Override</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>protected</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>void</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+onDraw</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#003399"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>Canvas</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+canvas</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>super</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>onDraw</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>canvas</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>canvas.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>save</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>canvas.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scale</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleFactor,
+scaleFactor</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>image.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>draw</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>canvas</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>canvas.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>restore</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 9pt"><I>@Override</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>boolean</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+onTouchEvent</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>MotionEvent
+event</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> 
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleGestureDetector.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>onTouchEvent</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>event</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>invalidate</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>return</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>true</B></I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>}</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>private</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>class</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+ScaleListener </I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>extends</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+ScaleGestureDetector.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>SimpleOnScaleGestureListener</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 9pt"><I>@Override</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I><B>boolean</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+onScale</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>ScaleGestureDetector
+detector</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleFactor
+</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>*=</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+detector.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>getScaleFactor</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>()</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleFactor
+</I></SPAN></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>=</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#003399"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>Math</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>max</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>0.1f,
+</I></SPAN></FONT><FONT COLOR="#003399"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>Math</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>min</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>scaleFactor,
+5.0f</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>))</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 9pt"><I>invalidate</I></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><I>()</I></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><I>;</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>   <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B>return</B></I></FONT></FONT><FONT SIZE=2 STYLE="font-size: 9pt"><I>
+</I></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B>true</B></I></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 9pt"><I>;</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><I>}</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 9pt"><I>}</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT COLOR="#009900"><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 9pt"><I>}</I></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in; margin-bottom: 0.17in">
+<FONT SIZE=4>Задача данного класса - формирование View на экране
+пользователя, и отрисовка Image на Canvas данной View. Одновременно с
+этим, мы создаем объект класса <SPAN STYLE="background: #ffffff">ScaleGestureDetector
+и определяем для него CallBack вызов.<BR></SPAN>При возникновении
+события мы перерисовываем Canvas согласно текущему коэффициенту
+масштабирования.<BR>Для того, чтобы увидеть результат изменим код
+главной Activity: </FONT>
+</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><I><B>package</B></I></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><I>
+</I></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 11pt"><I>com.malice.scale</I></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 11pt"><I>;</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>android.app.Activity</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>import</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#006699"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>android.os.Bundle</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT>&nbsp;</P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>class</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+MainActivity </I></SPAN></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>extends</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+Activity </I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt"><I>@Override</I></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>public</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#000066"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>void</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+onCreate</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>Bundle
+savedInstanceState</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>{</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>super</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>.</I></SPAN></FONT><FONT COLOR="#006633"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>onCreate</I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>savedInstanceState</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>)</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT>  <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>setContentView</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>new</B></I></SPAN></FONT></FONT><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>
+MyImageView</I></SPAN></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>(</I></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I><B>this</B></I></SPAN></FONT></FONT><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>))</I></SPAN></FONT></FONT><FONT COLOR="#339933"><FONT SIZE=2 STYLE="font-size: 11pt"><SPAN LANG="en-US"><I>;</I></SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT> <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#009900"><FONT SIZE=2 STYLE="font-size: 11pt"><I>}</I></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT><FONT COLOR="#009900"><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt"><I>}</I></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<H3 LANG="ru-RU" CLASS="western" ALIGN=CENTER><FONT SIZE=3><FONT FACE="Times New Roman, serif"><FONT SIZE=4 STYLE="font-size: 15pt">Литература</FONT></FONT>.</FONT></H3>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=4>1. Майер Р. -
+<SPAN LANG="en-US">Android</SPAN> 4. Программирование приложений для
+планшетных компьютеров и смартфонов &ndash; 2013, <SPAN LANG="en-US">pp</SPAN>.
+171-172,492&hellip;497</FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">2.
+Урок 102. Touch &ndash; обработка касания</SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+ 
+</FONT></FONT><A HREF="http://startandroid.ru/ru/uroki/vse-uroki-spiskom/167-urok-102-touch-obrabotka-kasanija"><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>://</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">startandroid</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>.</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">ru</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">ru</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">uroki</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">vse</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">uroki</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">spiskom</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/167-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">urok</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>-102-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">touch</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">obrabotka</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>-</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">kasanija</SPAN></FONT></FONT></U></FONT></A><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+</FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">3.
+Урок 103. MultiTouch &ndash; обработка множественных касаний </SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://startandroid.ru/ru/uroki/vse-uroki-spiskom/168-urok-103-multitouch-obrabotka-mnozhestvennyh-kasanij"><FONT FACE="Times New Roman, serif"><FONT SIZE=4>http://startandroid.ru/ru/uroki/vse-uroki-spiskom/168-urok-103-multitouch-obrabotka-mnozhestvennyh-kasanij</FONT></FONT></A></U></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+</FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">4.
+Touch handling in Android &ndash;
+</SPAN></SPAN></FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://www.codeproject.com/Articles/458042/Touch-handling-in-Android"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http://www.codeproject.com/Articles/458042/Touch-handling-in-Android</SPAN></FONT></FONT></A></U></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">5.
+Программирование для мобильных устройств &#8213; в массы: Одним
+махом! Программирование жестов в Android </SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">(GestureDetector)
+&ndash;
+</SPAN></FONT></FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://www.ibm.com/developerworks/ru/library/j-mobileforthemasses2/"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http://www.ibm.com/developerworks/ru/library/j-mobileforthemasses2/</SPAN></FONT></FONT></A></U></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+</FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">6.
+Detecting a long press with Android </SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">(GestureDetector)
+&ndash;
+</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://stackoverflow.com/questions/7919865/detecting-a-long-press-with-android/11679788#11679788"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http://stackoverflow.com/questions/7919865/detecting-a-long-press-with-android/11679788#11679788</SPAN></FONT></FONT></A></U></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4>7. how
+to set the drag and zoom image center to the layout? &ndash;
+</FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://stackoverflow.com/questions/26210534/how-to-set-the-drag-and-zoom-image-center-to-the-layout"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http://stackoverflow.com/questions/26210534/how-to-set-the-drag-and-zoom-image-center-to-the-layout</SPAN></FONT></FONT></A></U></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">
+</SPAN></FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">8.
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">Поддержка
+управления в Android с помощью жестов. &nbsp;</SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">(ScaleGestureDetector)
+&ndash; </SPAN></FONT></FONT></FONT><FONT COLOR="#0000ff"><U><A HREF="http://findevelop.blogspot.com/2012/07/android.html"><FONT COLOR="#1155cc"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US"><SPAN STYLE="font-weight: normal">http://findevelop.blogspot.com/2012/07/android.html</SPAN></SPAN></FONT></FONT></FONT></A></U></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN STYLE="font-weight: normal">
+</SPAN></FONT></FONT></FONT></FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="text-indent: 0.39in">
+<FONT SIZE=4><FONT FACE="Times New Roman, serif"><FONT SIZE=4>9.
+</FONT></FONT><A HREF="http://www.intuit.ru/studies/courses/12643/1191/lecture/21992?page=1"><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">http</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>://</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">www</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>.</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">intuit</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>.</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">ru</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">studies</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">courses</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/12643/1191/</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">lecture</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>/21992?</FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-US">page</SPAN></FONT></FONT></U></FONT><FONT COLOR="#0000ff"><U><FONT FACE="Times New Roman, serif"><FONT SIZE=4>=1</FONT></FONT></U></FONT></A><FONT FACE="Times New Roman, serif"><FONT SIZE=4>
+</FONT></FONT></FONT>
+</P>
+<DIV TYPE=FOOTER>
+	<P LANG="ru-RU"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,1279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1251">
+	<TITLE>1</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.2  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Администратор">
+	<META NAME="CREATED" CONTENT="20120115;22080000">
+	<META NAME="CHANGEDBY" CONTENT="Andrew Yankovsky">
+	<META NAME="CHANGED" CONTENT="20160615;22143016">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-right: 0.69in; margin-top: 0.79in; margin-bottom: 0.67in }
+		@page:first { margin-top: 0.79in; margin-bottom: 1.06in }
+		P { margin-bottom: 0in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ru-RU }
+		P.cjk { font-family: "Calibri", sans-serif; font-size: 12pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		H4 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H4.western { font-size: 14pt; so-language: ru-RU }
+		H4.cjk { font-family: "Calibri", sans-serif; font-size: 14pt }
+		H4.ctl { font-family: "Times New Roman", serif; font-size: 14pt; so-language: ar-SA }
+		H5 { text-indent: 0.39in; margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2; page-break-after: auto }
+		H5.western { font-family: "Calibri", sans-serif; font-size: 13pt; so-language: ru-RU; font-style: italic }
+		H5.cjk { font-family: "Times New Roman", serif; font-size: 13pt; font-style: italic }
+		H5.ctl { font-family: "Times New Roman", serif; font-size: 13pt; so-language: ar-SA; font-style: italic }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<DIV TYPE=HEADER>
+	<P LANG="ru-RU" ALIGN=LEFT><BR>
+	</P>
+</DIV>
+<H4 LANG="ru-RU" CLASS="western" ALIGN=CENTER STYLE="margin-left: 0.39in; margin-right: 0.43in; margin-bottom: 0.08in">
+Лекция 11. Сервисы и широковещательные сообщения.</H4>
+<P LANG="ru-RU" CLASS="western" ALIGN=CENTER STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Сервисы в Android</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Службы (Сервисы) в Android работают как фоновые процессы
+и представлены классом android.app.Service. Они не имеют
+пользовательского интерфейса и нужны в тех случаях, когда не
+требуется вмешательства пользователя. Сервисы работают в фоновом
+режиме, выполняя сетевые запросы к веб-серверу, обрабатывая
+информацию, запуская уведомления и т.д. Служба может быть запущена и
+будет продолжать работать до тех пор, пока кто-нибудь не остановит её
+или пока она не остановит себя сама. Сервисы предназначены для
+длительного существования, в отличие от активностей. Они могут
+работать, постоянно перезапускаясь, выполняя постоянные задачи или
+выполняя задачи, требующие много времени.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Клиентские приложения устанавливают подключение к
+службам и используют это подключение для взаимодействия со службой. С
+одной и той же службой могут связываться множество клиентских
+приложений.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Android дает сервисам более высокий приоритет, чем
+бездействующим активностям, поэтому вероятность того, что они будут
+завершены из-за нехватки ресурсов, заметно уменьшается. По сути, если
+система должна преждевременно завершить работу запущенного сервиса,
+он может быть настроен таким образом, чтобы запускаться повторно, как
+только станет доступно достаточное количество ресурсов. В крайних
+случаях прекращение работы сервиса (например, задержка при
+проигрывании музыки) будет заметно влиять на впечатления пользователя
+от приложения, и в подобных ситуациях приоритет сервиса может быть
+повышен до уровня активности, работающей на переднем плане.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Используя сервис, можете быть уверены, что ваши
+приложения продолжат работать и реагировать на события, даже если они
+в неактивном состоянии. Для работы сервисам не нужен отдельный
+графический интерфейс, как в случае с активностями, но они
+по-прежнему выполняются в главном потоке хода приложения. Чтобы
+повысить отзывчивость вашего приложения, нужно уметь переносить
+трудоемкие процессы (например, сетевые запросы) в фоновые потоки,
+используя классы Thread и AsyncTask.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Службы идеально подходят для проведения постоянных или
+регулярных операций, а также для обработки событий даже тогда, когда
+активности вашего приложения невидимы, работают в пассивном режиме
+или закрыты.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Сервисы запускаются, останавливаются и контролируются из
+различных компонентов приложения, включая другие сервисы, активности
+и приёмники широковещательных намерений. Если ваше приложение
+выполняет задачи, которые не зависят от прямого взаимодействия с
+пользователем, сервисы могут стать хорошим выбором.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Запущенные сервисы всегда имеют больший приоритет, чем
+бездействующие или невидимые активности, поэтому менее вероятно, что
+их работа завершится преждевременно при распределении ресурсов.
+Единственная причина, почему Android может досрочно остановить
+Сервис, &mdash; выделение дополнительных ресурсов для компонентов,
+работающих на переднем плане (как правило, для активностей). Если
+такое случится, ваш сервис автоматически перезапустится, когда будет
+достаточно доступных ресурсов.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Когда сервис напрямую взаимодействует с пользователем
+(например, проигрывая музыку), может понадобиться повысить его
+приоритет до уровня активностей, работающих на переднем плане. Это
+гарантия того, что сервис завершится только в крайнем случае, но при
+этом снижается его доступность во время выполнения, мешая управлять
+ресурсами, что может испортить общее впечатление от приложения.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Приложения, которые регулярно обновляются, но очень
+редко или нерегулярно взаимодействуют с пользователем, можно назвать
+первыми кандидатами на реализацию в виде сервисов. Проигрыватели MP3
+и приложения, отслеживающие спортивные результаты, &mdash; примеры
+программ, которые должны постоянно работать и обновляться без
+необходимости отображать активность.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Создание службы</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Чтобы определить службу, необходимо создать новый класс,
+расширяющий базовый класс Service.</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>package</B></SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+ru</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">alexanderklimov</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">testapplication</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">;</SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>import</B></SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+android</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">app</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">Service</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">;</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>import</B></SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+android</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">content</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">Intent</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">;</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>import</B></SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+android</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">os</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">.</SPAN></FONT></FONT><FONT COLOR="#004a43"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">IBinder</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">;</SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>public</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>class</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+MyService </SPAN></FONT></FONT><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>extends</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+Service </SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">{</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>public</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+MyService</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">()</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">{</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT SIZE=4><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT SIZE=4><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">@</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">Override</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>public</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+IBinder onBind</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">(</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">Intent
+intent</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">)</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">{</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT SIZE=4><FONT COLOR="#696969"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">//
+</SPAN></FONT></FONT><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">TODO:
+Return the communication channel to the service.</SPAN></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT SIZE=4><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>throw</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+</SPAN></FONT></FONT><FONT COLOR="#800000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US"><B>new</B></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">
+UnsupportedOperationException</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">(</SPAN></FONT></FONT><FONT COLOR="#0000e6"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">&quot;Not
+yet implemented&quot;</SPAN></FONT></FONT><FONT COLOR="#808030"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">)</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">;</SPAN></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT SIZE=4><FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><SPAN LANG="en-US">}</SPAN></FONT></FONT></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Сервис необходимо зарегистрировать в манифесте в секции
+&lt;application&gt;.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>service</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>.MyService</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>enabled</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>true</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>exported</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>true</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>service</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Атрибут exported даёт возможность другим приложениям
+получить доступ к вашему сервису. Имеются и другие атрибуты,
+например, permission, чтобы сервис запускался только вашим
+приложением.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Жизненный цикл служб</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Подобно активностям служба имеет свои методы жизненного
+цикла:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onCreate()</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onStartCommand()</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onDestroy()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Реализуя эти методы обратного вызова в своей службе, вы
+можете контролировать жизненные циклы службы. В полном жизненном
+цикле службы существует два вложенных цикла:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>полная целая жизнь службы &mdash; промежуток между
+временем вызова метода onCreate() и временем возвращения onDestroy().
+Подобно активности, для служб производят начальную инициализацию в
+onCreate() и освобождают все остающиеся ресурсы в onDestroy()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>активная целая жизнь службы &mdash; начинается с вызова
+метода onStartCommand(). Этому методу передается объект Intent,
+который передавали в метод startService().</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Из своего приложения службу можно запустить вызовом
+метода Context.startService(), остановить через
+Context.stopService(). Служба может остановить сама себя, вызывая
+методы Service.stopSelf() или Service.stopSelfResult().</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Можно установить подключение к работающей службе и
+использовать это подключение для взаимодействия со службой.
+Подключение устанавливают вызовом метода Context.bindService() и
+закрывают вызовом Context.unbindService(). Если служба уже была
+остановлена, вызов метода bindService() может её запустить.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Методы onCreate() и onDestroy() вызываются для всех
+служб независимо от того, запускаются ли они через
+Context.startService() или Context.bindService().</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<IMG SRC="lk11_html_m61b50bb1.jpg" NAME="graphics1" ALIGN=BOTTOM WIDTH=542 HEIGHT=696 BORDER=0></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Если служба разрешает другим приложениям связываться с
+собой, то привязка осуществляется с помощью дополнительных методов
+обратного вызова:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>IBinder onBind(Intent intent)</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onUnbind(Intent intent)</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>onRebind(Intent intent)</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В метод обратного вызова <SPAN LANG="en-US">onBind</SPAN>()
+передают объект <SPAN LANG="en-US">Intent</SPAN>, который был
+параметром в методе <SPAN LANG="en-US">bindService</SPAN>(), а в
+метод обратного вызова <SPAN LANG="en-US">onUnbind</SPAN>() &mdash;
+объект <SPAN LANG="en-US">Intent</SPAN>, который передавали в метод
+<SPAN LANG="en-US">unbindService</SPAN>(). Если служба разрешает
+связывание, метод onBind() возвращает канал связи, который используют
+клиенты, чтобы взаимодействовать со службой, иначе вовращает <SPAN LANG="en-US">null</SPAN>.
+Метод обратного вызова onRebind() может быть вызван после onUnbind(),
+если новый клиент соединяется со службой.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Запуск сервиса и управление его перезагрузкой</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В большинстве случаев также необходимо переопределить
+метод onStartCommand(). Он вызывается каждый раз, когда сервис
+стартует с помощью метода startService(), поэтому может быть выполнен
+несколько раз на протяжении работы. Вы должны убедиться, что ваш
+сервис это предусматривает.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Метод onStartCommand() заменяет устаревший метод
+onStart(), который использовался в Android 2.0. В отличие от
+onStart() новый метод позволяет указать системе, каким образом
+обрабатывать перезапуски, если сервис остановлен системой без явного
+вызова методов stopService() или stopSelf().</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>@Override</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+int onStartCommand(Intent intent, int flags, int startId) </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>return</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Service</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>START_STICKY</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Сервисы запускаются в главном потоке приложения; это
+значит, что любые операции, выполняющиеся в обработчике
+onStartCommand(), будут работать в контексте главного потока GUI. На
+практике при реализации сервиса в методе onStartCommand() создают и
+запускают новый поток, чтобы выполнять операции в фоновом режиме и
+останавливать сервис, когда работа завершена.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Такой подход позволяет методу onStartCommand() быстро
+завершить работу и даёт возможность контролировать поведение сервиса
+при его повторном запуске, используя одну из констант.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>START_STICKY - Описывает стандартное поведение. Похоже
+на то, как был реализован метод onStart() в Android 2.0. Если вы
+вернете это значение, обработчик onStartCommand() будет вызываться
+при повторном запуске сервиса после преждевременного завершения
+работы. Обратите внимание, что аргумент Intent, передаваемый в
+onStartCommand(), получит значение null. Данный режим обычно
+используется для сервисов, которые сами обрабатывают свои состояния,
+явно стартуя и завершая свою работу при необходимости (с помощью
+методов startService() и stopService()). Это относится к сервисам,
+которые проигрывают музыку или выполняют другие задачи в фоновом
+режиме.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>START_NOT_STICKY - Этот режим используется в сервисах,
+которые запускаются для выполнения конкретных действий или команд.
+Как правило, такие сервисы используют stopSelf() для прекращения
+работы, как только команда выполнена. После преждевременного
+прекращения работы сервисы, работающие в данном режиме, повторно
+запускаются только в том случае, если получат вызовы. Если с момента
+завершения работы Сервиса не был запущен метод startService(), он
+остановится без вызова обработчика onStartCommand(). Данный режим
+идеально подходит для сервисов, которые обрабатывают конкретные
+запросы, особенно это касается регулярного выполнения заданных
+действий (например, обновления или сетевые запросы). Вместо того,
+чтобы перезапускать сервис при нехватке ресурсов, часто более
+целесообразно позволить ему остановиться и повторить попытку запуска
+по прошествии запланированного интервала.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>START_REDELIVER_INTENT - В некоторых случаях нужно
+убедиться, что команды, которые вы посылаете сервису, выполнены. Этот
+режим &mdash; комбинация предыдущих двух. Если система преждевременно
+завершила работу сервиса, он запустится повторно, но только когда
+будет сделан явный запрос на запуск или если процесс завершился до
+вызова метода stopSelf(). В последнем случае вызовется обработчик
+onStartCommand(), он получит первоначальное намерение, обработка
+которого не завершилась должным образом.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Обратите внимание, что при окончании всех операций
+каждый из этих режимов требует явной остановки сервиса с помощью
+методов stopService() или stopSelf().</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Режим перезапуска, который вы указываете в качестве
+значения, возвращаемого методом onStartCommand(), будет влиять на
+параметры, передаваемые при последующих вызовах.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Изначально намерение выступает в качестве параметра,
+который передастся в метод startService() при запуске сервиса. После
+перезапуска системой он может иметь значение null (если установлен
+режим START_STICKY) или оригинальное (если установлен флаг
+START_REDELIVER_INTENT).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Параметр flag может помочь узнать, как именно был
+запущен сервис:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>START_FLAG_REDELIVERY &mdash; указывает на то, что
+параметр Intent повторно передан при принудительном завершении работы
+сервиса перед явным вызовом метода stopSelf()</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>START_FLAG_RETRY &mdash; указывает на то, что сервис
+повторно запущен после непредвиденного завершения работы; передается
+в том случае, если ранее сервис работал в режиме START_STICKY</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>@Override</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+int onStartCommand(Intent intent, int flags, int startId) </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>if</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>((</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>flags
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>&amp;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+START_FLAG_RETRY</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>==</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#008c00"><FONT SIZE=4>0</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#696969"><FONT SIZE=4><SPAN LANG="ru-RU">//
+</SPAN></FONT></FONT><FONT SIZE=4>TODO</FONT><FONT SIZE=4><SPAN LANG="ru-RU">
+Если это повторный запуск, выполнить какие-то действия.</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4><SPAN LANG="ru-RU">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>else</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">
+</SPAN></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4><SPAN LANG="ru-RU">{</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#696969"><FONT SIZE=4><SPAN LANG="ru-RU">//
+</SPAN></FONT></FONT><FONT SIZE=4>TODO</FONT><FONT SIZE=4><SPAN LANG="ru-RU">
+Альтернативные действия в фоновом режиме.</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4><SPAN LANG="ru-RU">}</SPAN></FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>return</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">
+</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Service</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4><SPAN LANG="ru-RU">.</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>START</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">_</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>STICKY</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4><SPAN LANG="ru-RU">;</SPAN></FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Запуск и остановка сервисов</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Чтобы запустить службу, в клиентском приложении
+необходимо вызывать метод startService(). Существует два способа
+вызова службы:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<UL>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-right: 0.43in"><FONT SIZE=4>явный
+	вызов;</FONT></P>
+	<LI><P LANG="ru-RU" CLASS="western" STYLE="margin-right: 0.43in"><FONT SIZE=4>неявный
+	вызов.</FONT></P>
+</UL>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Пример для явного вызова службы с именем MyService:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>startService(new
+Intent(this, MyService.class))</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Также можно явно определить службу, создав экземпляр
+класса этой службы.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Пример<SPAN LANG="en-US"> </SPAN>неявного<SPAN LANG="en-US">
+</SPAN>вызова<SPAN LANG="en-US"> </SPAN>службы<SPAN LANG="en-US">:</SPAN></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+ 
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>startService(new
+Intent(MyService.SERVICE_ACTION))</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Чтобы использовать этот пример, необходимо включить
+константу SERVICE_ACTION, идентифицирующую службу, в класс MyService,
+например:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>private</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>static</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+String SERVICE_ACTION = &quot;ru.alexanderklimov.media.PLAYER&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Используйте фильтр намерений, чтобы зарегистрировать его
+как провайдера SERVICE_ACTION. Если служба потребует разрешений,
+которые не имеет ваше приложение, то запрос вызовет исключение
+SecurityException.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Как только сервис завершил выполнение тех действий, для
+которых он запускался, вы должны вызвать метод stopSelf() либо без
+передачи параметра, чтобы ускорить остановку работы, либо передав
+значение startId, чтобы убедиться, что задачи выполнены для всех
+экземпляров, запущенных с помощью вызова startService(), как показано
+в следующем фрагменте:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>stopSelf(startId)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Явная остановка сервиса по завершении необходимых задач
+позволяет системе получать обратно ресурсы, которые в ином случае
+оставались бы заняты. Поскольку приоритет сервисов повышенный,
+система, как правило, не завершает их работу, поэтому ее окончание по
+собственной инициативе может существенно улучшить эффективность
+использования ресурсов вашим приложением.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Для остановки работы используйте метод stopService(),
+передавая ему объект Intent, определяющий нужный сервис.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Если метод startService() вызывается для сервиса,
+который уже работает, обработчик onStartCommand(), принадлежащий
+объекту Service, будет вызван повторно. Вызовы startService() не
+накапливаются, поэтому единственный вызов метода stopService()
+завершит работу сервиса, неважно, сколько раз производился вызов
+startService().</FONT></P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Пример сервиса</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Давайте создадим практическое приложение для работы со
+службой. Наша служба будет запускать на воспроизведение музыкальный
+файл, который будет проигрываться в фоновом режиме. Управлять службой
+можно будет из активности. Создайте новый проект. Для службы создайте
+отдельный класс PlayService. Служба будет загружать музыкальный файл
+sample.mp3 из каталога res/raw/ (разместите там свой MP3-файл).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>PlayService.java</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>package</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+ru</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>alexanderklimov</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>servicelaunch</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>app</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Service</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>content</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Intent</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>media</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>MediaPlayer</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>os</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>IBinder</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>widget</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>class</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+PlayService </FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>extends</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Service </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>MediaPlayer
+mPlayer</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+IBinder onBind</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Intent
+intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>return</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>null</B></FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onCreate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>makeText</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;Служба
+создана&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>LENGTH_SHORT</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>).</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>show</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>mPlayer
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+MediaPlayer</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>create</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+R</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>raw</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>sample</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>mPlayer</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setLooping</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>false</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>	</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onStart</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Intent
+intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>int</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+startid</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	
+   Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>makeText</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;Служба
+запущена&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>LENGTH_SHORT</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>).</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>show</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>mPlayer</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>start</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>	</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onDestroy</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>makeText</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;Служба
+остановлена&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">            <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>Toast</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>LENGTH_SHORT</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>).</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>show</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>mPlayer</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>stop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Зарегистрируем службу в файле манифеста.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>service</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>enabled</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>true</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>.PlayService</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>service</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В файле разметки для активности определим две кнопки:
+Старт и Стоп:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#004a43"><FONT SIZE=4>&lt;?</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>xml</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>version</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#7d0045"><FONT SIZE=4>1.0</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>encoding</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>utf-8</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>?&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#666616"><FONT SIZE=4>xmlns</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#074726"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#666616"><FONT SIZE=4>http</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>//</B></FONT></FONT><FONT COLOR="#5555dd"><FONT SIZE=4>schemas.android.com</FONT></FONT><FONT COLOR="#40015a"><FONT SIZE=4>/apk/res/android</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>orientation</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>vertical</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>fill_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>fill_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>gravity</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>center</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>id</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@+id/btn_start</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>Старт</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>fill_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>id</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>@+id/btn_stop</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_height</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>wrap_content</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>text</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>Стоп</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>layout_width</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>fill_parent</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>LinearLayout</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>В классе активности в обработчиках событий кнопок будем
+вызывать методы startService() и stopService() для управления
+службой.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>package</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+ru</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>alexanderklimov</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>servicelaunch</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>app</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Activity</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>content</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Intent</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>os</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Bundle</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>view</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>View</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>import</B></FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>
+android</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>widget</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#004a43"><FONT SIZE=4>Button</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>class</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+LaunchActivity </FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>extends</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Activity </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onCreate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Bundle
+savedInstanceState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>super</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>onCreate</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>savedInstanceState</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		setContentView</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>R</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>layout</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>main</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>final</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>Button</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+btnStart </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>Button</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>findViewById</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>R</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>id</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>btn_start</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>final</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>Button</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+btnStop </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4><B>Button</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>findViewById</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>R</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>id</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>btn_stop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#696969"><FONT SIZE=4>//
+запуск службы </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		btnStart</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setOnClickListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+View</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>OnClickListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>				</FONT></FONT><FONT COLOR="#696969"><FONT SIZE=4><SPAN LANG="ru-RU">//
+используем явный вызов службы </SPAN></FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">				</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>startService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4><SPAN LANG="ru-RU">(</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">
+</SPAN></FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4><SPAN LANG="ru-RU">					</SPAN></FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>LaunchActivity</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+PlayService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>class</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>))</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>	 </FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#696969"><FONT SIZE=4>//
+остановка службы </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		btnStop</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>setOnClickListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+View</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>OnClickListener</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>()</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onClick</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>View
+v</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>				stopService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>					</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>LaunchActivity</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>this</B></FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+PlayService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>class</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>))</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Запущенная служба будет выполняться независимо от
+состояния активности, несмотря на то, что эти компоненты находятся в
+одном приложении: если её завершить, служба все равно останется
+работать.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Если вы хотите, чтобы сервис запускался и после
+перезагрузки устройства, то следует получить права
+android.permission.RECEIVE_BOOT_COMPLETED, создать приёмник
+широковещательных сообщений и запустить в нём сервис.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>class</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+BootBroadcast </FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>extends</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+BroadcastReceiver </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+ 
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#808030"><FONT SIZE=4>@</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Override</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800000"><FONT SIZE=4><B>public</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#bb7977"><FONT SIZE=4>void</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+onReceive</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>Context
+context</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Intent intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+      </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        <FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT SIZE=4>context</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>startService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4><B>new</B></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+Intent</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>context</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+TestService</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>class</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>))</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#800080"><FONT SIZE=4>}</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Приёмник регистрируется в манифесте с именем действия
+BOOT_COMPLETED:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>receiver</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>.BootBroadcast</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+  </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>intent-filter</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">        </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>action</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#007997"><FONT SIZE=4>android</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>:</FONT></FONT><FONT COLOR="#274796"><FONT SIZE=4>name</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>android.intent.action.BOOT_COMPLETED</FONT></FONT><FONT COLOR="#800000"><FONT SIZE=4>&quot;</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>/&gt;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+              </FONT></FONT></FONT></FONT>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#000000">    </FONT><FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>intent-filter</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#a65700"><FONT SIZE=4>&lt;/</FONT></FONT><FONT COLOR="#5f5035"><FONT SIZE=4>receiver</FONT></FONT><FONT COLOR="#a65700"><FONT SIZE=4>&gt;</FONT></FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Список всех запущенных сервисов</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=4>ActivityManager am =
+(ActivityManager) this</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>		.getSystemService(ACTIVITY_SERVICE)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>List&lt;ActivityManager.RunningServiceInfo&gt;
+rs = am.getRunningServices(50)</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>for
+(int i = 0</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+i &lt; rs.size()</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+i++) </FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>{</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	ActivityManager</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>RunningServiceInfo
+rsi </FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>=</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+rs</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>get</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>i</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>)</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>	Log</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>i</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>(</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;Service&quot;</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>,</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot;Process &quot;</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+rsi</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>process
+</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+</FONT></FONT><FONT COLOR="#0000e6"><FONT SIZE=4>&quot; with
+component &quot;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT FACE="Courier New, monospace"><FONT SIZE=2><FONT COLOR="#000000"><FONT SIZE=4>			</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>+</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>
+rsi</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>service</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>.</FONT></FONT><FONT COLOR="#000000"><FONT SIZE=4>getClassName</FONT></FONT><FONT COLOR="#808030"><FONT SIZE=4>())</FONT></FONT><FONT COLOR="#800080"><FONT SIZE=4>;</FONT></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-left: 0.39in; margin-right: 0.43in; background: #ffffff">
+<FONT COLOR="#800080"><FONT FACE="Courier New, monospace"><FONT SIZE=4>}</FONT></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<H5 LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in">
+Системные сервисы</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Кроме создания собственных сервисов, вы можете
+использовать системные сервисы. Вот небольшой список:</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<BR>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Wallpaper Service - служба для управления обоями на
+домашнем экране</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Layout Inflater Service - служба для управления
+компоновкой экрана при динамическом создании из кода</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Input Method Service - служба для управления текстовым
+вводом</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Clipboard Service - служба для управления буфером обмена</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Search Service - служба для управления глобальным
+поиском</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Notification Service - служба для управления
+уведомлениями</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Alarm Service - служба для отправки разовых или
+периодических оповещений в заданное время</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Activity Service - служба для управления активностями</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Power Service - служба для управления энергопотреблением</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Sensor Service - служба для доступа к датчикам</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Vibrator Service - служба для доступа к виброзвонку</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Telephony Service - служба для управления телефонными
+функциями</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Connectivity Service - служба для управления сетевыми
+соединениями</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Download Service - служба для управления загрузками</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Wifi Service - служба для управления соединениями Wi-Fi</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Location Service - служба для отслеживания координат</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>NFC Service - служба для управления NFC</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="margin-left: 0.39in; margin-right: 0.43in; text-indent: 0.39in">
+<FONT SIZE=4>Account Service - служба для управления
+пользовательскими учётными записями</FONT></P>
+<H5 LANG="ru-RU" CLASS="western">Литература</H5>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>1.
+Службы (Сервисы).</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in">
+<FONT SIZE=4><A HREF="http://developer.alexanderklimov.ru/android/theory/services-theory.php"><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">http</SPAN></U></FONT><FONT COLOR="#0000ff"><U>://</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">developer</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">alexanderklimov</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">android</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">theory</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">services</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">theory</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">php</SPAN></U></FONT></A>
+</FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>2.
+уроки 92-100 по теме <SPAN LANG="en-US">Services</SPAN>.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><A HREF="http://startandroid.ru/ru/uroki/vse-uroki-spiskom.html"><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">http</SPAN></U></FONT><FONT COLOR="#0000ff"><U>://</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">startandroid</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">uroki</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">vse</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">uroki</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">spiskom</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">html</SPAN></U></FONT></A></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>3.
+Введение в разработку приложений для ОС <SPAN LANG="en-US">Android</SPAN>.
+1.2 Устройство платформы <SPAN LANG="en-US">Android</SPAN>. </FONT>
+</P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><A HREF="http://www.intuit.ru/studies/courses/12643/1191/lecture/21983?page=3"><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">http</SPAN></U></FONT><FONT COLOR="#0000ff"><U>://</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">www</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">intuit</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">studies</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">courses</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/12643/1191/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">lecture</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/21983?</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">page</SPAN></U></FONT><FONT COLOR="#0000ff"><U>=3</U></FONT></A></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>4.
+Сервисы на developer.android.com.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4><FONT COLOR="#0000ff"><U><A HREF="http://developer.android.com/guide/components/services.html"><SPAN LANG="en-US">http://developer.android.com/guide/components/services.html</SPAN></A></U></FONT></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><FONT SIZE=4>5.
+Липкий запуск сервисов в <SPAN LANG="en-US">Android</SPAN>-<SPAN LANG="en-US">e</SPAN>.</FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in">
+<FONT SIZE=4><A HREF="http://programador.ru/sticky-service/"><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">http</SPAN></U></FONT><FONT COLOR="#0000ff"><U>://</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">programador</SPAN></U></FONT><FONT COLOR="#0000ff"><U>.</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">ru</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">sticky</SPAN></U></FONT><FONT COLOR="#0000ff"><U>-</U></FONT><FONT COLOR="#0000ff"><U><SPAN LANG="en-US">service</SPAN></U></FONT><FONT COLOR="#0000ff"><U>/</U></FONT></A></FONT></P>
+<P LANG="ru-RU" CLASS="western" STYLE="text-indent: 0.39in"><BR>
+</P>
+<DIV TYPE=FOOTER>
+	<P LANG="ru-RU"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>
